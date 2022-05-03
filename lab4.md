@@ -128,7 +128,7 @@ docker --version
 You have successfully setup Docker! Lets Get Started Deploying Cloudflare ZT Gateway!
 ```
 
-## Setup Docker Compose File
+## Deploy DNS Server & Cloudflare Tunnel for DoH ##
 
 With Docker running we can now pull down the template Docker Compose file that will allow us to quickly deploy a local DNS server (pi-hole) and Cloudflare DoH forwarder (Cloudflare tunnel) together.
 
@@ -150,7 +150,7 @@ Once in the directory you should see a *docker-compose.yml* file open this file 
 :class: note
 VS Code is a versatile text editor that can be launched directly from the terminal using *code <filename>* to install VS Code follow the steps found in the [Documentation](https://code.visualstudio.com/download)
 ```
-
+### Understanding Docker Compose file ###
 With the file open lets take a moment to break it down and understand it, The file is split up into two logical sections, one for each service we will be starting up
 - Pi-Hole Service
 - cloudflared Service
@@ -176,9 +176,186 @@ Based on this you can see that once everything is done, the docker host will be 
 
 ### Modify Docker Compose file ###
 
-Take a closer look at the configuration in the Docker Compose file and read the comments to understand whats happening
+Take a closer look at the configuration in the Docker Compose file and read the comments to understand whats happening.
+
+Now that you have reviewed the file you may have noticed there is a specific environment variable for the cloudflared service the *TUNNEL_DNS_UPSTREAM* this value will need to be taken from your Cloudflare Zero Trust Dashboard - Lets do it!
+
+#### Setup Cloudflare ZT Location ####
+
+To get a custom DNS over HTTPS endpoint for your Cloudflare Account lets start by logging into the dashboard 
+
+```
+https://dash.teams.cloudflare.com
+```
+
+Once logged in you should be brought to the Welcome screen:
+
+![welcome](./screencaps/zt-welcome.png)
 
 ```{admonition} Additional Setup
 :class: note
-If you are note brought directly into the Zero Trust Dashboard - you may have to go through the intial setup setups - be sure to choose the **FREE** plan when selecting a tier, once complete you should be brought to the above page
+If you are note brought directly into the Zero Trust Dashboard - you may have to go through the initial setup setups - be sure to choose the **FREE** plan when selecting a tier, once complete you should be brought to the above page
+```
+
+From here, on the right hand navigation select **Gateway > Locations** on the following screen press **Add a location** now you will be asked for some details as seen below:
+
+![new-loc](./screencaps/new-location.png)
+
+All you need to do here is enter a name for the location. Since we are using DNS over HTTPS we do not need to define a source IPv4 Address.
+
+```{admonition} REMOVE ANY AUTO-CREATED IPS
+:class: error
+There will probably be an IP entered in the "Source IPv4 Address" make sure you delete it - This may cause issues for other attendees
+```
+
+Once created you will be given a DoH address for the location you just created - Take note of this as we will need it for our Docker Compose file
+
+![welcome](./screencaps/doh-host.png)
+
+#### Edit Environment Variables with DoH ####
+
+Returning to the Docker Compose file find the *Environment Variables* for the cloudflared service (line 16) and enter the DoH address from the pervious step
+
+``` yaml
+environment:
+  # DoH endpoint THIS SHOULD BE MODIFIED BASED ON GUIDE
+  - "TUNNEL_DNS_UPSTREAM=https://XXXXXX.cloudflare-gateway.com/dns-query"
+```
+
+### Launch Containers ###
+Once the file is saved launch the containers via docker compose:
+
+``` sh
+docker-compose up -d
+```
+
+If successful you should see the following output
+
+```
+[+] Running 3/3
+ ⠿ Network connect_2022_lab4_default  Created         0.0s
+ ⠿ Container cloudflared              Started         0.4s
+ ⠿ Container pihole                   Started         0.8s
+ ```
+
+```{admonition} Errors Launching Containers
+:class: warning
+If you have any issues launching the containers make sure that there are no other services on the local system listening on port 80 or 53 as it will break the port binding
+``` 
+
+Once running you should be able to reach the pihole administrator portal at:
+
+```
+http://localhost/admin
+```
+
+At the Pi-Hole Welcome screen press the *login* and enter the password defined in the Docker Compose file 
+
+```{admonition} Default Password
+:class: note
+If you did not edit the file the password should be **connect-2022**
+```
+
+![welcome](./screencaps/ph-login.png)
+
+Once logged in navigate to the **Settings** on the left hand navigation pane, and then select **DNS** on the top row of tabs.
+
+You should see that the **Upstream DNS Servers** have a single entry for our cloudflared container service.
+
+![welcome](./screencaps/ph-upstream.png)
+
+```{admonition} cloudflared service IP
+:class: note
+You may have a different IP address set for your DNS server but that is as expected, the value is dynamically linked to the cloudflared service by docker in the background
+```
+
+### Test DNS Forwarding ###
+
+We can now validate that DNS resolution is working on the new setup by quickly running an nslookup command
+
+``` sh
+nslookup google.com localhost
+```
+
+This will ask the *localhost* (Pi-Hole DNS Server) for a resolution on google.com. We should get a result and now be able to dig into the logs to see the request was properly forwarded to Cloudflare.
+
+First lets return to the Pi-Hole [dashboard](http://localhost/admin)
+Here on the main dashboard we should see a few new queries - if we navigate to **Query Log** on the left navigation pane we should see that our initial DNS query was sent to our Cloudflare DoH forwarder on port 5053
+
+![ql](./screencaps/ph-ql.png)
+
+To confirm the request made it to Our Cloudflare ZT Gateway we can return to [dashboard](https://dash.teams.cloudflare.com)
+
+In the Cloudflare ZT dasbhoard navigate to **Logs > Gateway** and enter the domain you requested (in our case it was google.com). You should see a query log for it as well as confirmation that the *Protocol type* was *HTTPS* and the *Location* was our demo location we created earlier.
+
+![al](./screencaps/gw-al.png)
+
+#### Create DNS Filtering Rule ####
+
+Now that we have successfully passed traffic through to our Cloudflare Zero Trust Gateway we can write filtering policies to block access to specific domains. 
+
+In the Cloudflare ZT dashboard navigate to **Gateway > Policies** and select **Create a policy**
+
+In the Policy Creation , lets write a policy to Block the category of Gambling.
+
+The policy should have the following settings 
+
+```
+Step 1 - "Block Gambling"
+Step 2 - Selector "Content Categories" + "in" + "Gambling"
+Step 3 - "Block"
+Step 4 - Display Block Page "On"
+```
+
+![al](./screencaps/gw-dns-pol.png)
+
+#### Change System DNS Settings ####
+
+In order to test our new filtering rule we must first redirect our DNS traffic to our new Pi-Hole DNS server.
+Each operating system has a different process - The steps are generally shown below 
+
+**MacOS**
+1. Go to System Preferences. You can find it by pressing Command+Space on your Mac and typing System Preferences.
+
+2. Click on the icon called Network.
+
+
+3. Click Advanced.
+
+4. Select the DNS tab. Remove any IP addresses that may be already listed and in their place add **127.0.0.1**
+
+**Linux**
+1. Edit the resolve.conf file
+``` sh
+sudo vim/etc/resolv.conf
+```
+
+2. Replace the nameserver lines with **127.0.0.1**
+
+**Windows**
+1. Click on the Start menu, then click on Control Panel.
+
+2. Click on Network and Internet.
+
+3. Click on Change Adapter Settings.
+
+4. Right click on the Wi-Fi network you are connected to.
+
+5. Click Properties.
+
+6. Select Internet Protocol Version 4.
+
+7. Click Properties.
+
+8. Click Use The Following DNS Server Addresses. Enter **127.0.0.1**
+
+#### Test New DNS Filtering Rule ####
+
+With the system configured to send DNS to our new setup we can go ahead and try going to any gambling site - <https://gambling.com>
+
+You should have gotten the Cloudflare Block Page! 
+
+```{admonition} LAB 4 COMPLETE! 
+:class: note
+You have successfully Completed Lab 4 - Cloudflare Zero Trust Gateway, now you have a ready to deploy docker compose file that you can take to any environment, even your own raspberry pi and start protecting your infrastructure with secure DNS.
 ```
