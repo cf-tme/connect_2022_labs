@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Setup Github &mdash; cf-connect-2022  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Setup Git" href="git.html" />
+    <link rel="prev" title="Welcome to Cloudflare Connect 2022 - Hands On Labs!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> cf-connect-2022
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pre-Requisites:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Setup Github</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-github-cli">1.1. Install Github CLI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macos">1.1.1. MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">1.1.2. Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">1.1.3. Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#login-to-github-cli">1.2. Login to Github CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">2. Setup Git</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cf-connect-2022</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><span class="section-number">1. </span>Setup Github</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/github.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-github">
+<h1><span class="section-number">1. </span>Setup Github<a class="headerlink" href="#setup-github" title="Permalink to this headline"></a></h1>
+<section id="install-github-cli">
+<h2><span class="section-number">1.1. </span>Install Github CLI<a class="headerlink" href="#install-github-cli" title="Permalink to this headline"></a></h2>
+<p>GitHub will be used as our code hosting platform - the GitHub CLI will be used to login to our GitHub Account as well as manage repositories</p>
+<section id="macos">
+<h3><span class="section-number">1.1.1. </span>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline"></a></h3>
+<p><strong>Install Homebrew:</strong></p>
+<p>The fastest way to install packages onto MacOS is with Homebrew, if you already have Homebrew installed you can skip this step</p>
+<p>To install Brew, in a terminal window enter</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>/bin/bash -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p><strong>Install GitHub CLI:</strong></p>
+<p>In a terminal window enter:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install gh
+</pre></div>
+</div>
+</section>
+<section id="linux">
+<h3><span class="section-number">1.1.2. </span>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
+<p>Installation of the GitHub CLI can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS</p>
+<p><strong>Debian, Ubuntu Linux, Raspberry Pi OS (apt)</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg <span class="p">|</span> sudo dd <span class="nv">of</span><span class="o">=</span>/usr/share/keyrings/githubcli-archive-keyring.gpg
+<span class="nb">echo</span> <span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null
+sudo apt update
+sudo apt install gh
+</pre></div>
+</div>
+<p><strong>Fedora, CentOS, Red Hat Enterprise Linux (dnf)</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install <span class="s1">&#39;dnf-command(config-manager)&#39;</span>
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
+</pre></div>
+</div>
+</section>
+<section id="windows">
+<h3><span class="section-number">1.1.3. </span>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
+<p>Installation of GitHub CLI can be done with powershell winget package manager. Open PowerShell and enter the following installation command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>winget install --id GitHub.cli
+</pre></div>
+</div>
+<p>If prompted enter <em>Y</em> to approve installation</p>
+<p>Once installation is complete you must add GitHub CLI installation to the Windows PATH:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$Env</span>:PATH +<span class="o">=</span> <span class="s2">&quot;;C:\Program Files\GitHub CLI&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="login-to-github-cli">
+<h2><span class="section-number">1.2. </span>Login to Github CLI<a class="headerlink" href="#login-to-github-cli" title="Permalink to this headline"></a></h2>
+<p>Once Github CLI is installed you can authenticate to your Github account.
+In a terminal window enter:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh auth login
+</pre></div>
+</div>
+<p>At the follow up prompt select <em>Github.com</em> and press enter</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>? What account <span class="k">do</span> you want to log into?  <span class="o">[</span>Use arrows to move, <span class="nb">type</span> to filter<span class="o">]</span>
+&gt; GitHub.com
+  GitHub Enterprise Server
+</pre></div>
+</div>
+<p>At the next prompt select <em>HTTPS</em> and press enter</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>? What is your preferred protocol <span class="k">for</span> Git operations?  <span class="o">[</span>Use arrows to move, <span class="nb">type</span> to filter<span class="o">]</span>
+&gt; HTTPS
+  SSH
+</pre></div>
+</div>
+<p>Enter <em>Y</em> to authenticate with GitHub credentials</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>? Authenticate Git with your GitHub credentials? <span class="o">(</span>Y/n<span class="o">)</span>
+</pre></div>
+</div>
+<p>Select <em>Login</em> with a web browser</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>? How would you like to authenticate GitHub CLI?  <span class="o">[</span>Use arrows to move, <span class="nb">type</span> to filter<span class="o">]</span>
+&gt; Login with a web browser
+  Paste an authentication token
+</pre></div>
+</div>
+<p>Copy the provided one-time code and press <em>Enter</em> to open browser</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>! First copy your one-time code: XXXX-XXXX
+Press Enter to open github.com <span class="k">in</span> your browser...
+</pre></div>
+</div>
+<p>When the browser opens - enter the one time code into the browser and press <em>Continue</em></p>
+<p><img alt="login" src="_images/gh_login.png" /></p>
+<p><em>Authorize</em> access on the following page</p>
+<p><img alt="auth" src="_images/gh_authorize_access.png" /></p>
+<p>If prompted enter your password in the following screen and press <em>Confirm Password</em></p>
+<p><img alt="confirm" src="_images/gh_enter_account_password.png" /></p>
+<p>If the login is successful you should see a success page</p>
+<p><img alt="confirm" src="_images/gh_account_success.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">GitHub Setup Complete! </p>
+<p>You have successfully setup GitHub CLI! Next step is setting up Setting up Git CLI</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Cloudflare Connect 2022 - Hands On Labs!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="git.html" class="btn btn-neutral float-right" title="2. Setup Git" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Cloudflare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
