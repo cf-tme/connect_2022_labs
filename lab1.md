@@ -83,7 +83,7 @@ remove the middleware file because we dont want to deny login - explain what thi
 
 
 
-
+npm run build
 npx wrangler pages dev ./build --kv KV_NAMESPACE
 
 

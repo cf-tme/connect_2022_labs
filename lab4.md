@@ -6,6 +6,10 @@ By the end of this lab you will have:
 - Configured DNS based filtering in Cloudflare ZT Gateway
 - Built a ready to deploy Docker Compose file to deploy setup anywhere
 
+For reference the end state diagram for this lab is provided below:
+
+
+
 Cloudflare Zero Trust Gateway is designed to keep your data safe from malware, ransomware, phishing, command & control, Shadow IT, and other Internet risks over all ports and protocols. Today we will only be setting up DNS based filtering but it can be used as a full Secure Web Gateway.
 
 ```{admonition} Learn More about Cloudflare Zero Trust Gateway! 
@@ -129,3 +133,6 @@ You have successfully setup Docker! Lets Get Started Deploying Cloudflare ZT Gat
 ```
 
 ## Setup Docker Compose File
+
+With Docker running we can now pull down the template Docker Compose file that will allow us to quickly deploy a local DNS server (pi-hole) and Cloudflare DoH forwarder (Cloudflare tunnel) together.
+
