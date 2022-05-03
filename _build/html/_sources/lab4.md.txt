@@ -6,10 +6,6 @@ By the end of this lab you will have:
 - Configured DNS based filtering in Cloudflare ZT Gateway
 - Built a ready to deploy Docker Compose file to deploy setup anywhere
 
-For reference the end state diagram for this lab is provided below:
-
-
-
 Cloudflare Zero Trust Gateway is designed to keep your data safe from malware, ransomware, phishing, command & control, Shadow IT, and other Internet risks over all ports and protocols. Today we will only be setting up DNS based filtering but it can be used as a full Secure Web Gateway.
 
 ```{admonition} Learn More about Cloudflare Zero Trust Gateway! 
@@ -142,3 +138,47 @@ Clone the repo that contains the Docker compose file
 gh repo clone cf-tme/connect_2022_lab4
 ```
 
+Move into the Directory that was just cloned 
+
+``` sh
+cd connect_2022_lab4
+```
+
+Once in the directory you should see a *docker-compose.yml* file open this file in your favorite text editor 
+
+```{admonition} Text Editor
+:class: note
+VS Code is a versatile text editor that can be launched directly from the terminal using *code <filename>* to install VS Code follow the steps found in the [Documentation](https://code.visualstudio.com/download)
+```
+
+With the file open lets take a moment to break it down and understand it, The file is split up into two logical sections, one for each service we will be starting up
+- Pi-Hole Service
+- cloudflared Service
+
+We will be using Pi-Hole as the local dns resolver, for those unfamiliar with Pi-Hole, it is a powerful dns server designed to sinkhole common ad serving domains to create a cleaner and browsing experience for all connected devices. 
+
+```{admonition} Learn More!
+:class: note
+To learn more about Pi-Hole check out the [website](https://pi-hole.net/)
+```
+
+Pi hole is designed to be run on the Raspberry-Pi hardware platform but since we are building it in a container it can easily be ported to whatever platform you like.
+
+In order for Pi-hole to resolve internet domains it will need to be configured with an upstream DNS server to resolve internet domain names - this is where the cloudflard service comes into play.
+
+The cloudfalred service will act as an upstream resolver for Pi-Hole and use Cloudflare ZT Gateway (via DNS over HTTPS) to resolve internet domains - this means that not only are our internet DNS queries encrypted and secure, we can also customize policies on what kinds of traffic is allowed.
+
+The below diagram will help visualize the traffic flow
+
+![diagram](./screencaps/lab4_diagram.png)
+
+Based on this you can see that once everything is done, the docker host will be the primary DNS server for the network.
+
+### Modify Docker Compose file ###
+
+Take a closer look at the configuration in the Docker Compose file and read the comments to understand whats happening
+
+```{admonition} Additional Setup
+:class: note
+If you are note brought directly into the Zero Trust Dashboard - you may have to go through the intial setup setups - be sure to choose the **FREE** plan when selecting a tier, once complete you should be brought to the above page
+```
