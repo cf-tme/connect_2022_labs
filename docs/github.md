@@ -1,6 +1,6 @@
 # Setup Github
 ## Install Github CLI
-### Linux
+
 ### MacOS
 **Install Homebrew:**
 
@@ -12,13 +12,50 @@ To install Brew, in a terminal window enter
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Once Brew is installed you can install the Github CLI
+**Install GitHub CLI:**
+
 In a terminal window enter:
 
 ``` sh
 brew install gh
 ```
+### Linux
 
+Installation of the GitHub CLI can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS
+
+**Debian, Ubuntu Linux, Raspberry Pi OS (apt)**
+``` sh
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+```
+**Fedora, CentOS, Red Hat Enterprise Linux (dnf)**
+
+``` sh
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
+```
+
+### Windows
+
+Installation of GitHub CLI can be done with powershell winget package manager. Open PowerShell and enter the following installation command:
+
+``` sh
+winget install --id GitHub.cli
+```
+
+If prompted enter *Y* to approve installation
+
+Once installation is complete you must add GitHub CLI installation to the Windows PATH:
+
+```sh
+$Env:PATH += ";C:\Program Files\GitHub CLI"
+```
+
+
+## Login to Github CLI
 Once Github CLI is installed you can authenticate to your Github account.
 In a terminal window enter:
 
@@ -62,21 +99,23 @@ Copy the provided one-time code and press *Enter* to open browser
 Press Enter to open github.com in your browser...
 ```
 
-When the browser opens - Login with your Github credentials %test 
+When the browser opens - enter the one time code into the browser and press *Continue*
 
-### Windows
-## testing
+![login](./screencaps/gh_login.png)
 
-Some **text**!
-```{admonition} Here's my title
-:class: warning
+*Authorize* access on the following page
 
-Here's my admonition content
-```
+![auth](./screencaps/gh_authorize_access.png)
 
-setup gh desktop cli and git cli
+If prompted enter your password in the following screen and press *Confirm Password*
 
+![confirm](./screencaps/gh_enter_account_password.png)
 
-```{admonition} Learn more
-Visit the Brew [homepage](https://brew.sh/)
+If the login is successful you should see a success page
+
+![confirm](./screencaps/gh_account_success.png)
+
+```{admonition} GitHub Setup Complete! 
+:class: note
+You have successfully setup GitHub CLI! Next step is setting up Setting up Git CLI
 ```

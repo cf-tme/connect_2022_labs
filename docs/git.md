@@ -1,4 +1,4 @@
-# Setup Wrangler
+# Setup GIT 
 ## testing
 Some **text**!
 ```{admonition} Here's my title

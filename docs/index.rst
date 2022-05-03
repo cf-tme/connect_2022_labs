@@ -12,9 +12,9 @@ Pre-Requisites (Only Complete Once!)
    :caption: Pre-Requisites:
    :numbered:
    :titlesonly:
-   
+
    github.md
-   wrangler.md
+   git.md
 
 Lab Exercises
 =============
