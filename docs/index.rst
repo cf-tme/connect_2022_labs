@@ -6,23 +6,20 @@
 Welcome to Cloudflare Connect 2022 - Hands On Labs!
 ===================================================
 
-Pre-Requisites (Only Complete Once!)
-====================================
+
 .. toctree::
    :caption: Pre-Requisites:
    :numbered:
-   :titlesonly:
+   :maxdepth: 2
 
    github.md
    git.md
 
-Lab Exercises
-=============
 
 .. toctree::
    :caption: Lab Exercises:
    :numbered:
-   :titlesonly:
+   :maxdepth: 2
 
    lab1.md
    lab2.md
