@@ -1,6 +1,6 @@
 # Setup Github
 ## Install Github CLI
-
+GitHub will be used as our code hosting platform - the GitHub CLI will be used to login to our GitHub Account as well as manage repositories 
 ### MacOS
 **Install Homebrew:**
 

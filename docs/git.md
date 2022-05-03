@@ -1,4 +1,5 @@
 # Setup Git 
+Git will be used to issue commands to fork, clone, commit, and push changes to our github repository.
 ## MacOS
 **Install Homebrew:**
 
