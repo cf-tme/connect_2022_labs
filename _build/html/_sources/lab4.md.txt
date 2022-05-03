@@ -136,3 +136,9 @@ You have successfully setup Docker! Lets Get Started Deploying Cloudflare ZT Gat
 
 With Docker running we can now pull down the template Docker Compose file that will allow us to quickly deploy a local DNS server (pi-hole) and Cloudflare DoH forwarder (Cloudflare tunnel) together.
 
+Clone the repo that contains the Docker compose file
+
+``` sh
+gh repo clone cf-tme/connect_2022_lab4
+```
+
