@@ -155,7 +155,7 @@ With the file open lets take a moment to break it down and understand it, The fi
 - Pi-Hole Service
 - cloudflared Service
 
-We will be using Pi-Hole as the local dns resolver, for those unfamiliar with Pi-Hole, it is a powerful dns server designed to sinkhole common ad serving domains to create a cleaner and browsing experience for all connected devices. 
+We will be using Pi-Hole as the local dns resolver, for those unfamiliar with Pi-Hole, it is a powerful dns server designed to sinkhole common ad serving domains to create a cleaner browsing experience for all connected devices. 
 
 ```{admonition} Learn More!
 :class: note
