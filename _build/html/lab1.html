@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Cloudflare Pages &mdash; cf-connect-2022  documentation</title>
+  <title>1. Cloudflare Pages (WIP) &mdash; cf-connect-2022  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Cloudflare Images" href="lab2.html" />
+    <link rel="next" title="2. Cloudflare Images (WIP)" href="lab2.html" />
     <link rel="prev" title="2. Setup Git" href="git.html" /> 
 </head>
 
@@ -44,12 +44,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Cloudflare Pages</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Cloudflare Pages (WIP)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#testing">1.1. testing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers (WIP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
 </ul>
 
@@ -67,7 +67,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">1. </span>Cloudflare Pages</li>
+      <li><span class="section-number">1. </span>Cloudflare Pages (WIP)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/lab1.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,8 +77,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cloudflare-pages">
-<h1><span class="section-number">1. </span>Cloudflare Pages<a class="headerlink" href="#cloudflare-pages" title="Permalink to this headline"></a></h1>
+  <section id="cloudflare-pages-wip">
+<h1><span class="section-number">1. </span>Cloudflare Pages (WIP)<a class="headerlink" href="#cloudflare-pages-wip" title="Permalink to this headline"></a></h1>
 <section id="testing">
 <h2><span class="section-number">1.1. </span>testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h2>
 <p>Some <strong>text</strong>!</p>
@@ -86,57 +86,30 @@
 <p class="admonition-title">Here’s my title</p>
 <p>Here’s my admonition content</p>
 </div>
-<p>step 1 connect GH to pages</p>
-<p>step 2 fork &amp; clone repo</p>
-<p>gh repo fork cloudflare/images.pages.dev</p>
-<p>y (would you like to clone the fork)</p>
-<p>cd images.pages.dev</p>
-<p>ls</p>
-<p>open up account and add to pages</p>
-<p>begin setup</p>
-<p>branch is main</p>
-<p>framework is create react app</p>
-<p>all others default</p>
-<p>press save and deploy</p>
-<p>watch build progress</p>
-<p>once done check the URL</p>
-<p>See how new builds are done</p>
-<p>create a new function - pages functions</p>
-<p>time.js example</p>
-<p>git add -A to add all files</p>
-<p>git commit -m “added new time function”</p>
-<p>git push</p>
-<p>now in the dashboard should see a new deployment in progress! good work</p>
-<p>edit the images ts file</p>
-<p>and then go to settings and bind kv namesapce
-get started
-and create namespace</p>
-<p>call it IMAGES</p>
-<p>back to pages and add env for functions</p>
-<p>IMAGE = IMAGES</p>
-<p>modify the app tsx to include routes to home and setup and admin</p>
-<p>run the setup</p>
-<p>then do the setup api endpoint to check to see if its working</p>
-<p>then do the images listing to see if images are there *should be empty as we have none *</p>
-<p>great!</p>
-<p>remove the middleware file because we dont want to deny login - explain what this can be used for if you need!</p>
-<p>npm run build
-npx wrangler pages dev ./build –kv KV_NAMESPACE</p>
-<p>lab 2 - upload images and now use these for the dashboard vs the original images</p>
-<p>&lt;for returning clone the premade repo and run the setup (step2 repo)&gt;</p>
-<p>edit the imagegrid.tsx file to remove the static images so we can use the images that we upload</p>
-<p>upload multiple images via the uploader built in</p>
-<p>check the metadata written to KV</p>
-<p>see the page update</p>
-<p>Lab 3 - write the workers js as a function for AB</p>
-<p>&lt;for returning clone the premade repo and run the setup (step2 repo), there will already be images in the const data file so they dont need to do any setup either since there is no upload - this will be a clean state page &gt;</p>
-<p>clone the repo and write the new worker js file</p>
-<p>check the page on refresh</p>
-<p>check the google analytics logs</p>
-<p>Lab 4
-setup pihole as container
-setup cloudflared as upstream proxy</p>
-<p>configure policy</p>
+<p>clone the github repository</p>
+<p>they are goiing to then deploy to pages</p>
+<p>navigate to the page! the application works!</p>
+<p>now lets write a function that lets us execute some code -
+new file for time - and then git add . git commit -m “new file” git push</p>
+<p>then add a new function file to learn how functions work - return</p>
+<p>boom now if we look at pages we see that there is an ongoing deployment! awesome it autodeploys it with the git push</p>
+<p>if we got to /time you can see it returns the time - pretty cool!</p>
+<p>now functions are really powerfull for creating integrations and api endpoints - in the interest of time we have built most of these for you.</p>
+<p>when using the API endpoints there is often a need to repeatedly refernce stored variable data - this is where we can use KV to persist variables. IN this example we will be using it to store details about the images in our gallery!</p>
+<p>create a new KV namespace called “IMAGES”</p>
+<p>note down the ID as we will need it in later labs!</p>
+<p>once the space is created go to settings and go to function - edit binding with variable name IMAGES and kv namespace set to the Images namespace we created</p>
+<p>now we will need to rebuild the project so lets do that!</p>
+<p>once done</p>
+<p>there are a few api endpoints we can test if you go to /api/image - lets see the result</p>
+<p>hmm we it looks empty, but thats good, we havent uploaded any images yet.</p>
+<p>now you might be wondering … ok well then why were there images on the homepage!</p>
+<p>good eye - this is because we have actually hardcoded the image data for the homepage - so lets go and clear it out and change it to read image data from our KV store</p>
+<ul class="simple">
+<li><p>delete the const data and uncomment the useSWR to get the data out of the kv store! this will make a call to the api/images endpoint and pull the data and present it.</p></li>
+</ul>
+<p>now if we return to our homepage - look at that an empty gallery!  - unfortunatley that is all the time we have for lab 1 but if you join us for lab 2 we will upload some cute images hosted in cloudflare and serve them up with our application</p>
+<p>at this stage you should ahve an empty pages on the home screen :) now lets add some pictures</p>
 </section>
 </section>
 
@@ -145,7 +118,7 @@ setup cloudflared as upstream proxy</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="git.html" class="btn btn-neutral float-left" title="2. Setup Git" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="lab2.html" class="btn btn-neutral float-right" title="2. Cloudflare Images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="lab2.html" class="btn btn-neutral float-right" title="2. Cloudflare Images (WIP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
