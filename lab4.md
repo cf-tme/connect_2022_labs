@@ -336,7 +336,7 @@ Each operating system has a different process - The steps are generally shown be
 
 ```{admonition} Before Changing DNS
 :class: error
-**BEFORE CHANGING DNS SETTINGS** document your current DNS servers and DNS settings, these changes will overwrite your current network settings and you will need to reset them once your tear down the lab on your local machine.
+**BEFORE CHANGING DNS SETTINGS** document your current DNS servers and DNS settings, these changes will overwrite your current network settings and your system may not automatically revert them. In that case you will need to reset them once your tear down the lab on your local machine.
 ```
 
 **MacOS**
