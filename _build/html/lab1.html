@@ -47,7 +47,9 @@
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Cloudflare Pages</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#testing">1.1. testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-github-repository">1.1. Clone GitHub Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-pages-project-from-github-repository">1.2. Deploy Pages Project from GitHub Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-functions-with-cloudflare-pages">1.3. Using Functions with Cloudflare Pages</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
@@ -93,16 +95,90 @@ By the end of this lab you will have:</p>
 <p class="admonition-title">Learn More about Cloudflare Pages! </p>
 <p>Check out the <a class="reference external" href="https://pages.cloudflare.com/">Cloudflare Homepage</a> to learn more</p>
 </div>
-<section id="testing">
-<h2><span class="section-number">1.1. </span>testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h2>
+<section id="clone-github-repository">
+<h2><span class="section-number">1.1. </span>Clone GitHub Repository<a class="headerlink" href="#clone-github-repository" title="Permalink to this headline"></a></h2>
+<p>To make things easier we have setup a starter gallery app on GitHub. Lets fork and clone the repository.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab1
+</pre></div>
+</div>
+<p>This should create a fork of the starter repository in your gh account. Follow the fork with a clone</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab1
+</pre></div>
+</div>
+<p>Now all the files should be local in your working directory, let navigate into the repo and start coding!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab1
+</pre></div>
+</div>
+</section>
+<section id="deploy-pages-project-from-github-repository">
+<h2><span class="section-number">1.2. </span>Deploy Pages Project from GitHub Repository<a class="headerlink" href="#deploy-pages-project-from-github-repository" title="Permalink to this headline"></a></h2>
+<p>Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.</p>
+<p>Login to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a></p>
+<p>Select <strong>Pages</strong> on the left hand side and press <strong>Create a Project</strong> and select <strong>Connect GitHub</strong></p>
+<p><img alt="pages" src="_images/pages_gh_setup.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">Authenticate to GitHub</p>
+<p>If you are not already logged into GitHub in your browser you may be asked to re-authenticate</p>
+</div>
+<p>You will be prompted to <strong>Install and Authorize</strong> Cloudflare Pages to your github account, press the button to proceed.</p>
+<p><img alt="linkgh" src="_images/pages_gh_auth.png" /></p>
+<p>Once connected you will be brought back to the Cloudflare Pages dashboard. Select <em>connect_2022_lab1</em> on the following page</p>
+<p><img alt="linkgh" src="_images/pages_gh_repo_select.png" /></p>
+<p>Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Project</span> <span class="n">name</span> <span class="o">-</span> <span class="n">connect</span><span class="o">-</span><span class="mi">2022</span><span class="o">-</span><span class="n">lab1</span>
+<span class="n">Production</span> <span class="n">branch</span> <span class="o">-</span> <span class="n">master</span>
+<span class="n">Framework</span> <span class="n">preset</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">React</span> <span class="n">App</span>
+<span class="n">Build</span> <span class="n">command</span> <span class="o">-</span> <span class="n">npm</span> <span class="n">run</span> <span class="n">build</span>
+<span class="n">Build</span> <span class="n">output</span> <span class="n">directory</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>
+</pre></div>
+</div>
+<p><img alt="linkgh" src="_images/pages_gh_add.png" /></p>
+<p>Press <strong>Deploy</strong></p>
+<div class="note admonition">
+<p class="admonition-title">Deployment Progress</p>
+<p>Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.</p>
+</div>
+<p>Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the <strong>link</strong>.</p>
+<div class="note admonition">
+<p class="admonition-title">pages.dev Domain</p>
+<p>By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)</p>
+</div>
+<p>When navigating to the link you should see a blurry image gallery.</p>
+<p><img alt="linkgh" src="_images/blurry-img-gallery.png" /></p>
+<p>Terrific! Congratulations you have successfully deployed a custom application using Cloudflare Pages.</p>
+</section>
+<section id="using-functions-with-cloudflare-pages">
+<h2><span class="section-number">1.3. </span>Using Functions with Cloudflare Pages<a class="headerlink" href="#using-functions-with-cloudflare-pages" title="Permalink to this headline"></a></h2>
+<p>Functions enable you to run server-side code to enable dynamic functionality without running a dedicated server. With Functions, you can introduce application aspects such as authenticating, querying databases, handling form submissions, or working with middleware.</p>
+<div class="note admonition">
+<p class="admonition-title">Learn More about Functions! </p>
+<p>Check out the <a class="reference external" href="https://developers.cloudflare.com/pages/platform/functions/">Cloudflare Docs</a> to learn more</p>
+</div>
+<p>For our simple gallery application we are going to create a new function that will simply return the time when navigating to the <em>time</em> page for our application.</p>
+<p>Returning to our command line lets change to the <em>functions</em> directory</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> functions
+</pre></div>
+</div>
+<p>Whatever name we give this file is going to be the path in our url. Lets create a new file called <em>time.js</em></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>touch time.js
+</pre></div>
+</div>
+<p>Now open that file in your favorite text editor.</p>
+<div class="note admonition">
+<p class="admonition-title">Text Editor</p>
+<p>VS Code is a versatile text editor that can be launched directly from the terminal using <em>code <filename></em> to install VS Code follow the steps found in the <a class="reference external" href="https://code.visualstudio.com/download">Documentation</a></p>
+</div>
+<p>In the file enter the following code:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">onRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">())</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 <p>Some <strong>text</strong>!</p>
 <div class="warning admonition">
 <p class="admonition-title">Here’s my title</p>
 <p>Here’s my admonition content</p>
 </div>
-<p>clone the github repository</p>
-<p>they are goiing to then deploy to pages</p>
-<p>navigate to the page! the application works!</p>
 <p>now lets write a function that lets us execute some code -
 new file for time - and then git add . git commit -m “new file” git push</p>
 <p>then add a new function file to learn how functions work - return</p>
