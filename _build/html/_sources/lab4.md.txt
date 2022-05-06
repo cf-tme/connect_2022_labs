@@ -124,6 +124,17 @@ Once installed Launch docker application from desktop icon and validate that Doc
 docker --version
 ```
 
+
+```{admonition} Windows & MacOS
+:class: Warning
+Once docker is installed you must launch it from the corresponding OS application launcher:
+*Windows*
+**Start** → **Docker Desktop**
+
+*MacOS*
+**Spotlight** → **Docker Desktop**
+```
+
 ```{admonition} Docker Setup Complete! 
 :class: note
 You have successfully setup Docker! Lets Get Started Deploying Cloudflare ZT Gateway!
@@ -229,6 +240,10 @@ Once the file is saved launch the containers via docker compose:
 ``` sh
 docker-compose up -d
 ```
+```{admonition} Errors Launching Containers
+:class: warning
+If you get an error claiming `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` you will need to launch the app from the application launcher
+``` 
 
 If successful you should see the following output
 

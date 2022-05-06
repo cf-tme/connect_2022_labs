@@ -198,6 +198,14 @@ sudo dnf config-manager <span class="se">\</span>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker --version
 </pre></div>
 </div>
+<div class="warning admonition">
+<p class="admonition-title">Windows &amp; MacOS</p>
+<p>Once docker is installed you must launch it from the corresponding OS application launcher:
+<em>Windows</em>
+<strong>Start</strong> → <strong>Docker Desktop</strong></p>
+<p><em>MacOS</em>
+<strong>Spotlight</strong> → <strong>Docker Desktop</strong></p>
+</div>
 <div class="note admonition">
 <p class="admonition-title">Docker Setup Complete! </p>
 <p>You have successfully setup Docker! Lets Get Started Deploying Cloudflare ZT Gateway!</p>
@@ -280,6 +288,10 @@ sudo dnf config-manager <span class="se">\</span>
 <p>Once the file is saved launch the containers via docker compose:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d
 </pre></div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Errors Launching Containers</p>
+<p>If you get an error claiming <code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">connect</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">Docker</span> <span class="pre">daemon</span> <span class="pre">at</span> <span class="pre">unix:///var/run/docker.sock.</span> <span class="pre">Is</span> <span class="pre">the</span> <span class="pre">docker</span> <span class="pre">daemon</span> <span class="pre">running?</span></code> you will need to launch the app from the application launcher</p>
 </div>
 <p>If successful you should see the following output</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[+] Running 3/3
