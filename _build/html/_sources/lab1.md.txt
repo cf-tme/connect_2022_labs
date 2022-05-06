@@ -152,6 +152,7 @@ Functions are great ways to build integrations into other APIs, or even build AP
 ## Creating and Binding KV store
 Workers KV is Cloudflare’s globally replicated key-value storage solution. Binding these KV namespaces with your application are what make it truly full-stack - the ability to read and write data dynamically right from Cloudflare's edge.
 
+(content:references:kv)=
 ### Creating an IMAGES KV Namespace
 Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name "IMAGES"
 
@@ -278,7 +279,54 @@ git push
 If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.
 
 Once complete we can navigate to our application URL but this time we should see a blank Gallery Page!
+## Generate API Keys for account ##
 
+Before we can upload images or write values to our KV store with the API We need to generate API keys for our account. 
+
+```{admonition} Images API Key
+:class: Note
+Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.
+```
+
+To generate API keys navigate to the [Cloudflare Dashboard](https://dash.cloudflare.com), login and select your user on the top right and select **My Profile**
+
+![user](./screencaps/select-user.png)
+
+On the left navigation pane select **API Tokens** and press **Create Token**
+
+![token](./screencaps/api-token.png)
+
+Select the **Edit Cloudflare Workers** as the template and press **Use template**
+```{admonition} API Token Templates
+:class: Note
+API token templates are useful when trying to permit scoped access to API based applications, you even have the option to create a custom token with your desired permission level 
+```
+![token](./screencaps/tokentemplate.png)
+
+In the token settings you only need to set both the *Account Resources* and *Zone Resources* to *Include* *All Accounts* and *All Zones*
+
+![token](./screencaps/zoneaccess.png)
+Some **text**!
+
+With the changes made press **Continue to summary** and you should see something similar to below:
+
+![token](./screencaps/tokensummary.png)
+
+Press **Create Token**
+
+On the following screen you will be presented with the the new API Token - it is **IMPORTANT* to save this token value in a safe place as it will not be visible again once you navigate away from this page.
+
+In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard 
+
+**https://dash.cloudflare.com/`<accountid>`**
+
+```{admonition} Before you Continue!
+:class: Warning
+At this stage you should have 3 values that we will use next to configure and make API calls to Cloudflare 
+1. Account ID
+2. API Token
+3. KV Namespace ID (this was generated when we created the KV Namespace in this [section](content:references:kv))
+```
 ## Upload images and store metadata into KV ##
 
 To simplify uploads and writing data to KV we have written a ready to run python script that can be cloned from GitHub and run.

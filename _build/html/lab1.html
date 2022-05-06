@@ -60,6 +60,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#fill-gallery-images-with-dynamic-data-from-kv">Fill Gallery images with dynamic data from KV</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-api-keys-for-account">Generate API Keys for account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upload-images-and-store-metadata-into-kv">Upload images and store metadata into KV</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#clone-image-upload-repository">Clone Image Upload Repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#edit-the-upload-script">Edit the upload script</a><ul>
@@ -219,7 +220,7 @@ git push
 <h2>Creating and Binding KV store<a class="headerlink" href="#creating-and-binding-kv-store" title="Permalink to this headline"></a></h2>
 <p>Workers KV is Cloudflare’s globally replicated key-value storage solution. Binding these KV namespaces with your application are what make it truly full-stack - the ability to read and write data dynamically right from Cloudflare’s edge.</p>
 <section id="creating-an-images-kv-namespace">
-<h3>Creating an IMAGES KV Namespace<a class="headerlink" href="#creating-an-images-kv-namespace" title="Permalink to this headline"></a></h3>
+<span id="content-references-kv"></span><h3>Creating an IMAGES KV Namespace<a class="headerlink" href="#creating-an-images-kv-namespace" title="Permalink to this headline"></a></h3>
 <p>Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name “IMAGES”</p>
 <p>From your Cloudflare account landing page navigate to <strong>Workers &gt; KV</strong></p>
 <div class="note admonition">
@@ -318,6 +319,42 @@ git push
 <p>If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.</p>
 <p>Once complete we can navigate to our application URL but this time we should see a blank Gallery Page!</p>
 </section>
+</section>
+<section id="generate-api-keys-for-account">
+<h2>Generate API Keys for account<a class="headerlink" href="#generate-api-keys-for-account" title="Permalink to this headline"></a></h2>
+<p>Before we can upload images or write values to our KV store with the API We need to generate API keys for our account.</p>
+<div class="note admonition">
+<p class="admonition-title">Images API Key</p>
+<p>Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.</p>
+</div>
+<p>To generate API keys navigate to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a>, login and select your user on the top right and select <strong>My Profile</strong></p>
+<p><img alt="user" src="_images/select-user.png" /></p>
+<p>On the left navigation pane select <strong>API Tokens</strong> and press <strong>Create Token</strong></p>
+<p><img alt="token" src="_images/api-token.png" /></p>
+<p>Select the <strong>Edit Cloudflare Workers</strong> as the template and press <strong>Use template</strong></p>
+<div class="note admonition">
+<p class="admonition-title">API Token Templates</p>
+<p>API token templates are useful when trying to permit scoped access to API based applications, you even have the option to create a custom token with your desired permission level</p>
+</div>
+<p><img alt="token" src="_images/tokentemplate.png" /></p>
+<p>In the token settings you only need to set both the <em>Account Resources</em> and <em>Zone Resources</em> to <em>Include</em> <em>All Accounts</em> and <em>All Zones</em></p>
+<p><img alt="token" src="_images/zoneaccess.png" />
+Some <strong>text</strong>!</p>
+<p>With the changes made press <strong>Continue to summary</strong> and you should see something similar to below:</p>
+<p><img alt="token" src="_images/tokensummary.png" /></p>
+<p>Press <strong>Create Token</strong></p>
+<p>On the following screen you will be presented with the the new API Token - it is *<em>IMPORTANT</em> to save this token value in a safe place as it will not be visible again once you navigate away from this page.</p>
+<p>In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard</p>
+<p><strong>https://dash.cloudflare.com/<code class="docutils literal notranslate"><span class="pre">&lt;accountid&gt;</span></code></strong></p>
+<div class="warning admonition">
+<p class="admonition-title">Before you Continue!</p>
+<p>At this stage you should have 3 values that we will use next to configure and make API calls to Cloudflare</p>
+<ol class="arabic simple">
+<li><p>Account ID</p></li>
+<li><p>API Token</p></li>
+<li><p>KV Namespace ID (this was generated when we created the KV Namespace in this <a class="reference internal" href="#content-references-kv"><span class="std std-ref">section</span></a>)</p></li>
+</ol>
+</div>
 </section>
 <section id="upload-images-and-store-metadata-into-kv">
 <h2>Upload images and store metadata into KV<a class="headerlink" href="#upload-images-and-store-metadata-into-kv" title="Permalink to this headline"></a></h2>
