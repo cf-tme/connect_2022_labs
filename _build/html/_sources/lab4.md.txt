@@ -288,7 +288,7 @@ You should see that the **Upstream DNS Servers** have a single entry for our clo
 You may have a different IP address set for your DNS server but that is as expected, the value is dynamically linked to the cloudflared service by docker in the background
 ```
 
-To confirm the traffic flow you can run the below command to see the docker network ip addresses and confirm the IP address inside the Pi-Hole configuration reflect the internal IP of the cloudflared service.
+To confirm the traffic flow you can run the below command to see the docker network ip addresses and confirm the IP address inside the Pi-Hole configuration reflects the internal IP of the cloudflared service.
 
 This will show the IP address of the Cloudflare Tunnel (this should be the same as the address we saw in the Pi-Hole dashboard)
 
