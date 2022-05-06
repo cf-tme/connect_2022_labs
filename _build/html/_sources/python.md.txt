@@ -16,7 +16,7 @@ To install Brew, in a terminal window enter
 In a terminal window enter:
 
 ``` sh
-brew install python
+brew install python3
 ```
 ## Linux
 
@@ -28,12 +28,14 @@ Python 3 may already be installed on your distribution if not run:
 
 ``` sh
 sudo apt-get install python3
+sudo apt install python3-pip
 ```
 
 **Fedora, CentOS, Red Hat Enterprise Linux (dnf)**
 
 ``` sh
 sudo dnf install python3
+sudo dnf install python3-pip
 ```
 
 ## Windows
@@ -52,6 +54,7 @@ Once installation is complete you must add Python3 installation to the Windows P
 $Env:PATH += ";%userprofile%\AppData\Local\Programs\Python\Python310"
 ```
 
+#Install 
 ```{admonition} Python 3 Setup Complete! 
 :class: note
 You have successfully setup Python! Lets Get Started with the Labs!

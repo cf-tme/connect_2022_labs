@@ -85,7 +85,7 @@ By default new projects will automatically be given a *.pages.dev domain, If you
 ```
 
 Before we test out application we need to create and Bind a KV namespace
-
+(content:references:kv)=
 ### Creating an IMAGES KV Namespace
 Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name "IMAGES"
 
@@ -102,7 +102,7 @@ Select **Create Namespace** and enter *IMAGES* in the *Namespace Name* and press
 
 ```{admonition} Namespace ID
 :class: Note
-Once  your namespace is created you will be given a Namespace ID - this will be needed later on in Lab 2, so if you plan on joining us for Lab 2 go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.
+Once  your namespace is created you will be given a Namespace ID - this will be needed later on go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.
 ```
 
 ### Binding KV Namespace to Pages Project ###
@@ -163,88 +163,135 @@ On the left navigation pane select **API Tokens** and press **Create Token**
 
 ![token](./screencaps/api-token.png)
 
+Select the **Edit Cloudflare Workers** as the template and press **Use template**
+```{admonition} API Token Templates
+:class: Note
+API token templates are useful when trying to permit scoped access to API based applications, you even have the option to create a custom token with your desired permission level 
+```
+![token](./screencaps/tokentemplate.png)
 
+In the token settings you only need to set both the *Account Resources* and *Zone Resources* to *Include* *All Accounts* and *All Zones*
 
+![token](./screencaps/zoneaccess.png)
 Some **text**!
 
-for those of you returning from previous lab go ahead and SKIP to this section
+With the changes made press **Continue to summary** and you should see something similar to below:
 
+![token](./screencaps/tokensummary.png)
 
-clone the lab 1 complete repository 
+Press **Create Token**
 
-create a KV namespace called Images 
-note the ID 
+On the following screen you will be presented with the the new API Token - it is **IMPORTANT* to save this token value in a safe place as it will not be visible again once you navigate away from this page.
 
-got to pages and deploy the application 
+In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard 
 
-bind the namespace in settings 
+**https://dash.cloudflare.com/`<accountid>`**
 
-then re-build the projkect
+```{admonition} Before you Continue!
+:class: Warning
+At this stage you should have 3 values that we will use next to configure and make API calls to Cloudflare 
+1. Account ID
+2. API Token
+3. KV Namespace ID (this was generated when we created the KV Namespace in this [section](content:references:kv))
+```
 
-the url for api/images should return empty
+## Upload images and store metadata into KV ##
 
-and the homepage should be blank
+To simplify uploads and writing data to KV we have written a ready to run python script that can be cloned from GitHub and run.
 
+### Clone Image Upload Repository ###
 
+``` sh
+gh repo fork cf-tme/connect_2022_lab2
+```
+This should create a fork of the complete Lab 2 repository in your gh account. Follow the fork with a clone
 
-SKIP 
-clone the lab 2 github repository 
+``` sh
+gh repo clone <yourgithubusername>/connect_2022_lab2
+```
 
+Now all the files should be local in your working directory, let navigate into the repo to start coding! 
 
-ensure that python is installed (write the steps for prereq)
+``` sh
+cd <yourgithubusername>/connect_2022_lab2
+```
 
+### Edit the upload script ###
 
-open up the image upload file in your favorite editor
+Open the *upload_images.py* Python script in your favorite editor.
+```{admonition} Text Editor
+:class: note
+VS Code is a versatile text editor that can be launched directly from the terminal using *code <filename>* to install VS Code follow the steps found in the [Documentation](https://code.visualstudio.com/download)
+```
 
-now we need some value 
-find this from when we created the KV namespace - if you forgot go to workes → kv namespaces and select IMAGES there shoudld be an ID there
+In the file editor identify the lines (`lines 11-13`) where you need to change values to reflect your account.
 
+``` python
+#CHANGE these are your value from your workers environment
 kv_id = "ENTER YOU WORKERS KV NAMESPACE ID"
-
-this can be easily found in the URL after "dash.cloudflare.com" that value is your account ID 
-
 kv_account_id = "ENTER YOUR CLOUDFLARE ACCOUNT ID"
-
-we need to generate a new API token - lets do that 
-
-
 kv_token ="ENTER YOUR API TOKEN"
+```
 
+Before leaving the document take a moment to read through the comments on the code and see whats happening.
 
-now that we have all of our values filled in lets take a look at the code -
+The script logic is build in 3 sections:
 
-the first part is uploading images to cloudfalre pages 
->> since we are using a common images account 
+1. Upload a set of images from the local directory to Cloudflare Images
+2. Collect data about uploaded images and structure metadata to be writing to KV Store
+3. Write image metadata to KV store
 
-we only only have one image variant in this account but its important to note that you can define any number of variants just by creating a variant and changing the URL 
+Before we can run the script we need to install a python dependency - this is easy to do with a single command.
 
-once we do the upload we are then writing the image metadata to KV - this will be in the right format for our homepage to show the new images we upload 
+``` sh
+pip3 install requests
+```
+```{admonition} pip
+:class: note
+pip is a python tool that can be used to quickly load python libraries that can be used in code. The requests library is a common import for most API based code as it provides a user friendly wrapper to the built in http request libraries in python.
+```
+With the dependencies resolved we can simply run our python script!
 
+```sh
+python upload_images.py
+```
 
-- lets go ahead and ruyn it! 
+We should see success messages come onscreen as images are being uploaded and data is being written to your KV store.
 
-
-terrfici we should ahve gotten an aoutput that looks something like: 
+```
 uploaded image gallery-images/cat1.jpeg and added KV metadata with status True
-
 uploaded image gallery-images/cat2.jpeg and added KV metadata with status True
-
 uploaded image gallery-images/cat3.jpeg and added KV metadata with status True
-
 uploaded image gallery-images/pup1.jpeg and added KV metadata with status True
-
 uploaded image gallery-images/pup2.jpeg and added KV metadata with status True
-
 uploaded image gallery-images/pup3.jpeg and added KV metadata with status True
+```
+
+Once this script is completed our Web Gallery should show these images. Lets confirm! 
+
+#### Confirm values in KV Store ####
+
+From your Cloudflare account landing page navigate to **Workers > KV** 
+
+Select the **IMAGES** namespace
+
+You should see a listing of the images uploaded with the same value "Values stored in metadata" - This is because the valuable information lives in the metadata of the KV pair and is not visible in the UI. 
+
+![token](./screencaps/valueswritten.png)
+
+Now if we return to our Web application URL - `https://<projectname>.pages.dev` we should see a gallery of images!
+
+![token](./screencaps/gallery-complete.png)
 
 
 
-this means that our images were uploaded and the metadata was written it should look something like below! 
+```{admonition} Additional confirmation
+:class: note
+If you want to see the data that has been written into the KV store you can make the `/api/images` call in the web browser and check the data that is being read to fill the gallery on the homepage.
+```
 
 
-Now if go back to our homepage and navigate to /api/images 
-
-this should return a full list of images 
-and our homepage should now have a full array! 
-
-AWESOME! congratulations you create a FULL stack application with Workers, KV, and IMAGES! 
+```{admonition} LAB 1 COMPLETE! 
+:class: note
+You have successfully Completed Lab 2! Congratulations on deploying a Full JAM stack application with Pages, Images, and KV Store.
+```

@@ -59,6 +59,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#generate-api-keys-for-account">2.2. Generate API Keys for account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upload-images-and-store-metadata-into-kv">2.3. Upload images and store metadata into KV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-image-upload-repository">2.3.1. Clone Image Upload Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-the-upload-script">2.3.2. Edit the upload script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#confirm-values-in-kv-store">2.3.2.1. Confirm values in KV Store</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers (WIP)</a></li>
@@ -160,7 +168,7 @@ By the end of this lab you will have:</p>
 <p>Before we test out application we need to create and Bind a KV namespace</p>
 </section>
 <section id="creating-an-images-kv-namespace">
-<h3><span class="section-number">2.1.3. </span>Creating an IMAGES KV Namespace<a class="headerlink" href="#creating-an-images-kv-namespace" title="Permalink to this headline"></a></h3>
+<span id="content-references-kv"></span><h3><span class="section-number">2.1.3. </span>Creating an IMAGES KV Namespace<a class="headerlink" href="#creating-an-images-kv-namespace" title="Permalink to this headline"></a></h3>
 <p>Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name “IMAGES”</p>
 <p>From your Cloudflare account landing page navigate to <strong>Workers &gt; KV</strong></p>
 <div class="note admonition">
@@ -171,7 +179,7 @@ By the end of this lab you will have:</p>
 <p><img alt="kv-name" src="_images/kv-namespace.png" /></p>
 <div class="note admonition">
 <p class="admonition-title">Namespace ID</p>
-<p>Once  your namespace is created you will be given a Namespace ID - this will be needed later on in Lab 2, so if you plan on joining us for Lab 2 go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.</p>
+<p>Once  your namespace is created you will be given a Namespace ID - this will be needed later on go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.</p>
 </div>
 </section>
 <section id="binding-kv-namespace-to-pages-project">
@@ -213,51 +221,109 @@ By the end of this lab you will have:</p>
 <p><img alt="user" src="_images/select-user.png" /></p>
 <p>On the left navigation pane select <strong>API Tokens</strong> and press <strong>Create Token</strong></p>
 <p><img alt="token" src="_images/api-token.png" /></p>
-<p>Some <strong>text</strong>!</p>
-<p>for those of you returning from previous lab go ahead and SKIP to this section</p>
-<p>clone the lab 1 complete repository</p>
-<p>create a KV namespace called Images
-note the ID</p>
-<p>got to pages and deploy the application</p>
-<p>bind the namespace in settings</p>
-<p>then re-build the projkect</p>
-<p>the url for api/images should return empty</p>
-<p>and the homepage should be blank</p>
-<p>SKIP
-clone the lab 2 github repository</p>
-<p>ensure that python is installed (write the steps for prereq)</p>
-<p>open up the image upload file in your favorite editor</p>
-<p>now we need some value
-find this from when we created the KV namespace - if you forgot go to workes → kv namespaces and select IMAGES there shoudld be an ID there</p>
-<p>kv_id = “ENTER YOU WORKERS KV NAMESPACE ID”</p>
-<p>this can be easily found in the URL after “dash.cloudflare.com” that value is your account ID</p>
-<p>kv_account_id = “ENTER YOUR CLOUDFLARE ACCOUNT ID”</p>
-<p>we need to generate a new API token - lets do that</p>
-<p>kv_token =”ENTER YOUR API TOKEN”</p>
-<p>now that we have all of our values filled in lets take a look at the code -</p>
-<p>the first part is uploading images to cloudfalre pages</p>
-<blockquote>
-<div><blockquote>
-<div><p>since we are using a common images account</p>
-</div></blockquote>
-</div></blockquote>
-<p>we only only have one image variant in this account but its important to note that you can define any number of variants just by creating a variant and changing the URL</p>
-<p>once we do the upload we are then writing the image metadata to KV - this will be in the right format for our homepage to show the new images we upload</p>
-<ul class="simple">
-<li><p>lets go ahead and ruyn it!</p></li>
-</ul>
-<p>terrfici we should ahve gotten an aoutput that looks something like:
-uploaded image gallery-images/cat1.jpeg and added KV metadata with status True</p>
-<p>uploaded image gallery-images/cat2.jpeg and added KV metadata with status True</p>
-<p>uploaded image gallery-images/cat3.jpeg and added KV metadata with status True</p>
-<p>uploaded image gallery-images/pup1.jpeg and added KV metadata with status True</p>
-<p>uploaded image gallery-images/pup2.jpeg and added KV metadata with status True</p>
-<p>uploaded image gallery-images/pup3.jpeg and added KV metadata with status True</p>
-<p>this means that our images were uploaded and the metadata was written it should look something like below!</p>
-<p>Now if go back to our homepage and navigate to /api/images</p>
-<p>this should return a full list of images
-and our homepage should now have a full array!</p>
-<p>AWESOME! congratulations you create a FULL stack application with Workers, KV, and IMAGES!</p>
+<p>Select the <strong>Edit Cloudflare Workers</strong> as the template and press <strong>Use template</strong></p>
+<div class="note admonition">
+<p class="admonition-title">API Token Templates</p>
+<p>API token templates are useful when trying to permit scoped access to API based applications, you even have the option to create a custom token with your desired permission level</p>
+</div>
+<p><img alt="token" src="_images/tokentemplate.png" /></p>
+<p>In the token settings you only need to set both the <em>Account Resources</em> and <em>Zone Resources</em> to <em>Include</em> <em>All Accounts</em> and <em>All Zones</em></p>
+<p><img alt="token" src="_images/zoneaccess.png" />
+Some <strong>text</strong>!</p>
+<p>With the changes made press <strong>Continue to summary</strong> and you should see something similar to below:</p>
+<p><img alt="token" src="_images/tokensummary.png" /></p>
+<p>Press <strong>Create Token</strong></p>
+<p>On the following screen you will be presented with the the new API Token - it is *<em>IMPORTANT</em> to save this token value in a safe place as it will not be visible again once you navigate away from this page.</p>
+<p>In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard</p>
+<p><strong>https://dash.cloudflare.com/<code class="docutils literal notranslate"><span class="pre">&lt;accountid&gt;</span></code></strong></p>
+<div class="warning admonition">
+<p class="admonition-title">Before you Continue!</p>
+<p>At this stage you should have 3 values that we will use next to configure and make API calls to Cloudflare</p>
+<ol class="arabic simple">
+<li><p>Account ID</p></li>
+<li><p>API Token</p></li>
+<li><p>KV Namespace ID (this was generated when we created the KV Namespace in this <a class="reference internal" href="#content-references-kv"><span class="std std-ref">section</span></a>)</p></li>
+</ol>
+</div>
+</section>
+<section id="upload-images-and-store-metadata-into-kv">
+<h2><span class="section-number">2.3. </span>Upload images and store metadata into KV<a class="headerlink" href="#upload-images-and-store-metadata-into-kv" title="Permalink to this headline"></a></h2>
+<p>To simplify uploads and writing data to KV we have written a ready to run python script that can be cloned from GitHub and run.</p>
+<section id="clone-image-upload-repository">
+<h3><span class="section-number">2.3.1. </span>Clone Image Upload Repository<a class="headerlink" href="#clone-image-upload-repository" title="Permalink to this headline"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab2
+</pre></div>
+</div>
+<p>This should create a fork of the complete Lab 2 repository in your gh account. Follow the fork with a clone</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab2
+</pre></div>
+</div>
+<p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab2
+</pre></div>
+</div>
+</section>
+<section id="edit-the-upload-script">
+<h3><span class="section-number">2.3.2. </span>Edit the upload script<a class="headerlink" href="#edit-the-upload-script" title="Permalink to this headline"></a></h3>
+<p>Open the <em>upload_images.py</em> Python script in your favorite editor.</p>
+<div class="note admonition">
+<p class="admonition-title">Text Editor</p>
+<p>VS Code is a versatile text editor that can be launched directly from the terminal using <em>code <filename></em> to install VS Code follow the steps found in the <a class="reference external" href="https://code.visualstudio.com/download">Documentation</a></p>
+</div>
+<p>In the file editor identify the lines (<code class="docutils literal notranslate"><span class="pre">lines</span> <span class="pre">11-13</span></code>) where you need to change values to reflect your account.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHANGE these are your value from your workers environment</span>
+<span class="n">kv_id</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOU WORKERS KV NAMESPACE ID&quot;</span>
+<span class="n">kv_account_id</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOUR CLOUDFLARE ACCOUNT ID&quot;</span>
+<span class="n">kv_token</span> <span class="o">=</span><span class="s2">&quot;ENTER YOUR API TOKEN&quot;</span>
+</pre></div>
+</div>
+<p>Before leaving the document take a moment to read through the comments on the code and see whats happening.</p>
+<p>The script logic is build in 3 sections:</p>
+<ol class="arabic simple">
+<li><p>Upload a set of images from the local directory to Cloudflare Images</p></li>
+<li><p>Collect data about uploaded images and structure metadata to be writing to KV Store</p></li>
+<li><p>Write image metadata to KV store</p></li>
+</ol>
+<p>Before we can run the script we need to install a python dependency - this is easy to do with a single command.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip3 install requests
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">pip</p>
+<p>pip is a python tool that can be used to quickly load python libraries that can be used in code. The requests library is a common import for most API based code as it provides a user friendly wrapper to the built in http request libraries in python.</p>
+</div>
+<p>With the dependencies resolved we can simply run our python script!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python upload_images.py
+</pre></div>
+</div>
+<p>We should see success messages come onscreen as images are being uploaded and data is being written to your KV store.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">cat1</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
+<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">cat2</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
+<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">cat3</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
+<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">pup1</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
+<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">pup2</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
+<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">pup3</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Once this script is completed our Web Gallery should show these images. Lets confirm!</p>
+<section id="confirm-values-in-kv-store">
+<h4><span class="section-number">2.3.2.1. </span>Confirm values in KV Store<a class="headerlink" href="#confirm-values-in-kv-store" title="Permalink to this headline"></a></h4>
+<p>From your Cloudflare account landing page navigate to <strong>Workers &gt; KV</strong></p>
+<p>Select the <strong>IMAGES</strong> namespace</p>
+<p>You should see a listing of the images uploaded with the same value “Values stored in metadata” - This is because the valuable information lives in the metadata of the KV pair and is not visible in the UI.</p>
+<p><img alt="token" src="_images/valueswritten.png" /></p>
+<p>Now if we return to our Web application URL - <code class="docutils literal notranslate"><span class="pre">https://&lt;projectname&gt;.pages.dev</span></code> we should see a gallery of images!</p>
+<p><img alt="token" src="_images/gallery-complete.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">Additional confirmation</p>
+<p>If you want to see the data that has been written into the KV store you can make the <code class="docutils literal notranslate"><span class="pre">/api/images</span></code> call in the web browser and check the data that is being read to fill the gallery on the homepage.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">LAB 1 COMPLETE! </p>
+<p>You have successfully Completed Lab 2! Congratulations on deploying a Full JAM stack application with Pages, Images, and KV Store.</p>
+</div>
+</section>
+</section>
 </section>
 </section>
 

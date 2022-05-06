@@ -324,6 +324,7 @@ Step 1 - "Block Gambling"
 Step 2 - Selector "Content Categories" + "in" + "Gambling"
 Step 3 - "Block"
 Step 4 - Display Block Page "On"
+Step 5 - Press Create Policy
 ```
 
 ![al](./screencaps/gw-dns-pol.png)
