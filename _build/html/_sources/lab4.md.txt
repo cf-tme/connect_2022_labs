@@ -26,15 +26,18 @@ Once Brew is installed, in a terminal window enter:
 brew install --cask docker
 ```
 
+Once docker is installed launch it from either MacOS Launchpad or Spotlight.
+
 Once installed validate that Docker is installed and running:
 
 ``` sh
 docker --version
 ```
-```{admonition} No Version?
+```{admonition} No Version? or Error
 :class: warning
 If you do not see a Docker version or the command errors you may need to start the Docker application first, this can be done by launching it from Application or Spotlight on your MacOS device.
 ```
+
 ### Linux
 
 Installation of the Docker can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS
@@ -121,20 +124,6 @@ Once installed Launch docker application from desktop icon and validate that Doc
 
 ``` sh
 docker --version
-```
-
-
-```{admonition} Windows & MacOS
-:class: Warning
-Once docker is installed you must launch it from the corresponding OS application launcher:
-
-*Windows*
-
-**Start** → **Docker Desktop**
-
-*MacOS*
-
-**Spotlight** → **Docker Desktop**
 ```
 
 ```{admonition} Docker Setup Complete! 
