@@ -34,9 +34,11 @@ At launch docker will prompt you for privileged access to MacOS
 
 ![docker-prompt](./screencaps/docker-screencap.png)
 
-Once Compelte you should see this window - indicating successfull deploymen
+Once complete you should see this window - indicating successful deployment
 
 ![docker-prompt](./screencaps/docker-success.png)
+
+Now you should be able to run the version command below to see the version installed and confirm the service is running properly.
 
 ``` sh
 docker --version
