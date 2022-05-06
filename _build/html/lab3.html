@@ -42,10 +42,11 @@
 <li class="toctree-l1"><a class="reference internal" href="github.html">1. Setup Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Setup Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">3. Setup Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">4. Setup Node Package Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. Cloudflare Workers (WIP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
@@ -93,9 +94,9 @@
 <p>and touch _middleware.js</p>
 <p>this is where we will add our logic</p>
 <p>const imageA =
-“https://unsplash.com/photos/ZuhXK3lxL8Y/download?ixid=MnwxMjA3fDB8MXxhbGx8M3x8fHx8fDJ8fDE2NTE2ODAwMjU&amp;force=true&amp;w=640”;
+“https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/9b0fabf0-8a5d-4d84-29d7-c438eb002d00/public”;
 const imageB =
-“https://unsplash.com/photos/Yh_xH-tWI-0/download?force=true&amp;w=640”;</p>
+“https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/2b143d0b-006a-47e7-db0e-ce523edf5300/public”;</p>
 <p>export const onRequest: PagesFunction = async ({ env, request }) =&gt; {
 const response = await env.ASSETS.fetch(request);</p>
 <p>const imageURL = Math.random() &gt; 0.5 ? imageA : imageB;</p>
@@ -113,10 +114,22 @@ body.append(<code class="docutils literal notranslate"><span class="pre">&lt;img
 <p>we are using the HTML rewriter function to manipulate the content on the welcome page.</p>
 <p>The random function will spit out a value between 0 &amp; 1 making the odds of each image close to 50% this is perfect for us to be able to see the changes live.</p>
 <p>since we want to be able to develop regularly lets go ahead and setup a local wrangler environment to test / debug our page before we push the changes live!</p>
-<p>if you dont have npm installed check out the instructions here:</p>
+<p>if you dont have npm installed check out the instructions here: <link to npm></p>
 <p>npm install wrangler&#64;beta
 npx wrangler pages dev ./public</p>
-<p>this will start up</p>
+<p>should see —</p>
+<blockquote>
+<div><p>npx wrangler pages dev ./public
+🚧 ‘wrangler pages <command>’ is a beta command. Please report any issues to https://github.com/cloudflare/wrangler2/issues/new/choose
+Compiling worker to “/var/folders/5x/85cqyfb17tjbx6sxvdgpsk8h0000gp/T/functionsWorker.js”…
+Compiled Worker successfully.
+Serving at http://localhost:8788/</p>
+</div></blockquote>
+<p>this will start up a local instance and open your browser you should see once of the images presented!</p>
+<p>great that means the A/B test is working - lets be sure,
+open the webpage in an incognito window and navigate to http://localhost:8788/</p>
+<p>thats it you have used HTML re-writer to create an A/B test the dynamicaly changes the html content to the end user based on a random seed.</p>
+<p>Done!</p>
 </section>
 
 

@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Cloudflare Pages (WIP)" href="lab1.html" />
+    <link rel="next" title="1. Cloudflare Pages" href="lab1.html" />
     <link rel="prev" title="3. Setup Python" href="python.html" /> 
 </head>
 
@@ -51,7 +51,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers (WIP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
@@ -92,39 +92,40 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>/bin/bash -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p><strong>Install Python3:</strong></p>
+<p><strong>Install npm:</strong></p>
 <p>In a terminal window enter:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install python
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install node
 </pre></div>
 </div>
 </section>
 <section id="linux">
 <h2><span class="section-number">4.2. </span>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h2>
-<p>Installation of Python3 can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS</p>
+<p>Installation of Node can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS</p>
 <p><strong>Debian, Ubuntu Linux, Raspberry Pi OS (apt)</strong></p>
-<p>Python 3 may already be installed on your distribution if not run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt-get install python3
+<p>Node may already be installed on your distribution if not run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install nodejs
+sudo apt install npm
 </pre></div>
 </div>
 <p><strong>Fedora, CentOS, Red Hat Enterprise Linux (dnf)</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf module install nodejs
 </pre></div>
 </div>
 </section>
 <section id="windows">
 <h2><span class="section-number">4.3. </span>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h2>
-<p>Installation of Python3 can be done with powershell winget package manager. Open PowerShell and enter the following installation command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>winget install -e --id Python.Python.3
+<p>Installation of Node can be done with powershell winget package manager. Open PowerShell and enter the following installation command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>winget install -e --id OpenJS.NodeJS
 </pre></div>
 </div>
 <p>If prompted enter <em>Y</em> to approve installation</p>
 <p>Once installation is complete you must add Python3 installation to the Windows PATH:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$Env</span>:PATH +<span class="o">=</span> <span class="s2">&quot;;%userprofile%\AppData\Local\Programs\Python\Python310&quot;</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$Env</span>:PATH +<span class="o">=</span> <span class="s2">&quot;;C:\Program Files\nodejs\node_modules\npm\bin&quot;</span>
 </pre></div>
 </div>
 <div class="note admonition">
-<p class="admonition-title">Python 3 Setup Complete! </p>
-<p>You have successfully setup Python! Lets Get Started with the Labs!</p>
+<p class="admonition-title">npm Setup Complete! </p>
+<p>You have successfully setup npm! Lets Get Started with the Labs!</p>
 </div>
 </section>
 </section>
@@ -134,7 +135,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="python.html" class="btn btn-neutral float-left" title="3. Setup Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="lab1.html" class="btn btn-neutral float-right" title="1. Cloudflare Pages (WIP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="lab1.html" class="btn btn-neutral float-right" title="1. Cloudflare Pages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

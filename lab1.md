@@ -1,4 +1,17 @@
-# Cloudflare Pages (WIP)
+# Cloudflare Pages
+Welcome to Lab 1 at Cloudflare Connect 2022 - This lab will focus on setting up a simple image gallery deployed on Cloudflared Edge using Cloudflare Pages.
+By the end of this lab you will have:
+
+- How to set up your first Pages project
+- The developer experience when using Pages
+- How to add dynamic functionality with with help from Cloudflare Workers/Functions
+
+Build fast sites.In record time. Cloudflare Pages is a JAMstack platform for frontend developers to collaborate and deploy websites.
+
+```{admonition} Learn More about Cloudflare Pages! 
+:class: note
+Check out the [Cloudflare Homepage](https://pages.cloudflare.com/) to learn more
+```
 ## testing
 Some **text**!
 ```{admonition} Here's my title

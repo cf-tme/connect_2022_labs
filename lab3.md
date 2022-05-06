@@ -33,9 +33,9 @@ and touch _middleware.js
 this is where we will add our logic 
 
 const imageA =
-  "https://unsplash.com/photos/ZuhXK3lxL8Y/download?ixid=MnwxMjA3fDB8MXxhbGx8M3x8fHx8fDJ8fDE2NTE2ODAwMjU&force=true&w=640";
+  "https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/9b0fabf0-8a5d-4d84-29d7-c438eb002d00/public";
 const imageB =
-  "https://unsplash.com/photos/Yh_xH-tWI-0/download?force=true&w=640";
+  "https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/2b143d0b-006a-47e7-db0e-ce523edf5300/public";
 
 export const onRequest: PagesFunction = async ({ env, request }) => {
   const response = await env.ASSETS.fetch(request);
@@ -72,6 +72,22 @@ if you dont have npm installed check out the instructions here: <link to npm>
 npm install wrangler@beta
 npx wrangler pages dev ./public
 
-this will start up 
+
+should see --- 
+> npx wrangler pages dev ./public
+🚧 'wrangler pages <command>' is a beta command. Please report any issues to https://github.com/cloudflare/wrangler2/issues/new/choose
+Compiling worker to "/var/folders/5x/85cqyfb17tjbx6sxvdgpsk8h0000gp/T/functionsWorker.js"...
+Compiled Worker successfully.
+Serving at http://localhost:8788/
+
+this will start up a local instance and open your browser you should see once of the images presented! 
+
+great that means the A/B test is working - lets be sure,
+open the webpage in an incognito window and navigate to http://localhost:8788/ 
+
+thats it you have used HTML re-writer to create an A/B test the dynamicaly changes the html content to the end user based on a random seed.
+
+Done! 
+
 
 
