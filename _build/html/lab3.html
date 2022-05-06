@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Cloudflare Workers &mdash; cf-connect-2022  documentation</title>
+  <title>2. Cloudflare Workers &mdash; cf-connect-2022  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Cloudflare Zero Trust Gateway" href="lab4.html" />
-    <link rel="prev" title="2. Cloudflare Images" href="lab2.html" /> 
+    <link rel="next" title="3. Cloudflare Zero Trust Gateway" href="lab4.html" />
+    <link rel="prev" title="1. Cloudflare Pages" href="lab1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,18 +47,17 @@
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Cloudflare Workers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pre-lab-notes">3.1. Pre-Lab Notes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-basic-web-application">3.2. Setup Basic Web Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#deploy-project-to-pages">3.2.1. Deploy project to Pages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Cloudflare Workers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pre-lab-notes">2.1. Pre-Lab Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-basic-web-application">2.2. Setup Basic Web Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploy-project-to-pages">2.2.1. Deploy project to Pages</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#write-a-b-testing-function">3.3. Write A/B Testing Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#testing-the-code-locally-before-deploying">3.4. Testing the Code Locally before Deploying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#write-a-b-testing-function">2.3. Write A/B Testing Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-the-code-locally-before-deploying">2.4. Testing the Code Locally before Deploying</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">3. Cloudflare Zero Trust Gateway</a></li>
 </ul>
 
         </div>
@@ -75,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">3. </span>Cloudflare Workers</li>
+      <li><span class="section-number">2. </span>Cloudflare Workers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/lab3.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,7 +85,7 @@
            <div itemprop="articleBody">
              
   <section id="cloudflare-workers">
-<h1><span class="section-number">3. </span>Cloudflare Workers<a class="headerlink" href="#cloudflare-workers" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">2. </span>Cloudflare Workers<a class="headerlink" href="#cloudflare-workers" title="Permalink to this headline"></a></h1>
 <p>Welcome to Lab 3 at Cloudflare Connect 2022 - This lab will focus on designing a simple A/B Test for a webpage and writing the test with Workers functions.</p>
 <p>By the end of this lab you will have:</p>
 <ul class="simple">
@@ -99,7 +98,7 @@
 <p>Check out the <a class="reference external" href="https://workers.cloudflare.com/">Cloudflare Homepage</a> to learn more</p>
 </div>
 <section id="pre-lab-notes">
-<h2><span class="section-number">3.1. </span>Pre-Lab Notes<a class="headerlink" href="#pre-lab-notes" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.1. </span>Pre-Lab Notes<a class="headerlink" href="#pre-lab-notes" title="Permalink to this headline"></a></h2>
 <p>Cloudflare workers is a powerful way to write code infront of your applications directly on Cloudflares Edge Network. In order to full realize the benefit of Workers customers are encouraged to already have a domain onboarded to Cloudflare. In these cases it is possible to create routes that send requests to a set of workers functions before it is sent to the origin.</p>
 <p>For A/B Testing the logical flow of data is represented by the diagram below</p>
 <p><img alt="worker-flow" src="_images/workersflow.png" /></p>
@@ -107,7 +106,7 @@
 <p>In this lab - since everyone may not have a custom domain to onboard to cloudflare we will be using the same Workers function and <code class="docutils literal notranslate"><span class="pre">HTMLRewriter</span></code> but we will be running it as a Cloudflare Pages Function to see it in action live.</p>
 </section>
 <section id="setup-basic-web-application">
-<h2><span class="section-number">3.2. </span>Setup Basic Web Application<a class="headerlink" href="#setup-basic-web-application" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.2. </span>Setup Basic Web Application<a class="headerlink" href="#setup-basic-web-application" title="Permalink to this headline"></a></h2>
 <p>To make things easy we have already built a basic application that can be run on Cloudflare pages. Lets clone the repository and get started.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab3
 </pre></div>
@@ -122,7 +121,7 @@
 </div>
 <p>With the repository cloned lets connect the application to your Cloudflare account and deploy it with pages.</p>
 <section id="deploy-project-to-pages">
-<h3><span class="section-number">3.2.1. </span>Deploy project to Pages<a class="headerlink" href="#deploy-project-to-pages" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">2.2.1. </span>Deploy project to Pages<a class="headerlink" href="#deploy-project-to-pages" title="Permalink to this headline"></a></h3>
 <p>Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.</p>
 <p>Login to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a></p>
 <p>Select <strong>Pages</strong> on the left hand side and press <strong>Create a Project</strong> and select <strong>Connect GitHub</strong></p>
@@ -159,7 +158,7 @@
 </section>
 </section>
 <section id="write-a-b-testing-function">
-<h2><span class="section-number">3.3. </span>Write A/B Testing Function<a class="headerlink" href="#write-a-b-testing-function" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.3. </span>Write A/B Testing Function<a class="headerlink" href="#write-a-b-testing-function" title="Permalink to this headline"></a></h2>
 <p>With the application running lets return to our terminal and navigate to the <em>functions</em> directory</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> functions
 </pre></div>
@@ -205,7 +204,7 @@
 <p>Save the file once you are done editing it.</p>
 </section>
 <section id="testing-the-code-locally-before-deploying">
-<h2><span class="section-number">3.4. </span>Testing the Code Locally before Deploying<a class="headerlink" href="#testing-the-code-locally-before-deploying" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.4. </span>Testing the Code Locally before Deploying<a class="headerlink" href="#testing-the-code-locally-before-deploying" title="Permalink to this headline"></a></h2>
 <p>In order to test if our code has worked we could very easily publish our changes to the GitHub repository and have it changed live - but that doesn’t make sense in development environments because you may want to debug and validate your code works as expected before pushing it. To do this we have updated Wrangler to allow for local simulation of projects. Lets launch a local development instance of our project.</p>
 <p>Back in the terminal window make sure the latest wrangler beta is installed</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>npm install wrangler@beta
@@ -263,8 +262,8 @@ git push
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="lab2.html" class="btn btn-neutral float-left" title="2. Cloudflare Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="lab4.html" class="btn btn-neutral float-right" title="4. Cloudflare Zero Trust Gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="lab1.html" class="btn btn-neutral float-left" title="1. Cloudflare Pages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab4.html" class="btn btn-neutral float-right" title="3. Cloudflare Zero Trust Gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
