@@ -23,7 +23,7 @@ To install Docker on MacOS we will again use brew if you have not already setup 
 Once Brew is installed, in a terminal window enter:
 
 ``` sh
-brew install docker
+brew install --cask docker
 brew install docker-compose
 ```
 
