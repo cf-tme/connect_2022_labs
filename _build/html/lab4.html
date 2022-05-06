@@ -319,6 +319,15 @@ sudo dnf config-manager <span class="se">\</span>
 <p class="admonition-title">cloudflared service IP</p>
 <p>You may have a different IP address set for your DNS server but that is as expected, the value is dynamically linked to the cloudflared service by docker in the background</p>
 </div>
+<p>To confirm the traffic flow you can run the below command to see the docker network ip addresses and confirm the IP address inside the Pi-Hole configuration reflect the internal IP of the cloudflared service.</p>
+<p>This will show the IP address of the Cloudflare Tunnel (this should be the same as the address we saw in the Pi-Hole dashboard)</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker inspect cloudflared <span class="p">|</span> grep <span class="s2">&quot;IPAddress&quot;</span>
+</pre></div>
+</div>
+<p>This will show the IP address of Pi-Hole</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker inspect pihole <span class="p">|</span> grep <span class="s2">&quot;IPAddress&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="test-dns-forwarding">
 <h3><span class="section-number">4.2.4. </span>Test DNS Forwarding<a class="headerlink" href="#test-dns-forwarding" title="Permalink to this headline"></a></h3>

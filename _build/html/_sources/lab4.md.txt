@@ -288,6 +288,21 @@ You should see that the **Upstream DNS Servers** have a single entry for our clo
 You may have a different IP address set for your DNS server but that is as expected, the value is dynamically linked to the cloudflared service by docker in the background
 ```
 
+To confirm the traffic flow you can run the below command to see the docker network ip addresses and confirm the IP address inside the Pi-Hole configuration reflect the internal IP of the cloudflared service.
+
+This will show the IP address of the Cloudflare Tunnel (this should be the same as the address we saw in the Pi-Hole dashboard)
+
+``` sh
+docker inspect cloudflared | grep "IPAddress"
+```
+
+This will show the IP address of Pi-Hole
+
+``` sh
+docker inspect pihole | grep "IPAddress"
+```
+
+
 ### Test DNS Forwarding ###
 
 We can now validate that DNS resolution is working on the new setup by quickly running an nslookup command
