@@ -266,6 +266,8 @@ Once running you should be able to reach the pihole administrator portal at:
 http://localhost/admin
 ```
 
+Enter the URL into your web browser.
+
 At the Pi-Hole Welcome screen press the *login* and enter the password defined in the Docker Compose file 
 
 ```{admonition} Default Password

@@ -55,7 +55,7 @@ Once connected you will be brought back to the Cloudflare Pages dashboard. Selec
 Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:
 
 ```
-Project name - connect-2022-lab1
+Project name - connect_2022_lab1
 Production branch - master
 Framework preset - Create React App
 Build command - npm run build

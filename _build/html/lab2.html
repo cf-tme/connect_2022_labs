@@ -47,7 +47,20 @@
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Cloudflare Images</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Cloudflare Images</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clone-project-connect-kv-store-new-students">2.1. Clone Project &amp; Connect KV Store (New Students)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-github-repository">2.1.1. Clone GitHub Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deploy-project-to-pages">2.1.2. Deploy project to Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-an-images-kv-namespace">2.1.3. Creating an IMAGES KV Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binding-kv-namespace-to-pages-project">2.1.4. Binding KV Namespace to Pages Project</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manually-re-deploy-application">2.1.4.1. Manually Re-Deploy Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-api-keys-for-account">2.2. Generate API Keys for account</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers (WIP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
 </ul>
@@ -90,6 +103,116 @@ By the end of this lab you will have:</p>
 <p class="admonition-title">Learn More about Cloudflare Images! </p>
 <p>Check out the <a class="reference external" href="https://www.cloudflare.com/products/cloudflare-images/">Cloudflare Homepage</a> to learn more</p>
 </div>
+<section id="clone-project-connect-kv-store-new-students">
+<h2><span class="section-number">2.1. </span>Clone Project &amp; Connect KV Store (New Students)<a class="headerlink" href="#clone-project-connect-kv-store-new-students" title="Permalink to this headline"></a></h2>
+<div class="note admonition">
+<p class="admonition-title">Already Complete Lab 1?</p>
+<p>If you have already completed Lab 1 Skip ahead to this <a class="reference internal" href="#content-references-skip"><span class="std std-ref">section</span></a></p>
+</div>
+<section id="clone-github-repository">
+<h3><span class="section-number">2.1.1. </span>Clone GitHub Repository<a class="headerlink" href="#clone-github-repository" title="Permalink to this headline"></a></h3>
+<p>To make things easier we have setup a starter gallery app on GitHub. Lets fork and clone the repository.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab1_complete
+</pre></div>
+</div>
+<p>This should create a fork of the complete Lab 1 repository in your gh account. Follow the fork with a clone</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab1_complete
+</pre></div>
+</div>
+<p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab1_complete
+</pre></div>
+</div>
+</section>
+<section id="deploy-project-to-pages">
+<h3><span class="section-number">2.1.2. </span>Deploy project to Pages<a class="headerlink" href="#deploy-project-to-pages" title="Permalink to this headline"></a></h3>
+<p>Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.</p>
+<p>Login to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a></p>
+<p>Select <strong>Pages</strong> on the left hand side and press <strong>Create a Project</strong> and select <strong>Connect GitHub</strong></p>
+<p><img alt="pages" src="_images/pages_gh_setup.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">Authenticate to GitHub</p>
+<p>If you are not already logged into GitHub in your browser you may be asked to re-authenticate</p>
+</div>
+<p>You will be prompted to <strong>Install and Authorize</strong> Cloudflare Pages to your github account, press the button to proceed.</p>
+<p><img alt="linkgh" src="_images/pages_gh_auth.png" /></p>
+<p>Once connected you will be brought back to the Cloudflare Pages dashboard. Select <em>connect_2022_lab1</em> on the following page</p>
+<p><img alt="linkgh" src="_images/pages_gh_repo_select.png" /></p>
+<p>Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Project</span> <span class="n">name</span> <span class="o">-</span> <span class="n">connect_2022_lab1_complete</span>
+<span class="n">Production</span> <span class="n">branch</span> <span class="o">-</span> <span class="n">master</span>
+<span class="n">Framework</span> <span class="n">preset</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">React</span> <span class="n">App</span>
+<span class="n">Build</span> <span class="n">command</span> <span class="o">-</span> <span class="n">npm</span> <span class="n">run</span> <span class="n">build</span>
+<span class="n">Build</span> <span class="n">output</span> <span class="n">directory</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>
+</pre></div>
+</div>
+<p><img alt="linkgh" src="_images/pages_gh_add.png" /></p>
+<p>Press <strong>Deploy</strong></p>
+<div class="note admonition">
+<p class="admonition-title">Deployment Progress</p>
+<p>Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.</p>
+</div>
+<p>Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the <strong>link</strong>.</p>
+<div class="note admonition">
+<p class="admonition-title">pages.dev Domain</p>
+<p>By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)</p>
+</div>
+<p>Before we test out application we need to create and Bind a KV namespace</p>
+</section>
+<section id="creating-an-images-kv-namespace">
+<h3><span class="section-number">2.1.3. </span>Creating an IMAGES KV Namespace<a class="headerlink" href="#creating-an-images-kv-namespace" title="Permalink to this headline"></a></h3>
+<p>Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name “IMAGES”</p>
+<p>From your Cloudflare account landing page navigate to <strong>Workers &gt; KV</strong></p>
+<div class="note admonition">
+<p class="admonition-title">Verify Email</p>
+<p>If you have not already confirmed your e-mail address for your Cloudflare Account you may be asked to Verify it here before creating any KV namespaces</p>
+</div>
+<p>Select <strong>Create Namespace</strong> and enter <em>IMAGES</em> in the <em>Namespace Name</em> and press <strong>Add</strong></p>
+<p><img alt="kv-name" src="_images/kv-namespace.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">Namespace ID</p>
+<p>Once  your namespace is created you will be given a Namespace ID - this will be needed later on in Lab 2, so if you plan on joining us for Lab 2 go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.</p>
+</div>
+</section>
+<section id="binding-kv-namespace-to-pages-project">
+<h3><span class="section-number">2.1.4. </span>Binding KV Namespace to Pages Project<a class="headerlink" href="#binding-kv-namespace-to-pages-project" title="Permalink to this headline"></a></h3>
+<p>Once our Namespace is created we must bind it to our Pages project so that our functions can leverage the data inside.</p>
+<div class="note admonition">
+<p class="admonition-title">Look Ahead</p>
+<p>We will be using this namespace to store Image metadata that will then be read in dynamically update our gallery with images that we upload!</p>
+</div>
+<p>From the Left hand side navigation pane on the Cloudflare Dashboard select <strong>Pages</strong> then select our project <em>connect_2022_lab1_complete</em></p>
+<p>In the top navigation bar select <strong>Settings</strong> and then <strong>Functions</strong> On the left hand side.</p>
+<p><img alt="kv-name" src="_images/kv-namespace.png" /></p>
+<p>Select <strong>Add binding</strong> under the <em>KV namespace binding</em> (under <em>Production</em> sub-tab)</p>
+<p>Enter <em>IMAGES</em> in the Variable name and Select the <em>IMAGES</em> KV namespace from the dropdown. And press <strong>Save</strong></p>
+<p><img alt="kv-name" src="_images/save-binding.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">Manual Re-Deploy</p>
+<p>In order for KV binding to take effect we need to rebuild the project - this is generally not an issue when live developing as a git push will force it but in this case to test a few things out we will manual kick off a re-deployment</p>
+</div>
+<section id="manually-re-deploy-application">
+<h4><span class="section-number">2.1.4.1. </span>Manually Re-Deploy Application<a class="headerlink" href="#manually-re-deploy-application" title="Permalink to this headline"></a></h4>
+<p>To kick off a manual re-deployment we must first select <em>View build</em> (in the bottom right) on the latest deployment of our application.</p>
+<p><img alt="kv-name" src="_images/view-build.png" /></p>
+<p>On the following page select <strong>Manage Deployment</strong> in the top right and press <strong>Retry Deployment</strong></p>
+<p><img alt="kv-name" src="_images/re-deploy.png" /></p>
+<p>This will kickoff a manual deployment, give it a few moments to complete.</p>
+<p>Congratulations you are now all caught up! If you navigate to the url that was generated for you Pages project you should see a blank gallery (plain blue page).</p>
+</section>
+</section>
+</section>
+<section id="generate-api-keys-for-account">
+<span id="content-references-skip"></span><h2><span class="section-number">2.2. </span>Generate API Keys for account<a class="headerlink" href="#generate-api-keys-for-account" title="Permalink to this headline"></a></h2>
+<p>Before we can upload images or write values to our KV store with the API We need to generate API keys for our account.</p>
+<div class="note admonition">
+<p class="admonition-title">Images API Key</p>
+<p>Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.</p>
+</div>
+<p>To generate API keys navigate to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a>, login and select your user on the top right and select <strong>My Profile</strong></p>
+<p><img alt="user" src="_images/select-user.png" /></p>
+<p>On the left navigation pane select <strong>API Tokens</strong> and press <strong>Create Token</strong></p>
+<p><img alt="token" src="_images/api-token.png" /></p>
 <p>Some <strong>text</strong>!</p>
 <p>for those of you returning from previous lab go ahead and SKIP to this section</p>
 <p>clone the lab 1 complete repository</p>
@@ -100,8 +223,8 @@ note the ID</p>
 <p>then re-build the projkect</p>
 <p>the url for api/images should return empty</p>
 <p>and the homepage should be blank</p>
-<p>SKIP</p>
-<p>clone the lab 2 github repository</p>
+<p>SKIP
+clone the lab 2 github repository</p>
 <p>ensure that python is installed (write the steps for prereq)</p>
 <p>open up the image upload file in your favorite editor</p>
 <p>now we need some value
@@ -135,6 +258,7 @@ uploaded image gallery-images/cat1.jpeg and added KV metadata with status True</
 <p>this should return a full list of images
 and our homepage should now have a full array!</p>
 <p>AWESOME! congratulations you create a FULL stack application with Workers, KV, and IMAGES!</p>
+</section>
 </section>
 
 
