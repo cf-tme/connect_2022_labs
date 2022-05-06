@@ -116,55 +116,168 @@ export const onRequest = () => {
   return new Response(new Date().toISOString())
 }
 ```
+This is a fairly simple piece of code but it should just return the string with the current Date and Time in ISO format.
 
+Save the file and return to our terminal window.
 
-Some **text**!
-```{admonition} Here's my title
-:class: warning
+In order to push these changes to our project we simply just need to commit and push them to our repository and Cloudflare Pages will automatically rebuild the application.
 
-Here's my admonition content
+To commit and push changes we use standard git commands:
+
+``` sh
+gid add .
+git commit -m "added new time function"
+git push
 ```
 
+```{admonition} Paged Auto-Build
+:class: note
+By default Cloudflare Pages will rebuild and deploy your application with every push to the github repository, if this is undesirable auto-deployments can be temporarily turned off
+```
+If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.
+
+![linkgh](./screencaps/pages-deploy.png)
+
+Once complete we can renavigate to our application URL but this time going to the */time* pages. We should see a very simple readout of the current date and time. 
+
+```
+2022-05-06T02:58:04.165Z
+```
+
+```{admonition} Building APIs
+:class: Note
+Functions are great ways to build integrations into other APIs, or even build API endpoints for the web application itself
+```
+
+## Creating and Binding KV store
+Workers KV is Cloudflare’s globally replicated key-value storage solution. Binding these KV namespaces with your application are what make it truly full-stack - the ability to read and write data dynamically right from Cloudflare's edge.
+
+### Creating an IMAGES KV Namespace
+Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name "IMAGES"
+
+From your Cloudflare account landing page navigate to **Workers > KV** 
+
+```{admonition} Verify Email
+:class: Note
+If you have not already confirmed your e-mail address for your Cloudflare Account you may be asked to Verify it here before creating any KV namespaces
+```
+
+Select **Create Namespace** and enter *IMAGES* in the *Namespace Name* and press **Add**
+
+![kv-name](./screencaps/kv-namespace.png)
+
+```{admonition} Namespace ID
+:class: Note
+Once  your namespace is created you will be given a Namespace ID - this will be needed later on in Lab 2, so if you plan on joining us for Lab 2 go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.
+```
+
+### Binding KV Namespace to Pages Project ###
+
+Once our Namespace is created we must bind it to our Pages project so that our functions can leverage the data inside.
+
+```{admonition} Look Ahead
+:class: Note
+We will be using this namespace in Lab 2 to store Image metadata that will then be read in dynamically update our gallery with images that we upload!
+```
+From the Left hand side navigation pane on the Cloudflare Dashboard select **Pages** then select our project *connect_2022_lab1* 
+
+In the top navigation bar select **Settings** and then **Functions** On the left hand side.
+
+![kv-name](./screencaps/kv-namespace.png)
+
+Select **Add binding** under the *KV namespace binding* (under *Production* sub-tab)
+
+Enter *IMAGES* in the Variable name and Select the *IMAGES* KV namespace from the dropdown. And press **Save**
+
+![kv-name](./screencaps/save-binding.png)
+
+```{admonition} Manual Re-Deploy
+:class: Note
+In order for KV binding to take effect we need to rebuild the project - this is generally not an issue when live developing as a git push will force it but in this case to test a few things out we will manual kick off a re-deployment
+```
+#### Manually Re-Deploy Application ####
+
+To kick off a manual re-deployment we must first select *View build* (in the bottom right) on the latest deployment of our application.
+
+![kv-name](./screencaps/view-build.png)
+
+On the following page select **Manage Deployment** in the top right and press **Retry Deployment**
+
+![kv-name](./screencaps/re-deploy.png)
+
+This will kickoff a manual deployment, give it a few moments to complete.
+
+#### Validate KV Binding with API Call ####
+
+Our web application has been build with an API to query KV store for image metadata and use that data to populate the image Gallery on the homepage. This api endpoint can be found at */api/images*.
+
+```{admonition} Empty KV but Homepage still has images?
+:class: Note
+The Eagle eyed of you may have noticed that even after Binding our KV we still see images on the Homepage - but how? There is no data in the KV store yet. This is because the values have been hardcoded - for now - in a few moments we will be changing this so that the data is populated dynamically
+```
+
+To validate our KV namespace has been bound properly we can quickly just navigate to our API endpoint */api/images* in a Browser and should get back an empty array:
+
+```json
+{"images":[]}
+```
+Congratulations your KV namespace has been successfully bound to your Application functions!
 
 
-now lets write a function that lets us execute some code - 
-new file for time - and then git add . git commit -m "new file" git push
+### Fill Gallery images with dynamic data from KV ###
 
-then add a new function file to learn how functions work - return 
+Now that our KV store is ready to use we can change our web application to dynamically fill gallery data with Images whose metadata is stored in the KV store. 
+To change this behavior we need to go to edit our definition of the gallery images grid at - */src/components/ImageGrid.tsx* 
 
-boom now if we look at pages we see that there is an ongoing deployment! awesome it autodeploys it with the git push
+Open *ImageGrid.tsx* in your favorite text editor and look at `line:53 - line:119`
 
-if we got to /time you can see it returns the time - pretty cool! 
+``` js
+const data = {
+    images: [
+      {
+        id: "8277aeb6-f3fb-445d-43f9-ae710b3ffc00",
+        previewURL:
+          "https://imagedelivery.net/c_kvDVNdc0jEhXS4gDzgVA/8277aeb6-f3fb-445d-43f9-ae710b3ffc00/blurred",
+        name: "hannah-grace-fk4tiMlDFF0-unsplash.jpg",
+        alt: "string",
+        uploaded: "2021-11-17T06:31:25.203Z",
+        isPrivate: true,
+      },
+      {
+        id: "e45bc50e-814f-4f2a-e6ab-d68a3f457500",
 
-now functions are really powerfull for creating integrations and api endpoints - in the interest of time we have built most of these for you.
+        ... cont.
+```
 
-when using the API endpoints there is often a need to repeatedly refernce stored variable data - this is where we can use KV to persist variables. IN this example we will be using it to store details about the images in our gallery! 
+Either comment or delete the entire *data* array as we will be replacing it with our simple API call (The "A" in JAM stack) to pull the array of images from the KV store.
 
-create a new KV namespace called "IMAGES"
+Enter the code below in place of the hard-coded image array
 
-note down the ID as we will need it in later labs! 
+``` js
+const { data, error } = useSWR<{ images: Image[] }>("/api/images");
 
-once the space is created go to settings and go to function - edit binding with variable name IMAGES and kv namespace set to the Images namespace we created 
+  if (error || data === undefined) {
+    return (
+      <div>
+        An unexpected error has occurred when fetching the list of images.
+        Please try again.
+      </div>
+    );
 
-now we will need to rebuild the project so lets do that! 
+  }
+```
 
-once done 
+To commit and push changes we use standard git commands:
 
+``` sh
+gid add .
+git commit -m "added new time function"
+git push
+```
 
-there are a few api endpoints we can test if you go to /api/image - lets see the result 
+If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.
 
-hmm we it looks empty, but thats good, we havent uploaded any images yet.
-
-
-now you might be wondering ... ok well then why were there images on the homepage! 
-
-good eye - this is because we have actually hardcoded the image data for the homepage - so lets go and clear it out and change it to read image data from our KV store 
-
-- delete the const data and uncomment the useSWR to get the data out of the kv store! this will make a call to the api/images endpoint and pull the data and present it.
-
-now if we return to our homepage - look at that an empty gallery!  - unfortunatley that is all the time we have for lab 1 but if you join us for lab 2 we will upload some cute images hosted in cloudflare and serve them up with our application
-
-at this stage you should ahve an empty pages on the home screen :) now lets add some pictures 
+Once complete we can navigate to our application URL but this time we should see a blank Gallery Page!
 
 
 
