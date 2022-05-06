@@ -7,11 +7,18 @@ for those of you returning from previous lab go ahead and SKIP to this section
 
 clone the lab 1 complete repository 
 
+create a KV namespace called Images 
+note the ID 
 
+got to pages and deploy the application 
 
+bind the namespace in settings 
 
+then re-build the projkect
 
+the url for api/images should return empty
 
+and the homepage should be blank
 
 
 
@@ -23,45 +30,57 @@ clone the lab 2 github repository
 ensure that python is installed (write the steps for prereq)
 
 
-clone the github repository 
+open up the image upload file in your favorite editor
 
-they are goiing to then deploy to pages 
+now we need some value 
+find this from when we created the KV namespace - if you forgot go to workes → kv namespaces and select IMAGES there shoudld be an ID there
 
-navigate to the page! the application works! 
+kv_id = "ENTER YOU WORKERS KV NAMESPACE ID"
 
-now lets write a function that lets us execute some code - 
-new file for time - and then git add . git commit -m "new file" git push
+this can be easily found in the URL after "dash.cloudflare.com" that value is your account ID 
 
-then add a new function file to learn how functions work - return 
+kv_account_id = "ENTER YOUR CLOUDFLARE ACCOUNT ID"
 
-boom now if we look at pages we see that there is an ongoing deployment! awesome it autodeploys it with the git push
-
-if we got to /time you can see it returns the time - pretty cool! 
-
-now functions are really powerfull for creating integrations and api endpoints - in the interest of time we have built most of these for you.
-
-when using the API endpoints there is often a need to repeatedly refernce stored variable data - this is where we can use KV to persist variables. IN this example we will be using it to store details about the images in our gallery! 
-
-create a new KV namespace called "IMAGES"
-
-note down the ID as we will need it in later labs! 
-
-once the space is created go to settings and go to function - edit binding with variable name IMAGES and kv namespace set to the Images namespace we created 
-
-there are a few api endpoints we can test if you go to /api/image - lets see the result 
-
-hmm we it looks empty, but thats good, we havent uploaded any images yet.
+we need to generate a new API token - lets do that 
 
 
-now you might be wondering ... ok well then why were there images on the homepage! 
-
-good eye - this is because we have actually hardcoded the image data for the homepage - so lets go and clear it out and change it to read image data from our KV store 
-
-- delete the const data and uncomment the useSWR to get the data out of the kv store! this will make a call to the api/images endpoint and pull the data and present it.
-
-now if we return to our homepage - look at that an empty gallery!  - unfortunatley that is all the time we have for lab 1 but if you join us for lab 2 we will upload some cute images hosted in cloudflare and serve them up with our application
-
-at this stage you should ahve an empty pages on the home screen :) now lets add some pictures 
+kv_token ="ENTER YOUR API TOKEN"
 
 
+now that we have all of our values filled in lets take a look at the code -
 
+the first part is uploading images to cloudfalre pages 
+>> since we are using a common images account 
+
+we only only have one image variant in this account but its important to note that you can define any number of variants just by creating a variant and changing the URL 
+
+once we do the upload we are then writing the image metadata to KV - this will be in the right format for our homepage to show the new images we upload 
+
+
+- lets go ahead and ruyn it! 
+
+
+terrfici we should ahve gotten an aoutput that looks something like: 
+uploaded image gallery-images/cat1.jpeg and added KV metadata with status True
+
+uploaded image gallery-images/cat2.jpeg and added KV metadata with status True
+
+uploaded image gallery-images/cat3.jpeg and added KV metadata with status True
+
+uploaded image gallery-images/pup1.jpeg and added KV metadata with status True
+
+uploaded image gallery-images/pup2.jpeg and added KV metadata with status True
+
+uploaded image gallery-images/pup3.jpeg and added KV metadata with status True
+
+
+
+this means that our images were uploaded and the metadata was written it should look something like below! 
+
+
+Now if go back to our homepage and navigate to /api/images 
+
+this should return a full list of images 
+and our homepage should now have a full array! 
+
+AWESOME! congratulations you create a FULL stack application with Workers, KV, and IMAGES! 

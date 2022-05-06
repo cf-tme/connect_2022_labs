@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Cloudflare Zero Trust Gateway" href="lab4.html" />
-    <link rel="prev" title="2. Cloudflare Images" href="lab2.html" /> 
+    <link rel="prev" title="2. Cloudflare Images (WIP)" href="lab2.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,11 +41,12 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="github.html">1. Setup Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Setup Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">3. Setup Python</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. Cloudflare Workers (WIP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
 </ul>
@@ -76,14 +77,53 @@
              
   <section id="cloudflare-workers-wip">
 <h1><span class="section-number">3. </span>Cloudflare Workers (WIP)<a class="headerlink" href="#cloudflare-workers-wip" title="Permalink to this headline"></a></h1>
-<p>Some <strong>text</strong>!</p>
+<p>lets start with A/B testing!</p>
+<p>Cloudflare Workers makes it easy to a/b test applications by add custom logic infront of a web application.</p>
+<p>In our lab we will be writing a Cloudflare Pages function to act as a method to A/B Test a website.</p>
+<p>Also since we will be using free web application we cant use workers</p>
+<p>LEts start with cloning the gh repo</p>
+<p>lets deploy it with pages</p>
+<p>once deployed let go ahead and check to see the website is just presented with Hello World.</p>
+<p>what we will do is create some middle ware</p>
+<p>explain what middleware is</p>
+<p>we will use HTML rewrite to dynamically change the content on the page.</p>
+<p>the choice will be random, however you will easily be able to see how you can adapt the code to fill other more complex scenarios</p>
+<p>with the repo cloned lets go ahead anad</p>
+<p>cd function</p>
+<p>and touch _middleware.js</p>
+<p>this is where we will add our logic</p>
+<p>const imageA =
+“https://unsplash.com/photos/ZuhXK3lxL8Y/download?ixid=MnwxMjA3fDB8MXxhbGx8M3x8fHx8fDJ8fDE2NTE2ODAwMjU&amp;force=true&amp;w=640”;
+const imageB =
+“https://unsplash.com/photos/Yh_xH-tWI-0/download?force=true&amp;w=640”;</p>
+<p>export const onRequest: PagesFunction = async ({ env, request }) =&gt; {
+const response = await env.ASSETS.fetch(request);</p>
+<p>const imageURL = Math.random() &gt; 0.5 ? imageA : imageB;</p>
+<p>return new HTMLRewriter()
+.on(“body”, {
+element(body) {
+body.append(<code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src=&quot;${imageURL}&quot;</span> <span class="pre">/&gt;</span></code>, { html: true });
+},
+})
+.transform(response);</p>
+<p>};</p>
+<p>Go to google and choose any two image URLs for A &amp; B !</p>
+<p>NOTE you can use the images we uploaded in the pervious lab (if you have them)</p>
+<p>if we look at hte code we can see that</p>
+<p>we are using the HTML rewriter function to manipulate the content on the welcome page.</p>
+<p>The random function will spit out a value between 0 &amp; 1 making the odds of each image close to 50% this is perfect for us to be able to see the changes live.</p>
+<p>since we want to be able to develop regularly lets go ahead and setup a local wrangler environment to test / debug our page before we push the changes live!</p>
+<p>if you dont have npm installed check out the instructions here:</p>
+<p>npm install wrangler&#64;beta
+npx wrangler pages dev ./public</p>
+<p>this will start up</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="lab2.html" class="btn btn-neutral float-left" title="2. Cloudflare Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab2.html" class="btn btn-neutral float-left" title="2. Cloudflare Images (WIP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="lab4.html" class="btn btn-neutral float-right" title="4. Cloudflare Zero Trust Gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

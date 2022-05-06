@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Setup Node Package Manager &mdash; cf-connect-2022  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Cloudflare Pages (WIP)" href="lab1.html" />
+    <link rel="prev" title="3. Setup Python" href="python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> cf-connect-2022
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pre-Requisites:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="github.html">1. Setup Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">2. Setup Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">3. Setup Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Setup Node Package Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#macos">4.1. MacOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux">4.2. Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">4.3. Windows</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">cf-connect-2022</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><span class="section-number">4. </span>Setup Node Package Manager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/npm.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-node-package-manager">
+<h1><span class="section-number">4. </span>Setup Node Package Manager<a class="headerlink" href="#setup-node-package-manager" title="Permalink to this headline"></a></h1>
+<p>npm will be used in Lab 3 to setup a local test environment to rapidly debug</p>
+<section id="macos">
+<h2><span class="section-number">4.1. </span>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline"></a></h2>
+<p><strong>Install Homebrew:</strong></p>
+<p>The fastest way to install packages onto MacOS is with Homebrew, if you already have Homebrew installed you can skip this step</p>
+<p>To install Brew, in a terminal window enter</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>/bin/bash -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p><strong>Install Python3:</strong></p>
+<p>In a terminal window enter:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install python
+</pre></div>
+</div>
+</section>
+<section id="linux">
+<h2><span class="section-number">4.2. </span>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h2>
+<p>Installation of Python3 can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS</p>
+<p><strong>Debian, Ubuntu Linux, Raspberry Pi OS (apt)</strong></p>
+<p>Python 3 may already be installed on your distribution if not run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt-get install python3
+</pre></div>
+</div>
+<p><strong>Fedora, CentOS, Red Hat Enterprise Linux (dnf)</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3
+</pre></div>
+</div>
+</section>
+<section id="windows">
+<h2><span class="section-number">4.3. </span>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h2>
+<p>Installation of Python3 can be done with powershell winget package manager. Open PowerShell and enter the following installation command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>winget install -e --id Python.Python.3
+</pre></div>
+</div>
+<p>If prompted enter <em>Y</em> to approve installation</p>
+<p>Once installation is complete you must add Python3 installation to the Windows PATH:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$Env</span>:PATH +<span class="o">=</span> <span class="s2">&quot;;%userprofile%\AppData\Local\Programs\Python\Python310&quot;</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Python 3 Setup Complete! </p>
+<p>You have successfully setup Python! Lets Get Started with the Labs!</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python.html" class="btn btn-neutral float-left" title="3. Setup Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab1.html" class="btn btn-neutral float-right" title="1. Cloudflare Pages (WIP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Cloudflare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

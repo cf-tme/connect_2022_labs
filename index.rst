@@ -15,6 +15,7 @@ Welcome to Cloudflare Connect 2022 - Hands On Labs!
    github.md
    git.md
    python.md
+   npm.md
 
 
 .. toctree::

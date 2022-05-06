@@ -41,6 +41,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="github.html">1. Setup Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Setup Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">3. Setup Python</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
@@ -79,31 +80,48 @@
 <p>Some <strong>text</strong>!</p>
 <p>for those of you returning from previous lab go ahead and SKIP to this section</p>
 <p>clone the lab 1 complete repository</p>
+<p>create a KV namespace called Images
+note the ID</p>
+<p>got to pages and deploy the application</p>
+<p>bind the namespace in settings</p>
+<p>then re-build the projkect</p>
+<p>the url for api/images should return empty</p>
+<p>and the homepage should be blank</p>
 <p>SKIP</p>
 <p>clone the lab 2 github repository</p>
 <p>ensure that python is installed (write the steps for prereq)</p>
-<p>clone the github repository</p>
-<p>they are goiing to then deploy to pages</p>
-<p>navigate to the page! the application works!</p>
-<p>now lets write a function that lets us execute some code -
-new file for time - and then git add . git commit -m “new file” git push</p>
-<p>then add a new function file to learn how functions work - return</p>
-<p>boom now if we look at pages we see that there is an ongoing deployment! awesome it autodeploys it with the git push</p>
-<p>if we got to /time you can see it returns the time - pretty cool!</p>
-<p>now functions are really powerfull for creating integrations and api endpoints - in the interest of time we have built most of these for you.</p>
-<p>when using the API endpoints there is often a need to repeatedly refernce stored variable data - this is where we can use KV to persist variables. IN this example we will be using it to store details about the images in our gallery!</p>
-<p>create a new KV namespace called “IMAGES”</p>
-<p>note down the ID as we will need it in later labs!</p>
-<p>once the space is created go to settings and go to function - edit binding with variable name IMAGES and kv namespace set to the Images namespace we created</p>
-<p>there are a few api endpoints we can test if you go to /api/image - lets see the result</p>
-<p>hmm we it looks empty, but thats good, we havent uploaded any images yet.</p>
-<p>now you might be wondering … ok well then why were there images on the homepage!</p>
-<p>good eye - this is because we have actually hardcoded the image data for the homepage - so lets go and clear it out and change it to read image data from our KV store</p>
+<p>open up the image upload file in your favorite editor</p>
+<p>now we need some value
+find this from when we created the KV namespace - if you forgot go to workes → kv namespaces and select IMAGES there shoudld be an ID there</p>
+<p>kv_id = “ENTER YOU WORKERS KV NAMESPACE ID”</p>
+<p>this can be easily found in the URL after “dash.cloudflare.com” that value is your account ID</p>
+<p>kv_account_id = “ENTER YOUR CLOUDFLARE ACCOUNT ID”</p>
+<p>we need to generate a new API token - lets do that</p>
+<p>kv_token =”ENTER YOUR API TOKEN”</p>
+<p>now that we have all of our values filled in lets take a look at the code -</p>
+<p>the first part is uploading images to cloudfalre pages</p>
+<blockquote>
+<div><blockquote>
+<div><p>since we are using a common images account</p>
+</div></blockquote>
+</div></blockquote>
+<p>we only only have one image variant in this account but its important to note that you can define any number of variants just by creating a variant and changing the URL</p>
+<p>once we do the upload we are then writing the image metadata to KV - this will be in the right format for our homepage to show the new images we upload</p>
 <ul class="simple">
-<li><p>delete the const data and uncomment the useSWR to get the data out of the kv store! this will make a call to the api/images endpoint and pull the data and present it.</p></li>
+<li><p>lets go ahead and ruyn it!</p></li>
 </ul>
-<p>now if we return to our homepage - look at that an empty gallery!  - unfortunatley that is all the time we have for lab 1 but if you join us for lab 2 we will upload some cute images hosted in cloudflare and serve them up with our application</p>
-<p>at this stage you should ahve an empty pages on the home screen :) now lets add some pictures</p>
+<p>terrfici we should ahve gotten an aoutput that looks something like:
+uploaded image gallery-images/cat1.jpeg and added KV metadata with status True</p>
+<p>uploaded image gallery-images/cat2.jpeg and added KV metadata with status True</p>
+<p>uploaded image gallery-images/cat3.jpeg and added KV metadata with status True</p>
+<p>uploaded image gallery-images/pup1.jpeg and added KV metadata with status True</p>
+<p>uploaded image gallery-images/pup2.jpeg and added KV metadata with status True</p>
+<p>uploaded image gallery-images/pup3.jpeg and added KV metadata with status True</p>
+<p>this means that our images were uploaded and the metadata was written it should look something like below!</p>
+<p>Now if go back to our homepage and navigate to /api/images</p>
+<p>this should return a full list of images
+and our homepage should now have a full array!</p>
+<p>AWESOME! congratulations you create a FULL stack application with Workers, KV, and IMAGES!</p>
 </section>
 
 
