@@ -53,7 +53,7 @@ Once installation is complete you must add Python3 installation to the Windows P
 $Env:PATH += ";C:\Program Files\nodejs\node_modules\npm\bin"
 ```
 
-```{admonition} Python 3 Setup Complete! 
+```{admonition} npm Setup Complete! 
 :class: note
-You have successfully setup Python! Lets Get Started with the Labs!
+You have successfully setup npm! Lets Get Started with the Labs!
 ```
