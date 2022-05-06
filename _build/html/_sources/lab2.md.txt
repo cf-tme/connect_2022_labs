@@ -55,7 +55,7 @@ You will be prompted to **Install and Authorize** Cloudflare Pages to your githu
 
 ![linkgh](./screencaps/pages_gh_auth.png)
 
-Once connected you will be brought back to the Cloudflare Pages dashboard. Select *connect_2022_lab1* on the following page 
+Once connected you will be brought back to the Cloudflare Pages dashboard. Select *connect_2022_lab1_complete* on the following page 
 
 ![linkgh](./screencaps/pages_gh_repo_select.png)
 

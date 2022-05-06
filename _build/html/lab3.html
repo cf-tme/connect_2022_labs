@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Cloudflare Workers (WIP) &mdash; cf-connect-2022  documentation</title>
+  <title>3. Cloudflare Workers &mdash; cf-connect-2022  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Cloudflare Zero Trust Gateway" href="lab4.html" />
-    <link rel="prev" title="2. Cloudflare Images (WIP)" href="lab2.html" /> 
+    <link rel="prev" title="2. Cloudflare Images" href="lab2.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,8 +47,17 @@
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Cloudflare Workers (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Cloudflare Workers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pre-lab-notes">3.1. Pre-Lab Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-basic-web-application">3.2. Setup Basic Web Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploy-project-to-pages">3.2.1. Deploy project to Pages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#write-a-b-testing-function">3.3. Write A/B Testing Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-the-code-locally-before-deploying">3.4. Testing the Code Locally before Deploying</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="lab4.html">4. Cloudflare Zero Trust Gateway</a></li>
 </ul>
 
@@ -66,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">3. </span>Cloudflare Workers (WIP)</li>
+      <li><span class="section-number">3. </span>Cloudflare Workers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/lab3.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,67 +85,185 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cloudflare-workers-wip">
-<h1><span class="section-number">3. </span>Cloudflare Workers (WIP)<a class="headerlink" href="#cloudflare-workers-wip" title="Permalink to this headline"></a></h1>
-<p>lets start with A/B testing!</p>
-<p>Cloudflare Workers makes it easy to a/b test applications by add custom logic infront of a web application.</p>
-<p>In our lab we will be writing a Cloudflare Pages function to act as a method to A/B Test a website.</p>
-<p>Also since we will be using free web application we cant use workers</p>
-<p>LEts start with cloning the gh repo</p>
-<p>lets deploy it with pages</p>
-<p>once deployed let go ahead and check to see the website is just presented with Hello World.</p>
-<p>what we will do is create some middle ware</p>
-<p>explain what middleware is</p>
-<p>we will use HTML rewrite to dynamically change the content on the page.</p>
-<p>the choice will be random, however you will easily be able to see how you can adapt the code to fill other more complex scenarios</p>
-<p>with the repo cloned lets go ahead anad</p>
-<p>cd function</p>
-<p>and touch _middleware.js</p>
-<p>this is where we will add our logic</p>
-<p>const imageA =
-“https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/9b0fabf0-8a5d-4d84-29d7-c438eb002d00/public”;
-const imageB =
-“https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/2b143d0b-006a-47e7-db0e-ce523edf5300/public”;</p>
-<p>export const onRequest: PagesFunction = async ({ env, request }) =&gt; {
-const response = await env.ASSETS.fetch(request);</p>
-<p>const imageURL = Math.random() &gt; 0.5 ? imageA : imageB;</p>
-<p>return new HTMLRewriter()
-.on(“body”, {
-element(body) {
-body.append(<code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src=&quot;${imageURL}&quot;</span> <span class="pre">/&gt;</span></code>, { html: true });
-},
-})
-.transform(response);</p>
-<p>};</p>
-<p>Go to google and choose any two image URLs for A &amp; B !</p>
-<p>NOTE you can use the images we uploaded in the pervious lab (if you have them)</p>
-<p>if we look at hte code we can see that</p>
-<p>we are using the HTML rewriter function to manipulate the content on the welcome page.</p>
-<p>The random function will spit out a value between 0 &amp; 1 making the odds of each image close to 50% this is perfect for us to be able to see the changes live.</p>
-<p>since we want to be able to develop regularly lets go ahead and setup a local wrangler environment to test / debug our page before we push the changes live!</p>
-<p>if you dont have npm installed check out the instructions here: <link to npm></p>
-<p>npm install wrangler&#64;beta
-npx wrangler pages dev ./public</p>
-<p>should see —</p>
-<blockquote>
-<div><p>npx wrangler pages dev ./public
-🚧 ‘wrangler pages <command>’ is a beta command. Please report any issues to https://github.com/cloudflare/wrangler2/issues/new/choose
-Compiling worker to “/var/folders/5x/85cqyfb17tjbx6sxvdgpsk8h0000gp/T/functionsWorker.js”…
+  <section id="cloudflare-workers">
+<h1><span class="section-number">3. </span>Cloudflare Workers<a class="headerlink" href="#cloudflare-workers" title="Permalink to this headline"></a></h1>
+<p>Welcome to Lab 3 at Cloudflare Connect 2022 - This lab will focus on designing a simple A/B Test for a webpage and writing the test with Workers functions.</p>
+<p>By the end of this lab you will have:</p>
+<ul class="simple">
+<li><p>Learnt the basics of A/B testing</p></li>
+<li><p>Launched a local test environment using Wrangler</p></li>
+</ul>
+<p>Cloudflare Workers allows you to deploy serverless code instantly across the globe to give it exceptional performance, reliability, and scale.</p>
+<div class="note admonition">
+<p class="admonition-title">Learn More about Cloudflare Workers! </p>
+<p>Check out the <a class="reference external" href="https://workers.cloudflare.com/">Cloudflare Homepage</a> to learn more</p>
+</div>
+<section id="pre-lab-notes">
+<h2><span class="section-number">3.1. </span>Pre-Lab Notes<a class="headerlink" href="#pre-lab-notes" title="Permalink to this headline"></a></h2>
+<p>Cloudflare workers is a powerful way to write code infront of your applications directly on Cloudflares Edge Network. In order to full realize the benefit of Workers customers are encouraged to already have a domain onboarded to Cloudflare. In these cases it is possible to create routes that send requests to a set of workers functions before it is sent to the origin.</p>
+<p>For A/B Testing the logical flow of data is represented by the diagram below</p>
+<p><img alt="worker-flow" src="_images/workersflow.png" /></p>
+<p>In this flow we are using a workers function to deliver different images to a requestor based on who they are (this can be at random, but more commonly is based on a cookie). Data about what content is served to who is then piped out into an analytics platform.</p>
+<p>In this lab - since everyone may not have a custom domain to onboard to cloudflare we will be using the same Workers function and <code class="docutils literal notranslate"><span class="pre">HTMLRewriter</span></code> but we will be running it as a Cloudflare Pages Function to see it in action live.</p>
+</section>
+<section id="setup-basic-web-application">
+<h2><span class="section-number">3.2. </span>Setup Basic Web Application<a class="headerlink" href="#setup-basic-web-application" title="Permalink to this headline"></a></h2>
+<p>To make things easy we have already built a basic application that can be run on Cloudflare pages. Lets clone the repository and get started.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab3
+</pre></div>
+</div>
+<p>This should create a fork of the Lab 3 repository in your gh account. Follow the fork with a clone</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab3
+</pre></div>
+</div>
+<p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab3
+</pre></div>
+</div>
+<p>With the repository cloned lets connect the application to your Cloudflare account and deploy it with pages.</p>
+<section id="deploy-project-to-pages">
+<h3><span class="section-number">3.2.1. </span>Deploy project to Pages<a class="headerlink" href="#deploy-project-to-pages" title="Permalink to this headline"></a></h3>
+<p>Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.</p>
+<p>Login to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a></p>
+<p>Select <strong>Pages</strong> on the left hand side and press <strong>Create a Project</strong> and select <strong>Connect GitHub</strong></p>
+<p><img alt="pages" src="_images/pages_gh_setup.png" /></p>
+<div class="note admonition">
+<p class="admonition-title">Authenticate to GitHub</p>
+<p>If you are not already logged into GitHub in your browser you may be asked to re-authenticate</p>
+</div>
+<p>You will be prompted to <strong>Install and Authorize</strong> Cloudflare Pages to your github account, press the button to proceed.</p>
+<p><img alt="linkgh" src="_images/pages_gh_auth.png" /></p>
+<p>Once connected you will be brought back to the Cloudflare Pages dashboard. Select <em>connect_2022_lab3</em> on the following page</p>
+<p><img alt="linkgh" src="_images/pages_gh_repo_select.png" /></p>
+<p>Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Project</span> <span class="n">name</span> <span class="o">-</span> <span class="n">connect_2022_lab3</span>
+<span class="n">Production</span> <span class="n">branch</span> <span class="o">-</span> <span class="n">master</span>
+<span class="n">Framework</span> <span class="n">preset</span> <span class="o">-</span> <span class="o">*</span><span class="n">blank</span><span class="o">*</span>
+<span class="n">Build</span> <span class="n">command</span> <span class="o">-</span> <span class="o">*</span><span class="n">blank</span><span class="o">*</span>
+<span class="n">Build</span> <span class="n">output</span> <span class="n">directory</span> <span class="o">-</span> <span class="o">/</span><span class="n">public</span>
+</pre></div>
+</div>
+<p><img alt="linkgh" src="_images/lab3pages-deploy.png" /></p>
+<p>Press <strong>Save and Deploy</strong></p>
+<div class="note admonition">
+<p class="admonition-title">Deployment Progress</p>
+<p>Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.</p>
+</div>
+<p>Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the <strong>link</strong>.</p>
+<div class="note admonition">
+<p class="admonition-title">pages.dev Domain</p>
+<p>By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)</p>
+</div>
+<p>A pages should launch with the simple words <em>Hello World!</em></p>
+<p>Great this means our application is up and now we can write a simple A/B Test to populate an image onto the page.</p>
+</section>
+</section>
+<section id="write-a-b-testing-function">
+<h2><span class="section-number">3.3. </span>Write A/B Testing Function<a class="headerlink" href="#write-a-b-testing-function" title="Permalink to this headline"></a></h2>
+<p>With the application running lets return to our terminal and navigate to the <em>functions</em> directory</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> functions
+</pre></div>
+</div>
+<p>Here there is a file <em>_middleware.ts</em> this file is the Workers function that will execute on ever request to the <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">root</span></code> page.</p>
+<p>Open the <em>_middleware.ts</em> file in your favorite text editor.</p>
+<div class="note admonition">
+<p class="admonition-title">Text Editor</p>
+<p>VS Code is a versatile text editor that can be launched directly from the terminal using <em>code <filename></em> to install VS Code follow the steps found in the <a class="reference external" href="https://code.visualstudio.com/download">Documentation</a></p>
+</div>
+<p>We will now add the function to this file that will follow the following logic:</p>
+<ol class="arabic simple">
+<li><p>Collect the origin response for the page (in this case since we placed the <em>_middleware.ts</em> file into the root it will be the root HTML page)</p></li>
+<li><p>Choose between two images at random (the <code class="docutils literal notranslate"><span class="pre">Math.random()</span></code> produces a value between 1 &amp; 0 and testing it against a limit of 0.5 means an almost 50/50 split)</p></li>
+<li><p>Re-Write the HTML respone with the new image in the body and deliver it to the requestor.</p></li>
+</ol>
+<p>The enter the below code into the <em>_middleware.ts</em> file</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">imageA</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/9b0fabf0-8a5d-4d84-29d7-c438eb002d00/public&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">imageB</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">  </span><span class="s2">&quot;https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/2b143d0b-006a-47e7-db0e-ce523edf5300/public&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">onRequest</span><span class="o">:</span><span class="w"> </span><span class="nx">PagesFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">env</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">env</span><span class="p">.</span><span class="nx">ASSETS</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">imageURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">imageA</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">imageB</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">HTMLRewriter</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nx">element</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="sb">`&lt;img src=&quot;</span><span class="si">${</span><span class="nx">imageURL</span><span class="si">}</span><span class="sb">&quot; /&gt;`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">html</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Choosing Images</p>
+<p>You can see in the code we are choosing between two images - these are hosted on Cloudflare Images. If you wanted to select any other images you could just paste the image URL there in the <code class="docutils literal notranslate"><span class="pre">imageA</span></code> or <code class="docutils literal notranslate"><span class="pre">imageB</span></code> variable definitions.</p>
+</div>
+<p>Save the file once you are done editing it.</p>
+</section>
+<section id="testing-the-code-locally-before-deploying">
+<h2><span class="section-number">3.4. </span>Testing the Code Locally before Deploying<a class="headerlink" href="#testing-the-code-locally-before-deploying" title="Permalink to this headline"></a></h2>
+<p>In order to test if our code has worked we could very easily publish our changes to the GitHub repository and have it changed live - but that doesn’t make sense in development environments because you may want to debug and validate your code works as expected before pushing it. To do this we have updated Wrangler to allow for local simulation of projects. Lets launch a local development instance of our project.</p>
+<p>Back in the terminal window make sure the latest wrangler beta is installed</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>npm install wrangler@beta
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">npm installation</p>
+<p>if you have not already installed npm on your system follow the steps in the Pre-Requisite section <a class="reference internal" href="npm.html"><span class="doc std std-doc">here</span></a></p>
+</div>
+<p>With the latest wrangler installed you can launch the project locally, first lets go back to the root project directory and then launch wrangler</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+npx wrangler pages dev ./public
+</pre></div>
+</div>
+<p>As the project is launching you should see</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt; npx wrangler pages dev ./public
+🚧 <span class="s1">&#39;wrangler pages &lt;command&gt;&#39;</span> is a beta command. Please report any issues to https://github.com/cloudflare/wrangler2/issues/new/choose
+Compiling worker to <span class="s2">&quot;/var/folders/5x/85cqyfb17tjbx6sxvdgpsk8h0000gp/T/functionsWorker.js&quot;</span>...
 Compiled Worker successfully.
-Serving at http://localhost:8788/</p>
-</div></blockquote>
-<p>this will start up a local instance and open your browser you should see once of the images presented!</p>
-<p>great that means the A/B test is working - lets be sure,
-open the webpage in an incognito window and navigate to http://localhost:8788/</p>
-<p>thats it you have used HTML re-writer to create an A/B test the dynamicaly changes the html content to the end user based on a random seed.</p>
-<p>Done!</p>
+Serving at http://localhost:8788/
+</pre></div>
+</div>
+<p>And on completion it should automatically launch a browser bringing you to your new homepage, with one of the pictures you selected!</p>
+<p><img alt="working-function" src="_images/workingfunction.png" /></p>
+<p>If you refresh the page slowly a few times you should see the image cycle in-between the two images set in the worker script, this is the <code class="docutils literal notranslate"><span class="pre">HTMLRewriter</span></code> in action!</p>
+<p>If you look back at the terminal window you will also notice the HTTP Requests being logged in the console by wrangler - when needed this is helpful when troubleshooting.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>GET / <span class="m">200</span> OK <span class="o">(</span><span class="m">52</span>.79ms<span class="o">)</span>
+GET /favicon.ico <span class="m">200</span> OK <span class="o">(</span><span class="m">5</span>.60ms<span class="o">)</span>
+GET / <span class="m">200</span> OK <span class="o">(</span><span class="m">4</span>.17ms<span class="o">)</span>
+GET /favicon.ico <span class="m">200</span> OK <span class="o">(</span><span class="m">3</span>.78ms<span class="o">)</span>
+GET / <span class="m">200</span> OK <span class="o">(</span><span class="m">4</span>.12ms<span class="o">)</span>
+GET /favicon.ico <span class="m">200</span> OK <span class="o">(</span><span class="m">4</span>.16ms<span class="o">)</span>
+</pre></div>
+</div>
+<p>Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with <code class="docutils literal notranslate"><span class="pre">cntr+c</span></code> and push our changes to github.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gid add .
+git commit -m <span class="s2">&quot;added A/B test to randomly serve image&quot;</span>
+git push
+</pre></div>
+</div>
+<p>If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.</p>
+<p>Once complete we can navigate to our application URL but this time we should a new images on our homepage! If we refresh slowly again we should see the image cycle just like we did in testing!</p>
+<div class="warning admonition">
+<p class="admonition-title">Image not changing? </p>
+<p>Try loading the page in an incognito window in certain cases this helps with issues where browser is locally caching web elements.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">LAB 3 COMPLETE! </p>
+<p>You have successfully Completed Lab 3 - Cloudflare Workers, you have used the <code class="docutils literal notranslate"><span class="pre">HTMLRewriter</span></code> function to manipulate web content and deliver different content to different users based on a random seed. You ran your web application locally with wrangler to help test changes before deploying them live!</p>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="lab2.html" class="btn btn-neutral float-left" title="2. Cloudflare Images (WIP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab2.html" class="btn btn-neutral float-left" title="2. Cloudflare Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="lab4.html" class="btn btn-neutral float-right" title="4. Cloudflare Zero Trust Gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
