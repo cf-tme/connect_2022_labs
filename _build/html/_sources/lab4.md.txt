@@ -24,7 +24,6 @@ Once Brew is installed, in a terminal window enter:
 
 ``` sh
 brew install --cask docker
-brew install docker-compose
 ```
 
 Once installed validate that Docker is installed and running:
@@ -128,6 +127,7 @@ docker --version
 ```{admonition} Windows & MacOS
 :class: Warning
 Once docker is installed you must launch it from the corresponding OS application launcher:
+
 *Windows*
 
 **Start** → **Docker Desktop**

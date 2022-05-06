@@ -271,7 +271,7 @@ To commit and push changes we use standard git commands:
 
 ``` sh
 gid add .
-git commit -m "added new time function"
+git commit -m "add dynamic image population functionality"
 git push
 ```
 
