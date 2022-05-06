@@ -1,4 +1,4 @@
-# Cloudflare Workers
+# Lab 3 - Cloudflare Workers
 Welcome to Lab 3 at Cloudflare Connect 2022 - This lab will focus on designing a simple A/B Test for a webpage and writing the test with Workers functions.
 
 By the end of this lab you will have:

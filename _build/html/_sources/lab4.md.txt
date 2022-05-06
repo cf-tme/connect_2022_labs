@@ -1,4 +1,4 @@
-# Cloudflare Zero Trust Gateway
+# Lab 4 - Cloudflare Zero Trust Gateway
 Welcome to Lab 4 at Cloudflare Connect 2022 - This lab will focus on setting up a simple DNS forwarder to leverage Cloudflare Zero Trust Gateway's DNS filtering on any network.
 By the end of this lab you will have:
 

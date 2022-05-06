@@ -9,7 +9,6 @@ Welcome to Cloudflare Connect 2022 - Hands On Labs!
 
 .. toctree::
    :caption: Pre-Requisites:
-   :numbered:
    :maxdepth: 2
 
    github.md
@@ -20,11 +19,9 @@ Welcome to Cloudflare Connect 2022 - Hands On Labs!
 
 .. toctree::
    :caption: Lab Exercises:
-   :numbered:
    :maxdepth: 2
 
    lab1.md
-   .. lab2.md
    lab3.md
    lab4.md
 

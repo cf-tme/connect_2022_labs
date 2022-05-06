@@ -1,4 +1,4 @@
-# Cloudflare Pages
+# Lab 1 - Cloudflare Pages
 Welcome to Lab 1 at Cloudflare Connect 2022 - This lab will focus on setting up a simple image gallery deployed on Cloudflare Edge using Cloudflare Pages.
 By the end of this lab you will have:
 
@@ -279,9 +279,104 @@ If we return to the the Cloudflare Pages project we should see that the deployme
 
 Once complete we can navigate to our application URL but this time we should see a blank Gallery Page!
 
+## Upload images and store metadata into KV ##
+
+To simplify uploads and writing data to KV we have written a ready to run python script that can be cloned from GitHub and run.
+
+### Clone Image Upload Repository ###
+
+``` sh
+gh repo fork cf-tme/connect_2022_lab2
+```
+This should create a fork of the complete Lab 2 repository in your gh account. Follow the fork with a clone
+
+``` sh
+gh repo clone <yourgithubusername>/connect_2022_lab2
+```
+
+Now all the files should be local in your working directory, let navigate into the repo to start coding! 
+
+``` sh
+cd <yourgithubusername>/connect_2022_lab2
+```
+
+### Edit the upload script ###
+
+Open the *upload_images.py* Python script in your favorite editor.
+```{admonition} Text Editor
+:class: note
+VS Code is a versatile text editor that can be launched directly from the terminal using *code <filename>* to install VS Code follow the steps found in the [Documentation](https://code.visualstudio.com/download)
+```
+
+In the file editor identify the lines (`lines 11-13`) where you need to change values to reflect your account.
+
+``` python
+#CHANGE these are your value from your workers environment
+kv_id = "ENTER YOU WORKERS KV NAMESPACE ID"
+kv_account_id = "ENTER YOUR CLOUDFLARE ACCOUNT ID"
+kv_token ="ENTER YOUR API TOKEN"
+```
+
+Before leaving the document take a moment to read through the comments on the code and see whats happening.
+
+The script logic is build in 3 sections:
+
+1. Upload a set of images from the local directory to Cloudflare Images
+2. Collect data about uploaded images and structure metadata to be writing to KV Store
+3. Write image metadata to KV store
+
+Before we can run the script we need to install a python dependency - this is easy to do with a single command.
+
+``` sh
+pip3 install requests
+```
+```{admonition} pip
+:class: note
+pip is a python tool that can be used to quickly load python libraries that can be used in code. The requests library is a common import for most API based code as it provides a user friendly wrapper to the built in http request libraries in python.
+```
+With the dependencies resolved we can simply run our python script!
+
+```sh
+python upload_images.py
+```
+
+We should see success messages come onscreen as images are being uploaded and data is being written to your KV store.
+
+```
+uploaded image gallery-images/cat1.jpeg and added KV metadata with status True
+uploaded image gallery-images/cat2.jpeg and added KV metadata with status True
+uploaded image gallery-images/cat3.jpeg and added KV metadata with status True
+uploaded image gallery-images/pup1.jpeg and added KV metadata with status True
+uploaded image gallery-images/pup2.jpeg and added KV metadata with status True
+uploaded image gallery-images/pup3.jpeg and added KV metadata with status True
+```
+
+Once this script is completed our Web Gallery should show these images. Lets confirm! 
+
+#### Confirm values in KV Store ####
+
+From your Cloudflare account landing page navigate to **Workers > KV** 
+
+Select the **IMAGES** namespace
+
+You should see a listing of the images uploaded with the same value "Values stored in metadata" - This is because the valuable information lives in the metadata of the KV pair and is not visible in the UI. 
+
+![token](./screencaps/valueswritten.png)
+
+Now if we return to our Web application URL - `https://<projectname>.pages.dev` we should see a gallery of images!
+
+![token](./screencaps/gallery-complete.png)
+
+
+
+```{admonition} Additional confirmation
+:class: note
+If you want to see the data that has been written into the KV store you can make the `/api/images` call in the web browser and check the data that is being read to fill the gallery on the homepage.
+```
+
 ```{admonition} LAB 1 COMPLETE! 
 :class: note
-You have successfully Completed Lab 1 - Cloudflare Pages, now you have a simple web gallery Application that will read data out from a KV store to dynamically populate images. We hope you can join us for Lab 2, where we will be using Cloudflare Images to upload and optimize images and serve them in our new Gallery!
+You have successfully Completed Lab 1 - Cloudflare Pages, now you have a simple web gallery Application that will read data out from a KV store to dynamically populate images.
 ```
 
 

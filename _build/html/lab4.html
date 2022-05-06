@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Cloudflare Zero Trust Gateway &mdash; cf-connect-2022  documentation</title>
+  <title>Lab 4 - Cloudflare Zero Trust Gateway &mdash; cf-connect-2022  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="2. Cloudflare Workers" href="lab3.html" /> 
+    <link rel="prev" title="Lab 3 - Cloudflare Workers" href="lab3.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,27 +45,27 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab3.html">2. Cloudflare Workers</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Cloudflare Zero Trust Gateway</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#setup-docker-environment">3.1. Setup Docker Environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#macos">3.1.1. MacOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux">3.1.2. Linux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#windows">3.1.3. Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1 - Cloudflare Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3 - Cloudflare Workers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lab 4 - Cloudflare Zero Trust Gateway</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup-docker-environment">Setup Docker Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macos">MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#deploy-dns-server-cloudflare-tunnel-for-doh">3.2. Deploy DNS Server &amp; Cloudflare Tunnel for DoH</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#understanding-docker-compose-file">3.2.1. Understanding Docker Compose file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#modify-docker-compose-file">3.2.2. Modify Docker Compose file</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#setup-cloudflare-zt-location">3.2.2.1. Setup Cloudflare ZT Location</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#edit-environment-variables-with-doh">3.2.2.2. Edit Environment Variables with DoH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-dns-server-cloudflare-tunnel-for-doh">Deploy DNS Server &amp; Cloudflare Tunnel for DoH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-docker-compose-file">Understanding Docker Compose file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-docker-compose-file">Modify Docker Compose file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup-cloudflare-zt-location">Setup Cloudflare ZT Location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-environment-variables-with-doh">Edit Environment Variables with DoH</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#launch-containers">3.2.3. Launch Containers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test-dns-forwarding">3.2.4. Test DNS Forwarding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#create-dns-filtering-rule">3.2.4.1. Create DNS Filtering Rule</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#change-system-dns-settings">3.2.4.2. Change System DNS Settings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#test-new-dns-filtering-rule">3.2.4.3. Test New DNS Filtering Rule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-containers">Launch Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-dns-forwarding">Test DNS Forwarding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-dns-filtering-rule">Create DNS Filtering Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-system-dns-settings">Change System DNS Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-new-dns-filtering-rule">Test New DNS Filtering Rule</a></li>
 </ul>
 </li>
 </ul>
@@ -88,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><span class="section-number">3. </span>Cloudflare Zero Trust Gateway</li>
+      <li>Lab 4 - Cloudflare Zero Trust Gateway</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/lab4.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,8 +98,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cloudflare-zero-trust-gateway">
-<h1><span class="section-number">3. </span>Cloudflare Zero Trust Gateway<a class="headerlink" href="#cloudflare-zero-trust-gateway" title="Permalink to this headline"></a></h1>
+  <section id="lab-4-cloudflare-zero-trust-gateway">
+<h1>Lab 4 - Cloudflare Zero Trust Gateway<a class="headerlink" href="#lab-4-cloudflare-zero-trust-gateway" title="Permalink to this headline"></a></h1>
 <p>Welcome to Lab 4 at Cloudflare Connect 2022 - This lab will focus on setting up a simple DNS forwarder to leverage Cloudflare Zero Trust Gateway’s DNS filtering on any network.
 By the end of this lab you will have:</p>
 <ul class="simple">
@@ -113,10 +113,10 @@ By the end of this lab you will have:</p>
 <p>Check out the <a class="reference external" href="https://www.cloudflare.com/products/zero-trust/gateway/">Cloudflare Homepage</a> to learn more</p>
 </div>
 <section id="setup-docker-environment">
-<h2><span class="section-number">3.1. </span>Setup Docker Environment<a class="headerlink" href="#setup-docker-environment" title="Permalink to this headline"></a></h2>
+<h2>Setup Docker Environment<a class="headerlink" href="#setup-docker-environment" title="Permalink to this headline"></a></h2>
 <p>For flexible deployment we will be building this entire setup using Docker. Containers are an easy way build and deploy services on varying platforms - this means you can take the setup you build today on your local system and migrate it to a local home or lab environment with almost no configuration changes.</p>
 <section id="macos">
-<h3><span class="section-number">3.1.1. </span>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline"></a></h3>
+<h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline"></a></h3>
 <p>To install Docker on MacOS we will again use brew if you have not already setup brew on your MacBook jump up to the <a class="reference internal" href="github.html"><span class="doc std std-doc">MacOS setup section</span></a> and install it.</p>
 <p>Once Brew is installed, in a terminal window enter:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install --cask docker
@@ -138,7 +138,7 @@ By the end of this lab you will have:</p>
 </div>
 </section>
 <section id="linux">
-<h3><span class="section-number">3.1.2. </span>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
 <p>Installation of the Docker can be done with the built in package managers on most all linux distributions - to cover common use cases the steps below are for Debian and CentOS</p>
 <p><strong>Debian, Ubuntu Linux, Raspberry Pi OS (apt)</strong></p>
 <p>Update apt packages</p>
@@ -187,7 +187,7 @@ sudo dnf config-manager <span class="se">\</span>
 </div>
 </section>
 <section id="windows">
-<h3><span class="section-number">3.1.3. </span>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
 <p>Installation of Docker can be done with powershell winget package manager. Open PowerShell and enter the following installation command:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>winget install docker.dockerdesktop
 </pre></div>
@@ -209,7 +209,7 @@ sudo dnf config-manager <span class="se">\</span>
 </section>
 </section>
 <section id="deploy-dns-server-cloudflare-tunnel-for-doh">
-<h2><span class="section-number">3.2. </span>Deploy DNS Server &amp; Cloudflare Tunnel for DoH<a class="headerlink" href="#deploy-dns-server-cloudflare-tunnel-for-doh" title="Permalink to this headline"></a></h2>
+<h2>Deploy DNS Server &amp; Cloudflare Tunnel for DoH<a class="headerlink" href="#deploy-dns-server-cloudflare-tunnel-for-doh" title="Permalink to this headline"></a></h2>
 <p>With Docker running we can now pull down the template Docker Compose file that will allow us to quickly deploy a local DNS server (pi-hole) and Cloudflare DoH forwarder (Cloudflare tunnel) together.</p>
 <p>Clone the repo that contains the Docker compose file</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone cf-tme/connect_2022_lab4
@@ -225,7 +225,7 @@ sudo dnf config-manager <span class="se">\</span>
 <p>VS Code is a versatile text editor that can be launched directly from the terminal using <em>code <filename></em> to install VS Code follow the steps found in the <a class="reference external" href="https://code.visualstudio.com/download">Documentation</a></p>
 </div>
 <section id="understanding-docker-compose-file">
-<h3><span class="section-number">3.2.1. </span>Understanding Docker Compose file<a class="headerlink" href="#understanding-docker-compose-file" title="Permalink to this headline"></a></h3>
+<h3>Understanding Docker Compose file<a class="headerlink" href="#understanding-docker-compose-file" title="Permalink to this headline"></a></h3>
 <p>With the file open lets take a moment to break it down and understand it, The file is split up into two logical sections, one for each service we will be starting up</p>
 <ul class="simple">
 <li><p>Pi-Hole Service</p></li>
@@ -244,11 +244,11 @@ sudo dnf config-manager <span class="se">\</span>
 <p>Based on this you can see that once everything is done, the docker host will be the primary DNS server for the network.</p>
 </section>
 <section id="modify-docker-compose-file">
-<h3><span class="section-number">3.2.2. </span>Modify Docker Compose file<a class="headerlink" href="#modify-docker-compose-file" title="Permalink to this headline"></a></h3>
+<h3>Modify Docker Compose file<a class="headerlink" href="#modify-docker-compose-file" title="Permalink to this headline"></a></h3>
 <p>Take a closer look at the configuration in the Docker Compose file and read the comments to understand whats happening.</p>
 <p>Now that you have reviewed the file you may have noticed there is a specific environment variable for the cloudflared service the <em>TUNNEL_DNS_UPSTREAM</em> this value will need to be taken from your Cloudflare Zero Trust Dashboard - Lets do it!</p>
 <section id="setup-cloudflare-zt-location">
-<h4><span class="section-number">3.2.2.1. </span>Setup Cloudflare ZT Location<a class="headerlink" href="#setup-cloudflare-zt-location" title="Permalink to this headline"></a></h4>
+<h4>Setup Cloudflare ZT Location<a class="headerlink" href="#setup-cloudflare-zt-location" title="Permalink to this headline"></a></h4>
 <p>To get a custom DNS over HTTPS endpoint for your Cloudflare Account lets start by logging into the dashboard</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dash</span><span class="o">.</span><span class="n">teams</span><span class="o">.</span><span class="n">cloudflare</span><span class="o">.</span><span class="n">com</span>
 </pre></div>
@@ -270,7 +270,7 @@ sudo dnf config-manager <span class="se">\</span>
 <p><img alt="welcome" src="_images/doh-host.png" /></p>
 </section>
 <section id="edit-environment-variables-with-doh">
-<h4><span class="section-number">3.2.2.2. </span>Edit Environment Variables with DoH<a class="headerlink" href="#edit-environment-variables-with-doh" title="Permalink to this headline"></a></h4>
+<h4>Edit Environment Variables with DoH<a class="headerlink" href="#edit-environment-variables-with-doh" title="Permalink to this headline"></a></h4>
 <p>Returning to the Docker Compose file find the <em>Environment Variables</em> for the cloudflared service (line 16) and enter the DoH address from the pervious step</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="c1"># DoH endpoint THIS SHOULD BE MODIFIED BASED ON GUIDE</span><span class="w"></span>
@@ -280,7 +280,7 @@ sudo dnf config-manager <span class="se">\</span>
 </section>
 </section>
 <section id="launch-containers">
-<h3><span class="section-number">3.2.3. </span>Launch Containers<a class="headerlink" href="#launch-containers" title="Permalink to this headline"></a></h3>
+<h3>Launch Containers<a class="headerlink" href="#launch-containers" title="Permalink to this headline"></a></h3>
 <p>Once the file is saved launch the containers via docker compose:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d
 </pre></div>
@@ -329,7 +329,7 @@ sudo dnf config-manager <span class="se">\</span>
 </div>
 </section>
 <section id="test-dns-forwarding">
-<h3><span class="section-number">3.2.4. </span>Test DNS Forwarding<a class="headerlink" href="#test-dns-forwarding" title="Permalink to this headline"></a></h3>
+<h3>Test DNS Forwarding<a class="headerlink" href="#test-dns-forwarding" title="Permalink to this headline"></a></h3>
 <p>We can now validate that DNS resolution is working on the new setup by quickly running an nslookup command</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nslookup google.com localhost
 </pre></div>
@@ -342,7 +342,7 @@ Here on the main dashboard we should see a few new queries - if we navigate to <
 <p>In the Cloudflare ZT dasbhoard navigate to <strong>Logs &gt; Gateway</strong> and enter the domain you requested (in our case it was google.com). You should see a query log for it as well as confirmation that the <em>Protocol type</em> was <em>HTTPS</em> and the <em>Location</em> was our demo location we created earlier.</p>
 <p><img alt="al" src="_images/gw-al.png" /></p>
 <section id="create-dns-filtering-rule">
-<h4><span class="section-number">3.2.4.1. </span>Create DNS Filtering Rule<a class="headerlink" href="#create-dns-filtering-rule" title="Permalink to this headline"></a></h4>
+<h4>Create DNS Filtering Rule<a class="headerlink" href="#create-dns-filtering-rule" title="Permalink to this headline"></a></h4>
 <p>Now that we have successfully passed traffic through to our Cloudflare Zero Trust Gateway we can write filtering policies to block access to specific domains.</p>
 <p>In the Cloudflare ZT dashboard navigate to <strong>Gateway &gt; Policies</strong> and select <strong>Create a policy</strong></p>
 <p>In the Policy Creation , lets write a policy to Block the category of Gambling.</p>
@@ -362,7 +362,7 @@ Here on the main dashboard we should see a few new queries - if we navigate to <
 <p><img alt="al" src="_images/gw-dns-pol.png" /></p>
 </section>
 <section id="change-system-dns-settings">
-<h4><span class="section-number">3.2.4.2. </span>Change System DNS Settings<a class="headerlink" href="#change-system-dns-settings" title="Permalink to this headline"></a></h4>
+<h4>Change System DNS Settings<a class="headerlink" href="#change-system-dns-settings" title="Permalink to this headline"></a></h4>
 <p>In order to test our new filtering rule we must first redirect our DNS traffic to our new Pi-Hole DNS server.
 Each operating system has a different process - The steps are generally shown below</p>
 <div class="error admonition">
@@ -399,7 +399,7 @@ Each operating system has a different process - The steps are generally shown be
 </ol>
 </section>
 <section id="test-new-dns-filtering-rule">
-<h4><span class="section-number">3.2.4.3. </span>Test New DNS Filtering Rule<a class="headerlink" href="#test-new-dns-filtering-rule" title="Permalink to this headline"></a></h4>
+<h4>Test New DNS Filtering Rule<a class="headerlink" href="#test-new-dns-filtering-rule" title="Permalink to this headline"></a></h4>
 <p>With the system configured to send DNS to our new setup we can go ahead and try going to any gambling site - <a class="reference external" href="https://gambling.com">https://gambling.com</a></p>
 <p>You should have gotten the Cloudflare Block Page!</p>
 <div class="note admonition">
@@ -415,7 +415,7 @@ Each operating system has a different process - The steps are generally shown be
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="lab3.html" class="btn btn-neutral float-left" title="2. Cloudflare Workers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab3.html" class="btn btn-neutral float-left" title="Lab 3 - Cloudflare Workers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
