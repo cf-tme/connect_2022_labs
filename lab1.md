@@ -279,5 +279,10 @@ If we return to the the Cloudflare Pages project we should see that the deployme
 
 Once complete we can navigate to our application URL but this time we should see a blank Gallery Page!
 
+```{admonition} LAB 1 COMPLETE! 
+:class: note
+You have successfully Completed Lab 1 - Cloudflare Pages, now you have a simple web gallery Application that will read data out from a KV store to dynamically populate images. We hope you can join us for Lab 2, where we will be using Cloudflare Images to upload and optimize images and serve them in our new Gallery!
+```
+
 
 
