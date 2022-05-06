@@ -347,6 +347,10 @@ Here on the main dashboard we should see a few new queries - if we navigate to <
 <p>Now that we have successfully passed traffic through to our Cloudflare Zero Trust Gateway we can write filtering policies to block access to specific domains.</p>
 <p>In the Cloudflare ZT dashboard navigate to <strong>Gateway &gt; Policies</strong> and select <strong>Create a policy</strong></p>
 <p>In the Policy Creation , lets write a policy to Block the category of Gambling.</p>
+<div class="warning admonition">
+<p class="admonition-title">cloudflared service IP</p>
+<p>Before we implement this policy lets do a quick test to make sure we can visit gambling sites right now. In a browser navigate to <code class="docutils literal notranslate"><span class="pre">https://gambling.com</span></code>. After we complete this lab we should be blocked from going to this site.</p>
+</div>
 <p>The policy should have the following settings</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Step</span> <span class="mi">1</span> <span class="o">-</span> <span class="s2">&quot;Block Gambling&quot;</span>
 <span class="n">Step</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">Selector</span> <span class="s2">&quot;Content Categories&quot;</span> <span class="o">+</span> <span class="s2">&quot;in&quot;</span> <span class="o">+</span> <span class="s2">&quot;Gambling&quot;</span>
