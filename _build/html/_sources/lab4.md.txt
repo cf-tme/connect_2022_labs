@@ -30,10 +30,12 @@ Once docker is installed launch it from either MacOS Launchpad or Spotlight.
 
 Once installed validate that Docker is installed and running:
 
-At launch docker will prompt you for access to MacOS
+At launch docker will prompt you for privileged access to MacOS
+
 ![docker-prompt](./screencaps/docker-screencap.png)
 
-Once Compelte you should see this window - indicating successfull deployment
+Once Compelte you should see this window - indicating successfull deploymen
+
 ![docker-prompt](./screencaps/docker-success.png)
 
 ``` sh
