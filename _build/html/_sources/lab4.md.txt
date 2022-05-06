@@ -334,7 +334,9 @@ In the Policy Creation , lets write a policy to Block the category of Gambling.
 
 ```{admonition} Test website access before policy
 :class: warning
-Before we implement this policy lets do a quick test to make sure we can visit gambling sites right now. In a browser navigate to `https://gambling.com`. After we complete this lab we should be blocked from going to this site.
+Before we implement this policy lets do a quick test to make sure we can visit gambling sites right now. In a browser navigate to `https://gambling.com`. The page should load as expected.
+
+After we complete this lab we should be blocked from going to this site.
 ```
 
 The policy should have the following settings 
