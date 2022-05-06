@@ -24,6 +24,7 @@ Once Brew is installed, in a terminal window enter:
 
 ``` sh
 brew install docker
+brew install docker-compose
 ```
 
 Once installed validate that Docker is installed and running:
@@ -194,7 +195,7 @@ Once logged in you should be brought to the Welcome screen:
 
 ```{admonition} Additional Setup
 :class: note
-If you are note brought directly into the Zero Trust Dashboard - you may have to go through the initial setup setups - be sure to choose the **FREE** plan when selecting a tier, once complete you should be brought to the above page
+If you are not brought directly into the Zero Trust Dashboard - you may have to go through the initial setup setups - be sure to choose the **FREE** plan when selecting a tier, once complete you should be brought to the above page
 ```
 
 From here, on the right hand navigation select **Gateway > Locations** on the following screen press **Add a location** now you will be asked for some details as seen below:

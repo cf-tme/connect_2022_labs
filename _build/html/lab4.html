@@ -40,11 +40,13 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="github.html">1. Setup Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">2. Setup Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">3. Setup Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="npm.html">4. Setup Node Package Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages (WIP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images (WIP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">2. Cloudflare Images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab3.html">3. Cloudflare Workers (WIP)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">4. Cloudflare Zero Trust Gateway</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setup-docker-environment">4.1. Setup Docker Environment</a><ul>
@@ -119,6 +121,7 @@ By the end of this lab you will have:</p>
 <p>To install Docker on MacOS we will again use brew if you have not already setup brew on your MacBook jump up to the <a class="reference internal" href="github.html"><span class="doc std std-doc">MacOS setup section</span></a> and install it.</p>
 <p>Once Brew is installed, in a terminal window enter:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew install docker
+brew install docker-compose
 </pre></div>
 </div>
 <p>Once installed validate that Docker is installed and running:</p>
@@ -250,7 +253,7 @@ sudo dnf config-manager <span class="se">\</span>
 <p><img alt="welcome" src="_images/zt-welcome.png" /></p>
 <div class="note admonition">
 <p class="admonition-title">Additional Setup</p>
-<p>If you are note brought directly into the Zero Trust Dashboard - you may have to go through the initial setup setups - be sure to choose the <strong>FREE</strong> plan when selecting a tier, once complete you should be brought to the above page</p>
+<p>If you are not brought directly into the Zero Trust Dashboard - you may have to go through the initial setup setups - be sure to choose the <strong>FREE</strong> plan when selecting a tier, once complete you should be brought to the above page</p>
 </div>
 <p>From here, on the right hand navigation select <strong>Gateway &gt; Locations</strong> on the following screen press <strong>Add a location</strong> now you will be asked for some details as seen below:</p>
 <p><img alt="new-loc" src="_images/new-location.png" /></p>
