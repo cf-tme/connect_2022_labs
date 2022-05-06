@@ -334,6 +334,11 @@ Step 5 - Press Create Policy
 In order to test our new filtering rule we must first redirect our DNS traffic to our new Pi-Hole DNS server.
 Each operating system has a different process - The steps are generally shown below 
 
+```{admonition} Before Changing DNS
+:class: error
+**BEFORE CHANGING DNS SETTINGS** document your current DNS servers and DNS settings, these changes will overwrite your current network settings and you will need to reset them once your tear down the lab on your local machine.
+```
+
 **MacOS**
 1. Go to System Preferences. You can find it by pressing Command+Space on your Mac and typing System Preferences.
 

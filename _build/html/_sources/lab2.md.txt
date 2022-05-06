@@ -291,7 +291,7 @@ If you want to see the data that has been written into the KV store you can make
 ```
 
 
-```{admonition} LAB 1 COMPLETE! 
+```{admonition} LAB 2 COMPLETE! 
 :class: note
 You have successfully Completed Lab 2! Congratulations on deploying a Full JAM stack application with Pages, Images, and KV Store.
 ```
