@@ -1,5 +1,18 @@
-# Cloudflare Images (WIP)
+# Cloudflare Images
+Welcome to Lab 2 at Cloudflare Connect 2022 - This lab will focus on Uploading and Delivering Images via Cloudflare Images
+By the end of this lab you will have:
 
+- Uploaded images to Cloudflare via the API
+- Used Image variants
+- Seamlessly integrated Cloudflare Images and Pages
+
+
+Cloudflare Images provides a straightforward, end-to-end solution to cost-effectively build and maintain your image infrastructure. Store, resize, and optimize images at scale using one unified product.
+
+```{admonition} Learn More about Cloudflare Images! 
+:class: note
+Check out the [Cloudflare Homepage](https://www.cloudflare.com/products/cloudflare-images/) to learn more
+```
 Some **text**!
 
 for those of you returning from previous lab go ahead and SKIP to this section
