@@ -1,4 +1,4 @@
-# Lab 2 Cloudflare Images
+# Lab 2 - Cloudflare Images
 Welcome to Lab 2 at Cloudflare Connect 2022 - This lab will focus on Uploading and Delivering Images via Cloudflare Images
 By the end of this lab you will have:
 
