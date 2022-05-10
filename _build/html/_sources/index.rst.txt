@@ -22,6 +22,7 @@ Welcome to Cloudflare Connect 2022 - Hands On Labs!
    :maxdepth: 2
 
    lab1.md
+   lab2.md
    lab3.md
    lab4.md
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cloudflare Images &mdash; cf-connect-2022  documentation</title>
+  <title>Lab 2 Cloudflare Images &mdash; cf-connect-2022  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,7 +17,9 @@
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 3 - Cloudflare Workers" href="lab3.html" />
+    <link rel="prev" title="Lab 1 - Cloudflare Pages" href="lab1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,10 +45,21 @@
 <li class="toctree-l1"><a class="reference internal" href="npm.html">4. Setup Node Package Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Lab Exercises:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="lab1.html">1. Cloudflare Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab3.html">2. Cloudflare Workers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab4.html">3. Cloudflare Zero Trust Gateway</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1 - Cloudflare Pages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lab 2 Cloudflare Images</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#guided-hands-on-experience">Guided Hands-On Experience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-repository">Clone Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-repo-for-script-execution">Prepare Repo for script execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upload-images">Upload Images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#upload-via-script">Upload via Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upload-via-curl">Upload via cURL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3 - Cloudflare Workers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4 - Cloudflare Zero Trust Gateway</a></li>
 </ul>
 
         </div>
@@ -63,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Cloudflare Images</li>
+      <li>Lab 2 Cloudflare Images</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/lab2.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,8 +86,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cloudflare-images">
-<h1>Cloudflare Images<a class="headerlink" href="#cloudflare-images" title="Permalink to this headline"></a></h1>
+  <section id="lab-2-cloudflare-images">
+<h1>Lab 2 Cloudflare Images<a class="headerlink" href="#lab-2-cloudflare-images" title="Permalink to this headline"></a></h1>
 <p>Welcome to Lab 2 at Cloudflare Connect 2022 - This lab will focus on Uploading and Delivering Images via Cloudflare Images
 By the end of this lab you will have:</p>
 <ul class="simple">
@@ -87,218 +100,94 @@ By the end of this lab you will have:</p>
 <p class="admonition-title">Learn More about Cloudflare Images! </p>
 <p>Check out the <a class="reference external" href="https://www.cloudflare.com/products/cloudflare-images/">Cloudflare Homepage</a> to learn more</p>
 </div>
-<section id="clone-project-connect-kv-store-new-students">
-<h2>Clone Project &amp; Connect KV Store (New Students)<a class="headerlink" href="#clone-project-connect-kv-store-new-students" title="Permalink to this headline"></a></h2>
+<section id="guided-hands-on-experience">
+<h2>Guided Hands-On Experience<a class="headerlink" href="#guided-hands-on-experience" title="Permalink to this headline"></a></h2>
+<p>Cloudflare Images is a subscriptions based product, and to ensure you can experience all that Cloudflare Images has to offer this lab will be a guided experience.</p>
+<p>The steps bellow can be executed when the instructor directs you to them.</p>
 <div class="note admonition">
-<p class="admonition-title">Already Complete Lab 1?</p>
-<p>If you have already completed Lab 1 Skip ahead to this <a class="reference internal" href="#content-references-skip"><span class="std std-ref">section</span></a></p>
+<p class="admonition-title">Running Scripts </p>
+<p>During this lab you will be running scripts from within the repo in the “scripts” folder, these scripts will be using node, if you have not setup node please follow the steps <a class="reference internal" href="npm.html"><span class="doc std std-doc">here</span></a> to learn more</p>
 </div>
-<section id="clone-github-repository">
-<h3>Clone GitHub Repository<a class="headerlink" href="#clone-github-repository" title="Permalink to this headline"></a></h3>
+</section>
+<section id="clone-repository">
+<h2>Clone Repository<a class="headerlink" href="#clone-repository" title="Permalink to this headline"></a></h2>
 <p>To make things easier we have setup a starter gallery app on GitHub. Lets fork and clone the repository.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab1_complete
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork netgusto/imagejam.net
 </pre></div>
 </div>
-<p>This should create a fork of the complete Lab 1 repository in your gh account. Follow the fork with a clone</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab1_complete
+<p>This should create a fork of the starter repository in your gh account. Follow the fork with a clone</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/imagejam.net
 </pre></div>
 </div>
-<p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab1_complete
+<p>Now all the files should be local in your working directory, let navigate into the repo and start coding!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/imagejam.net
 </pre></div>
 </div>
 </section>
-<section id="deploy-project-to-pages">
-<h3>Deploy project to Pages<a class="headerlink" href="#deploy-project-to-pages" title="Permalink to this headline"></a></h3>
-<p>Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.</p>
-<p>Login to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a></p>
-<p>Select <strong>Pages</strong> on the left hand side and press <strong>Create a Project</strong> and select <strong>Connect GitHub</strong></p>
-<p><img alt="pages" src="_images/pages_gh_setup.png" /></p>
-<div class="note admonition">
-<p class="admonition-title">Authenticate to GitHub</p>
-<p>If you are not already logged into GitHub in your browser you may be asked to re-authenticate</p>
-</div>
-<p>You will be prompted to <strong>Install and Authorize</strong> Cloudflare Pages to your github account, press the button to proceed.</p>
-<p><img alt="linkgh" src="_images/pages_gh_auth.png" /></p>
-<p>Once connected you will be brought back to the Cloudflare Pages dashboard. Select <em>connect_2022_lab1_complete</em> on the following page</p>
-<p><img alt="linkgh" src="_images/pages_gh_repo_select.png" /></p>
-<p>Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Project</span> <span class="n">name</span> <span class="o">-</span> <span class="n">connect_2022_lab1_complete</span>
-<span class="n">Production</span> <span class="n">branch</span> <span class="o">-</span> <span class="n">master</span>
-<span class="n">Framework</span> <span class="n">preset</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">React</span> <span class="n">App</span>
-<span class="n">Build</span> <span class="n">command</span> <span class="o">-</span> <span class="n">npm</span> <span class="n">run</span> <span class="n">build</span>
-<span class="n">Build</span> <span class="n">output</span> <span class="n">directory</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>
+<section id="prepare-repo-for-script-execution">
+<h2>Prepare Repo for script execution<a class="headerlink" href="#prepare-repo-for-script-execution" title="Permalink to this headline"></a></h2>
+<p>To run the scripts during the Hands On section you will need to first setup the environment, run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>npm install
 </pre></div>
 </div>
-<p><img alt="linkgh" src="_images/pages_gh_add.png" /></p>
-<p>Press <strong>Deploy</strong></p>
-<div class="note admonition">
-<p class="admonition-title">Deployment Progress</p>
-<p>Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.</p>
-</div>
-<p>Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the <strong>link</strong>.</p>
-<div class="note admonition">
-<p class="admonition-title">pages.dev Domain</p>
-<p>By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)</p>
-</div>
-<p>Before we test out application we need to create and Bind a KV namespace</p>
-</section>
-<section id="creating-an-images-kv-namespace">
-<span id="content-references-kv"></span><h3>Creating an IMAGES KV Namespace<a class="headerlink" href="#creating-an-images-kv-namespace" title="Permalink to this headline"></a></h3>
-<p>Our application has been written to read data from env.IMAGES - this means we need to bind our KV namespace to our project with the variable name “IMAGES”</p>
-<p>From your Cloudflare account landing page navigate to <strong>Workers &gt; KV</strong></p>
-<div class="note admonition">
-<p class="admonition-title">Verify Email</p>
-<p>If you have not already confirmed your e-mail address for your Cloudflare Account you may be asked to Verify it here before creating any KV namespaces</p>
-</div>
-<p>Select <strong>Create Namespace</strong> and enter <em>IMAGES</em> in the <em>Namespace Name</em> and press <strong>Add</strong></p>
-<p><img alt="kv-name" src="_images/kv-namespace.png" /></p>
-<div class="note admonition">
-<p class="admonition-title">Namespace ID</p>
-<p>Once  your namespace is created you will be given a Namespace ID - this will be needed later on go ahead and take note of this id - you can always navigate back to this screen and grab it later if needed.</p>
-</div>
-</section>
-<section id="binding-kv-namespace-to-pages-project">
-<h3>Binding KV Namespace to Pages Project<a class="headerlink" href="#binding-kv-namespace-to-pages-project" title="Permalink to this headline"></a></h3>
-<p>Once our Namespace is created we must bind it to our Pages project so that our functions can leverage the data inside.</p>
-<div class="note admonition">
-<p class="admonition-title">Look Ahead</p>
-<p>We will be using this namespace to store Image metadata that will then be read in dynamically update our gallery with images that we upload!</p>
-</div>
-<p>From the Left hand side navigation pane on the Cloudflare Dashboard select <strong>Pages</strong> then select our project <em>connect_2022_lab1_complete</em></p>
-<p>In the top navigation bar select <strong>Settings</strong> and then <strong>Functions</strong> On the left hand side.</p>
-<p><img alt="kv-name" src="_images/kv-namespace.png" /></p>
-<p>Select <strong>Add binding</strong> under the <em>KV namespace binding</em> (under <em>Production</em> sub-tab)</p>
-<p>Enter <em>IMAGES</em> in the Variable name and Select the <em>IMAGES</em> KV namespace from the dropdown. And press <strong>Save</strong></p>
-<p><img alt="kv-name" src="_images/save-binding.png" /></p>
-<div class="note admonition">
-<p class="admonition-title">Manual Re-Deploy</p>
-<p>In order for KV binding to take effect we need to rebuild the project - this is generally not an issue when live developing as a git push will force it but in this case to test a few things out we will manual kick off a re-deployment</p>
-</div>
-<section id="manually-re-deploy-application">
-<h4>Manually Re-Deploy Application<a class="headerlink" href="#manually-re-deploy-application" title="Permalink to this headline"></a></h4>
-<p>To kick off a manual re-deployment we must first select <em>View build</em> (in the bottom right) on the latest deployment of our application.</p>
-<p><img alt="kv-name" src="_images/view-build.png" /></p>
-<p>On the following page select <strong>Manage Deployment</strong> in the top right and press <strong>Retry Deployment</strong></p>
-<p><img alt="kv-name" src="_images/re-deploy.png" /></p>
-<p>This will kickoff a manual deployment, give it a few moments to complete.</p>
-<p>Congratulations you are now all caught up! If you navigate to the url that was generated for you Pages project you should see a blank gallery (plain blue page).</p>
-</section>
-</section>
-</section>
-<section id="generate-api-keys-for-account">
-<span id="content-references-skip"></span><h2>Generate API Keys for account<a class="headerlink" href="#generate-api-keys-for-account" title="Permalink to this headline"></a></h2>
-<p>Before we can upload images or write values to our KV store with the API We need to generate API keys for our account.</p>
-<div class="note admonition">
-<p class="admonition-title">Images API Key</p>
-<p>Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.</p>
-</div>
-<p>To generate API keys navigate to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a>, login and select your user on the top right and select <strong>My Profile</strong></p>
-<p><img alt="user" src="_images/select-user.png" /></p>
-<p>On the left navigation pane select <strong>API Tokens</strong> and press <strong>Create Token</strong></p>
-<p><img alt="token" src="_images/api-token.png" /></p>
-<p>Select the <strong>Edit Cloudflare Workers</strong> as the template and press <strong>Use template</strong></p>
-<div class="note admonition">
-<p class="admonition-title">API Token Templates</p>
-<p>API token templates are useful when trying to permit scoped access to API based applications, you even have the option to create a custom token with your desired permission level</p>
-</div>
-<p><img alt="token" src="_images/tokentemplate.png" /></p>
-<p>In the token settings you only need to set both the <em>Account Resources</em> and <em>Zone Resources</em> to <em>Include</em> <em>All Accounts</em> and <em>All Zones</em></p>
-<p><img alt="token" src="_images/zoneaccess.png" />
-Some <strong>text</strong>!</p>
-<p>With the changes made press <strong>Continue to summary</strong> and you should see something similar to below:</p>
-<p><img alt="token" src="_images/tokensummary.png" /></p>
-<p>Press <strong>Create Token</strong></p>
-<p>On the following screen you will be presented with the the new API Token - it is *<em>IMPORTANT</em> to save this token value in a safe place as it will not be visible again once you navigate away from this page.</p>
-<p>In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard</p>
-<p><strong>https://dash.cloudflare.com/<code class="docutils literal notranslate"><span class="pre">&lt;accountid&gt;</span></code></strong></p>
 <div class="warning admonition">
-<p class="admonition-title">Before you Continue!</p>
-<p>At this stage you should have 3 values that we will use next to configure and make API calls to Cloudflare</p>
-<ol class="arabic simple">
-<li><p>Account ID</p></li>
-<li><p>API Token</p></li>
-<li><p>KV Namespace ID (this was generated when we created the KV Namespace in this <a class="reference internal" href="#content-references-kv"><span class="std std-ref">section</span></a>)</p></li>
-</ol>
+<p class="admonition-title">Initialization</p>
+<p>Before running the command ensure that you are in the root directly of the repository - otherwise this will fail</p>
 </div>
 </section>
-<section id="upload-images-and-store-metadata-into-kv">
-<h2>Upload images and store metadata into KV<a class="headerlink" href="#upload-images-and-store-metadata-into-kv" title="Permalink to this headline"></a></h2>
-<p>To simplify uploads and writing data to KV we have written a ready to run python script that can be cloned from GitHub and run.</p>
-<section id="clone-image-upload-repository">
-<h3>Clone Image Upload Repository<a class="headerlink" href="#clone-image-upload-repository" title="Permalink to this headline"></a></h3>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab2
+<section id="upload-images">
+<h2>Upload Images<a class="headerlink" href="#upload-images" title="Permalink to this headline"></a></h2>
+<p>To upload images we will first need to define our api key as a system environment variable.</p>
+<div class="warning admonition">
+<p class="admonition-title">API Key</p>
+<p>The API Key will be provided to you during the session by the instructor</p>
+</div>
+<p><strong>MacOS / Linux</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CF_IMAGES_EVENT_KEY</span><span class="o">=</span> ...
 </pre></div>
 </div>
-<p>This should create a fork of the complete Lab 2 repository in your gh account. Follow the fork with a clone</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab2
+<p><strong>Windows</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$Env</span>:CF_IMAGES_EVENT_KEY <span class="o">=</span> ...
 </pre></div>
 </div>
-<p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab2
+<p>Once the environment variable is set you can run the upload script - you can do this with either the built in script or using <code class="docutils literal notranslate"><span class="pre">curl</span></code></p>
+<section id="upload-via-script">
+<h3>Upload via Script<a class="headerlink" href="#upload-via-script" title="Permalink to this headline"></a></h3>
+<p><strong>Local Image File</strong>
+If you have an Image file locally you would like to upload you can use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>node scripts/handson/upload.js --file path/to/local/file.png <span class="o">[</span>--id some-custom-image-id.png<span class="o">]</span> <span class="o">[</span>--metadata <span class="s1">&#39;{&quot;tag&quot;: &quot;connect&quot;}&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Image URL</strong>
+If you know an image URL that you would like to upload you can use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>node scripts/handson/upload.js --url https://example.com/image.png <span class="o">[</span>--id some-custom-image-id.png<span class="o">]</span> <span class="o">[</span>--metadata <span class="s1">&#39;{&quot;tag&quot;: &quot;connect&quot;}&#39;</span><span class="o">]</span>
 </pre></div>
 </div>
 </section>
-<section id="edit-the-upload-script">
-<h3>Edit the upload script<a class="headerlink" href="#edit-the-upload-script" title="Permalink to this headline"></a></h3>
-<p>Open the <em>upload_images.py</em> Python script in your favorite editor.</p>
-<div class="note admonition">
-<p class="admonition-title">Text Editor</p>
-<p>VS Code is a versatile text editor that can be launched directly from the terminal using <em>code <filename></em> to install VS Code follow the steps found in the <a class="reference external" href="https://code.visualstudio.com/download">Documentation</a></p>
-</div>
-<p>In the file editor identify the lines (<code class="docutils literal notranslate"><span class="pre">lines</span> <span class="pre">11-13</span></code>) where you need to change values to reflect your account.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHANGE these are your value from your workers environment</span>
-<span class="n">kv_id</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOU WORKERS KV NAMESPACE ID&quot;</span>
-<span class="n">kv_account_id</span> <span class="o">=</span> <span class="s2">&quot;ENTER YOUR CLOUDFLARE ACCOUNT ID&quot;</span>
-<span class="n">kv_token</span> <span class="o">=</span><span class="s2">&quot;ENTER YOUR API TOKEN&quot;</span>
+<section id="upload-via-curl">
+<h3>Upload via cURL<a class="headerlink" href="#upload-via-curl" title="Permalink to this headline"></a></h3>
+<p><strong>Local Image File</strong>
+If you have an Image file locally you would like to upload you can use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST https://imagejam.net/connect-upload/ <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$CF_IMAGES_EVENT_KEY</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --form <span class="s1">&#39;file=@/path/to/local/file.png&#39;</span> <span class="se">\</span>
+    --form <span class="s1">&#39;id=some-custom-image-id.png&#39;</span> <span class="se">\</span>
+    --form <span class="s1">&#39;metadata={&quot;tag&quot;:&quot;connect&quot;}&#39;</span>
 </pre></div>
 </div>
-<p>Before leaving the document take a moment to read through the comments on the code and see whats happening.</p>
-<p>The script logic is build in 3 sections:</p>
-<ol class="arabic simple">
-<li><p>Upload a set of images from the local directory to Cloudflare Images</p></li>
-<li><p>Collect data about uploaded images and structure metadata to be writing to KV Store</p></li>
-<li><p>Write image metadata to KV store</p></li>
-</ol>
-<p>Before we can run the script we need to install a python dependency - this is easy to do with a single command.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip3 install requests
+<p><strong>Image URL</strong>
+If you know an image URL that you would like to upload you can use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST https://imagejam.net/connect-upload/ <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$CF_IMAGES_EVENT_KEY</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --form <span class="s1">&#39;url=https://example.com/image.png&#39;</span> <span class="se">\</span>
+    --form <span class="s1">&#39;id=some-custom-image-id.png&#39;</span> <span class="se">\</span>
+    --form <span class="s1">&#39;metadata={&quot;tag&quot;:&quot;connect&quot;}&#39;</span>
 </pre></div>
-</div>
-<div class="note admonition">
-<p class="admonition-title">pip</p>
-<p>pip is a python tool that can be used to quickly load python libraries that can be used in code. The requests library is a common import for most API based code as it provides a user friendly wrapper to the built in http request libraries in python.</p>
-</div>
-<p>With the dependencies resolved we can simply run our python script!</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python upload_images.py
-</pre></div>
-</div>
-<p>We should see success messages come onscreen as images are being uploaded and data is being written to your KV store.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">cat1</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
-<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">cat2</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
-<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">cat3</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
-<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">pup1</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
-<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">pup2</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
-<span class="n">uploaded</span> <span class="n">image</span> <span class="n">gallery</span><span class="o">-</span><span class="n">images</span><span class="o">/</span><span class="n">pup3</span><span class="o">.</span><span class="n">jpeg</span> <span class="ow">and</span> <span class="n">added</span> <span class="n">KV</span> <span class="n">metadata</span> <span class="k">with</span> <span class="n">status</span> <span class="kc">True</span>
-</pre></div>
-</div>
-<p>Once this script is completed our Web Gallery should show these images. Lets confirm!</p>
-<section id="confirm-values-in-kv-store">
-<h4>Confirm values in KV Store<a class="headerlink" href="#confirm-values-in-kv-store" title="Permalink to this headline"></a></h4>
-<p>From your Cloudflare account landing page navigate to <strong>Workers &gt; KV</strong></p>
-<p>Select the <strong>IMAGES</strong> namespace</p>
-<p>You should see a listing of the images uploaded with the same value “Values stored in metadata” - This is because the valuable information lives in the metadata of the KV pair and is not visible in the UI.</p>
-<p><img alt="token" src="_images/valueswritten.png" /></p>
-<p>Now if we return to our Web application URL - <code class="docutils literal notranslate"><span class="pre">https://&lt;projectname&gt;.pages.dev</span></code> we should see a gallery of images!</p>
-<p><img alt="token" src="_images/gallery-complete.png" /></p>
-<div class="note admonition">
-<p class="admonition-title">Additional confirmation</p>
-<p>If you want to see the data that has been written into the KV store you can make the <code class="docutils literal notranslate"><span class="pre">/api/images</span></code> call in the web browser and check the data that is being read to fill the gallery on the homepage.</p>
 </div>
 <div class="note admonition">
 <p class="admonition-title">LAB 2 COMPLETE! </p>
-<p>You have successfully Completed Lab 2! Congratulations on deploying a Full JAM stack application with Pages, Images, and KV Store.</p>
+<p>You have successfully Completed Lab 2! Congratulations on uploading and optimizing your Web Application with Cloudflare Images.</p>
 </div>
-</section>
 </section>
 </section>
 </section>
@@ -306,7 +195,10 @@ Some <strong>text</strong>!</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lab1.html" class="btn btn-neutral float-left" title="Lab 1 - Cloudflare Pages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab3.html" class="btn btn-neutral float-right" title="Lab 3 - Cloudflare Workers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
