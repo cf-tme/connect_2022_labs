@@ -206,7 +206,7 @@ GET /favicon.ico 200 OK (4.16ms)
 Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `cntr+c` and push our changes to github.
 
 ``` sh
-gid add .
+git add .
 git commit -m "added A/B test to randomly serve image"
 git push
 ```

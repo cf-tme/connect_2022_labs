@@ -42,9 +42,16 @@ Deploying our GitHub project to pages is as simple as connecting our GitHub acco
 
 Login to the [Cloudflare Dashboard](https://dash.cloudflare.com)
 
-Select **Pages** on the left hand side and press **Create a Project** and select **Connect GitHub**
+Select **Pages** on the left hand side and press **Create Project**
+![pages](./screencaps/pages-create-project.png)
 
-![pages](./screencaps/pages_gh_setup.png)
+Select **Connect to Git**
+
+![pages](./screencaps/pages-connect-git.png)
+
+Make sure you are on the GitHub Tab and press **Connect to GitHub**
+
+![pages](./screencaps/pages-connect-github.png)
 
 ```{admonition} Authenticate to GitHub
 :class: note
@@ -54,7 +61,16 @@ You will be prompted to **Install and Authorize** Cloudflare Pages to your githu
 
 ![linkgh](./screencaps/pages_gh_auth.png)
 
-Once connected you will be brought back to the Cloudflare Pages dashboard. Select *connect_2022_lab1* on the following page 
+Once connected you will be brought back to the Cloudflare Pages dashboard. 
+
+
+```{admonition} Re-Select Connect to Git
+:class: note
+In certain cases you will be brought back to the Project Page where you have to select **Connect to Git** again - if so just press it and then it will bring you into the selection of a repository
+```
+
+
+Select *connect_2022_lab1* on the following page 
 
 ![linkgh](./screencaps/pages_gh_repo_select.png)
 
@@ -71,13 +87,21 @@ Build output directory - /build
 ![linkgh](./screencaps/pages_gh_add.png)
 
 
-Press **Deploy**
+Press **Save & Deploy**
 
 ```{admonition} Deployment Progress
 :class: note
 Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.
 ```
 Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the **link**.
+
+```{admonition} URL Link
+:class: warning
+The URL will be at the top of the page, you may have to scroll up to see it
+```
+
+![linkgh](./screencaps/pages-success.png)
+
 ```{admonition} pages.dev Domain
 :class: note
 By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)
@@ -85,6 +109,10 @@ By default new projects will automatically be given a *.pages.dev domain, If you
 When navigating to the link you should see a blurry image gallery.
 
 ![linkgh](./screencaps/blurry-img-gallery.png)
+
+Return to the Pages Dashboard and press **Continue to project**
+![linkgh](./screencaps/pages-continue.png)
+
 
 Terrific! Congratulations you have successfully deployed a custom application using Cloudflare Pages.
 
@@ -128,10 +156,21 @@ Save the file and return to our terminal window.
 
 In order to push these changes to our project we simply just need to commit and push them to our repository and Cloudflare Pages will automatically rebuild the application.
 
+Before we can commit code we need to ensure that the git CLI has our username setup properly (you will enter the email address for your Github account) 
+
+``` sh
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+```
+```{admonition} Required Config
+:class: Error
+If you do not complete the config commands above, the next steps will fail and code will not be committed.
+```
+
 To commit and push changes we use standard git commands:
 
 ``` sh
-gid add .
+git add .
 git commit -m "added new time function"
 git push
 ```
@@ -190,9 +229,10 @@ From the Left hand side navigation pane on the Cloudflare Dashboard select **Pag
 
 In the top navigation bar select **Settings** and then **Functions** On the left hand side.
 
-![kv-name](./screencaps/kv-namespace.png)
-
 Select **Add binding** under the *KV namespace binding* (under *Production* sub-tab)
+
+
+![kv-name](./screencaps/add-binding.png)
 
 Enter *IMAGES* in the Variable name and Select the *IMAGES* KV namespace from the dropdown. And press **Save**
 
@@ -200,7 +240,7 @@ Enter *IMAGES* in the Variable name and Select the *IMAGES* KV namespace from th
 
 ```{admonition} Manual Re-Deploy
 :class: Note
-In order for KV binding to take effect we need to rebuild the project - this is generally not an issue when live developing as a git push will force it but in this case to test a few things out we will manual kick off a re-deployment
+In order for KV binding to take effect we need to rebuild the project - this is generally not an issue when live developing as a git push will force it but in this case to test a few things out we will manually kick off a re-deployment
 ```
 #### Manually Re-Deploy Application ####
 
@@ -213,6 +253,11 @@ On the following page select **Manage Deployment** in the top right and press **
 ![kv-name](./screencaps/re-deploy.png)
 
 This will kickoff a manual deployment, give it a few moments to complete.
+
+```{admonition} Page Refresh
+:class: Note
+If the deployment hangs for more than a few minutes, go ahead and refresh the pages - in rare cases the page will not auto refresh even though the project has completed the deployment.
+```
 
 #### Validate KV Binding with API Call ####
 
@@ -234,7 +279,7 @@ Congratulations your KV namespace has been successfully bound to your Applicatio
 ### Fill Gallery images with dynamic data from KV ###
 
 Now that our KV store is ready to use we can change our web application to dynamically fill gallery data with Images whose metadata is stored in the KV store. 
-To change this behavior we need to go to edit our definition of the gallery images grid at - */src/components/ImageGrid.tsx* 
+To change this behavior we need to go to edit our definition of the gallery images grid at - *connect_2022_lab1/src/components/ImageGrid.tsx* 
 
 Open *ImageGrid.tsx* in your favorite text editor and look at `line:53 - line:119`
 
@@ -277,7 +322,7 @@ const { data, error } = useSWR<{ images: Image[] }>("/api/images");
 To commit and push changes we use standard git commands:
 
 ``` sh
-gid add .
+git add .
 git commit -m "add dynamic image population functionality"
 git push
 ```
@@ -285,6 +330,12 @@ git push
 If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.
 
 Once complete we can navigate to our application URL but this time we should see a blank Gallery Page!
+
+```{admonition} Latest Build URL
+:class: Note
+You will need to get the latest build URL From the Pages Project Dashboard - each build is given a unique URL so that you can see & test the difference between builds. Since we just pushed out git repository there will be a new build and we need to make sure we use the URL for that build.
+```
+
 ## Generate API Keys for account ##
 
 Before we can upload images or write values to our KV store with the API We need to generate API keys for our account. 
@@ -292,6 +343,13 @@ Before we can upload images or write values to our KV store with the API We need
 ```{admonition} Images API Key
 :class: Note
 Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.
+```
+
+## Generate API Keys for account Workers' Service ##
+
+```{admonition} Account API Keys
+:class: Note
+Even though we are using pre-populated API keys for Images, you will need to generate Keys for your specific account so we can write to the KV namespace of your web application.
 ```
 
 To generate API keys navigate to the [Cloudflare Dashboard](https://dash.cloudflare.com), login and select your user on the top right and select **My Profile**
@@ -397,7 +455,7 @@ pip is a python tool that can be used to quickly load python libraries that can 
 With the dependencies resolved we can simply run our python script!
 
 ```sh
-python upload_images.py
+python3 upload_images.py
 ```
 
 We should see success messages come onscreen as images are being uploaded and data is being written to your KV store.
