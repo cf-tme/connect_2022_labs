@@ -130,15 +130,24 @@
 <h3>Deploy project to Pages<a class="headerlink" href="#deploy-project-to-pages" title="Permalink to this headline"></a></h3>
 <p>Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.</p>
 <p>Login to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a></p>
-<p>Select <strong>Pages</strong> on the left hand side and press <strong>Create a Project</strong> and select <strong>Connect GitHub</strong></p>
-<p><img alt="pages" src="_images/pages_gh_setup.png" /></p>
+<p>Select <strong>Pages</strong> on the left hand side and press <strong>Create Project</strong>
+<img alt="pages" src="_images/pages-create-project.png" /></p>
+<p>Select <strong>Connect to Git</strong></p>
+<p><img alt="pages" src="_images/pages-connect-git.png" /></p>
+<p>Make sure you are on the GitHub Tab and press <strong>Connect to GitHub</strong></p>
+<p><img alt="pages" src="_images/pages-connect-github.png" /></p>
 <div class="note admonition">
 <p class="admonition-title">Authenticate to GitHub</p>
 <p>If you are not already logged into GitHub in your browser you may be asked to re-authenticate</p>
 </div>
 <p>You will be prompted to <strong>Install and Authorize</strong> Cloudflare Pages to your github account, press the button to proceed.</p>
 <p><img alt="linkgh" src="_images/pages_gh_auth.png" /></p>
-<p>Once connected you will be brought back to the Cloudflare Pages dashboard. Select <em>connect_2022_lab3</em> on the following page</p>
+<p>Once connected you will be brought back to the Cloudflare Pages dashboard.</p>
+<div class="note admonition">
+<p class="admonition-title">Re-Select Connect to Git</p>
+<p>In certain cases you will be brought back to the Project Page where you have to select <strong>Connect to Git</strong> again - if so just press it and then it will bring you into the selection of a repository</p>
+</div>
+<p>Select <em>connect_2022_lab1</em> on the following page</p>
 <p><img alt="linkgh" src="_images/pages_gh_repo_select.png" /></p>
 <p>Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Project</span> <span class="n">name</span> <span class="o">-</span> <span class="n">connect_2022_lab3</span>
@@ -149,12 +158,17 @@
 </pre></div>
 </div>
 <p><img alt="linkgh" src="_images/lab3pages-deploy.png" /></p>
-<p>Press <strong>Save and Deploy</strong></p>
+<p>Press <strong>Save &amp; Deploy</strong></p>
 <div class="note admonition">
 <p class="admonition-title">Deployment Progress</p>
 <p>Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.</p>
 </div>
 <p>Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the <strong>link</strong>.</p>
+<div class="warning admonition">
+<p class="admonition-title">URL Link</p>
+<p>The URL will be at the top of the page, you may have to scroll up to see it</p>
+</div>
+<p><img alt="linkgh" src="_images/pages-success.png" /></p>
 <div class="note admonition">
 <p class="admonition-title">pages.dev Domain</p>
 <p>By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)</p>

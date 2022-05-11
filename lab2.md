@@ -58,7 +58,7 @@ npm install
 
 ```{admonition} Initialization
 :class: warning
-Before running the command ensure that you are in the root directly of the repository - otherwise this will fail
+Before running the command ensure that you are in the root directory of the repository - otherwise this will fail
 ```
 
 ## Upload Images

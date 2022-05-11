@@ -55,9 +55,16 @@ Deploying our GitHub project to pages is as simple as connecting our GitHub acco
 
 Login to the [Cloudflare Dashboard](https://dash.cloudflare.com)
 
-Select **Pages** on the left hand side and press **Create a Project** and select **Connect GitHub**
+Select **Pages** on the left hand side and press **Create Project**
+![pages](./screencaps/pages-create-project.png)
 
-![pages](./screencaps/pages_gh_setup.png)
+Select **Connect to Git**
+
+![pages](./screencaps/pages-connect-git.png)
+
+Make sure you are on the GitHub Tab and press **Connect to GitHub**
+
+![pages](./screencaps/pages-connect-github.png)
 
 ```{admonition} Authenticate to GitHub
 :class: note
@@ -67,12 +74,20 @@ You will be prompted to **Install and Authorize** Cloudflare Pages to your githu
 
 ![linkgh](./screencaps/pages_gh_auth.png)
 
-Once connected you will be brought back to the Cloudflare Pages dashboard. Select *connect_2022_lab3* on the following page 
+Once connected you will be brought back to the Cloudflare Pages dashboard. 
+
+
+```{admonition} Re-Select Connect to Git
+:class: note
+In certain cases you will be brought back to the Project Page where you have to select **Connect to Git** again - if so just press it and then it will bring you into the selection of a repository
+```
+
+
+Select *connect_2022_lab1* on the following page 
 
 ![linkgh](./screencaps/pages_gh_repo_select.png)
 
 Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:
-
 ```
 Project name - connect_2022_lab3
 Production branch - master
@@ -84,7 +99,7 @@ Build output directory - /public
 ![linkgh](./screencaps/lab3pages-deploy.png)
 
 
-Press **Save and Deploy**
+Press **Save & Deploy**
 
 ```{admonition} Deployment Progress
 :class: note
@@ -92,10 +107,18 @@ Once started the deployment will take a few moments to complete - you can follow
 ```
 Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the **link**.
 
+```{admonition} URL Link
+:class: warning
+The URL will be at the top of the page, you may have to scroll up to see it
+```
+
+![linkgh](./screencaps/pages-success.png)
+
 ```{admonition} pages.dev Domain
 :class: note
 By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)
 ```
+
 A pages should launch with the simple words *Hello World!*
 
 Great this means our application is up and now we can write a simple A/B Test to populate an image onto the page.
