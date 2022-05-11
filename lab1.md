@@ -336,7 +336,7 @@ Once complete we can navigate to our application URL but this time we should see
 You will need to get the latest build URL From the Pages Project Dashboard - each build is given a unique URL so that you can see & test the difference between builds. Since we just pushed out git repository there will be a new build and we need to make sure we use the URL for that build.
 ```
 
-## Generate API Keys for account ##
+## Generate API Tokens for account - Images ##
 
 Before we can upload images or write values to our KV store with the API We need to generate API keys for our account. 
 
@@ -345,7 +345,7 @@ Before we can upload images or write values to our KV store with the API We need
 Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.
 ```
 
-## Generate API Keys for account Workers' Service ##
+## Generate API Tokens for account Workers' Service ##
 
 ```{admonition} Account API Keys
 :class: Note
