@@ -336,23 +336,23 @@ Once complete we can navigate to our application URL but this time we should see
 You will need to get the latest build URL From the Pages Project Dashboard - each build is given a unique URL so that you can see & test the difference between builds. Since we just pushed out git repository there will be a new build and we need to make sure we use the URL for that build.
 ```
 
-## Generate API Tokens for account - Images ##
+## Generate API tokens for account - Images ##
 
-Before we can upload images or write values to our KV store with the API We need to generate API keys for our account. 
+Before we can upload images or write values to our KV store with the API We need to generate API tokens for our account. 
 
-```{admonition} Images API Key
+```{admonition} Images API token
 :class: Note
-Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.
+Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API tokens, in the real world you would swap out the Keys for your own.
 ```
 
-## Generate API Tokens for account Workers' Service ##
+## Generate API tokens for account Workers' Service ##
 
-```{admonition} Account API Keys
+```{admonition} Account API tokens
 :class: Note
-Even though we are using pre-populated API keys for Images, you will need to generate Keys for your specific account so we can write to the KV namespace of your web application.
+Even though we are using pre-populated API tokens for Images, you will need to generate Keys for your specific account so we can write to the KV namespace of your web application.
 ```
 
-To generate API keys navigate to the [Cloudflare Dashboard](https://dash.cloudflare.com), login and select your user on the top right and select **My Profile**
+To generate API tokens navigate to the [Cloudflare Dashboard](https://dash.cloudflare.com), login and select your user on the top right and select **My Profile**
 
 ![user](./screencaps/select-user.png)
 
@@ -378,9 +378,9 @@ With the changes made press **Continue to summary** and you should see something
 
 Press **Create Token**
 
-On the following screen you will be presented with the the new API Token - it is **IMPORTANT* to save this token value in a safe place as it will not be visible again once you navigate away from this page.
+On the following screen you will be presented with the the new API token - it is **IMPORTANT* to save this token value in a safe place as it will not be visible again once you navigate away from this page.
 
-In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard 
+In addition to the API token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard 
 
 **https://dash.cloudflare.com/`<accountid>`**
 

@@ -19,6 +19,9 @@ Cloudflare Images is a subscriptions based product, and to ensure you can experi
 
 The steps bellow can be executed when the instructor directs you to them. 
 
+The Full guide for reference and to follow along can be found [here](https://github.com/cloudflare/cloudflare-docs/blob/d49f3c93e9d2e429c41e0c249de30318cf122870/content/images/cloudflare-images/tutorials/cloudflare-images-on-pages/index.md)
+
+
 ```{admonition} Running Scripts 
 :class: note
 During this lab you will be running scripts from within the repo in the "scripts" folder, these scripts will be using node, if you have not setup node please follow the steps [here](./npm.md) to learn more

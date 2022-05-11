@@ -83,7 +83,7 @@ In certain cases you will be brought back to the Project Page where you have to 
 ```
 
 
-Select *connect_2022_lab1* on the following page 
+Select *connect_2022_lab3* on the following page 
 
 ![linkgh](./screencaps/pages_gh_repo_select.png)
 

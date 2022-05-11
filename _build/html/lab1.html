@@ -60,8 +60,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#fill-gallery-images-with-dynamic-data-from-kv">Fill Gallery images with dynamic data from KV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-api-tokens-for-account-images">Generate API Tokens for account - Images</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generate-api-tokens-for-account-workers-service">Generate API Tokens for account Workers’ Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-api-tokens-for-account-images">Generate API tokens for account - Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-api-tokens-for-account-workers-service">Generate API tokens for account Workers’ Service</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upload-images-and-store-metadata-into-kv">Upload images and store metadata into KV</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#clone-image-upload-repository">Clone Image Upload Repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#edit-the-upload-script">Edit the upload script</a><ul>
@@ -361,20 +361,20 @@ git push
 </section>
 </section>
 <section id="generate-api-tokens-for-account-images">
-<h2>Generate API Tokens for account - Images<a class="headerlink" href="#generate-api-tokens-for-account-images" title="Permalink to this headline"></a></h2>
-<p>Before we can upload images or write values to our KV store with the API We need to generate API keys for our account.</p>
+<h2>Generate API tokens for account - Images<a class="headerlink" href="#generate-api-tokens-for-account-images" title="Permalink to this headline"></a></h2>
+<p>Before we can upload images or write values to our KV store with the API We need to generate API tokens for our account.</p>
 <div class="note admonition">
-<p class="admonition-title">Images API Key</p>
-<p>Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API keys, in the real world you would swap out the Keys for your own.</p>
+<p class="admonition-title">Images API token</p>
+<p>Cloudflare Images is a Paid product, for this lab you will be using a shared Images account with provided API tokens, in the real world you would swap out the Keys for your own.</p>
 </div>
 </section>
 <section id="generate-api-tokens-for-account-workers-service">
-<h2>Generate API Tokens for account Workers’ Service<a class="headerlink" href="#generate-api-tokens-for-account-workers-service" title="Permalink to this headline"></a></h2>
+<h2>Generate API tokens for account Workers’ Service<a class="headerlink" href="#generate-api-tokens-for-account-workers-service" title="Permalink to this headline"></a></h2>
 <div class="note admonition">
-<p class="admonition-title">Account API Keys</p>
-<p>Even though we are using pre-populated API keys for Images, you will need to generate Keys for your specific account so we can write to the KV namespace of your web application.</p>
+<p class="admonition-title">Account API tokens</p>
+<p>Even though we are using pre-populated API tokens for Images, you will need to generate Keys for your specific account so we can write to the KV namespace of your web application.</p>
 </div>
-<p>To generate API keys navigate to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a>, login and select your user on the top right and select <strong>My Profile</strong></p>
+<p>To generate API tokens navigate to the <a class="reference external" href="https://dash.cloudflare.com">Cloudflare Dashboard</a>, login and select your user on the top right and select <strong>My Profile</strong></p>
 <p><img alt="user" src="_images/select-user.png" /></p>
 <p>On the left navigation pane select <strong>API Tokens</strong> and press <strong>Create Token</strong></p>
 <p><img alt="token" src="_images/api-token.png" /></p>
@@ -390,8 +390,8 @@ Some <strong>text</strong>!</p>
 <p>With the changes made press <strong>Continue to summary</strong> and you should see something similar to below:</p>
 <p><img alt="token" src="_images/tokensummary.png" /></p>
 <p>Press <strong>Create Token</strong></p>
-<p>On the following screen you will be presented with the the new API Token - it is *<em>IMPORTANT</em> to save this token value in a safe place as it will not be visible again once you navigate away from this page.</p>
-<p>In addition to the api Token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard</p>
+<p>On the following screen you will be presented with the the new API token - it is *<em>IMPORTANT</em> to save this token value in a safe place as it will not be visible again once you navigate away from this page.</p>
+<p>In addition to the API token we will also need your accountID this value is simply found in the URL bar in the browser for your Cloudflare dashboard</p>
 <p><strong>https://dash.cloudflare.com/<code class="docutils literal notranslate"><span class="pre">&lt;accountid&gt;</span></code></strong></p>
 <div class="warning admonition">
 <p class="admonition-title">Before you Continue!</p>
