@@ -226,7 +226,7 @@ GET /favicon.ico 200 OK (4.16ms)
 ```
 
 
-Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `cntr+c` and push our changes to github.
+Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `cntrl+c` and push our changes to github.
 
 ``` sh
 git add .
