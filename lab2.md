@@ -27,20 +27,25 @@ During this lab you will be running scripts from within the repo in the "scripts
 ## Clone Repository
 
 To make things easier we have setup a starter gallery app on GitHub. Lets fork and clone the repository.
+Move back up to your home directory
+``` sh
+cd $HOME
+```
 
 ``` sh
 gh repo fork netgusto/imagejam.net
 ```
-This should create a fork of the starter repository in your gh account. Follow the fork with a clone
+This should create a fork of the starter repository in your gh account and prompt you to clone - enter *Yes*
 
 ``` sh
-gh repo clone <yourgithubusername>/imagejam.net
+✓ Created fork <github-username>/imagejam.net
+? Would you like to clone the fork? Yes
 ```
 
-Now all the files should be local in your working directory, let navigate into the repo and start coding! 
+Now all the files should be local in your working directory, let navigate into the repo to start coding! 
 
 ``` sh
-cd <yourgithubusername>/imagejam.net
+cd imagejam.net
 ```
 
 ## Prepare Repo for script execution

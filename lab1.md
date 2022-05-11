@@ -4,9 +4,9 @@ By the end of this lab you will have:
 
 - Set up your first Pages project
 - Felt the developer experience when using Pages
-- Added dynamic functionality with with help from Cloudflare Workers/Functions
+- Added dynamic functionality with help from Cloudflare Workers/Functions
 
-Build fast sites.In record time. Cloudflare Pages is a JAMstack platform for frontend developers to collaborate and deploy websites.
+Build fast sites, in record time. Cloudflare Pages is a JAMstack platform for frontend developers to collaborate and deploy websites.
 
 ```{admonition} Learn More about Cloudflare Pages! 
 :class: note
@@ -16,19 +16,25 @@ Check out the [Cloudflare Homepage](https://pages.cloudflare.com/) to learn more
 ## Clone GitHub Repository
 To make things easier we have setup a starter gallery app on GitHub. Lets fork and clone the repository.
 
+Move back up to your home directory (if you are not already there)
+``` sh
+cd $HOME
+```
+
 ``` sh
 gh repo fork cf-tme/connect_2022_lab1
 ```
-This should create a fork of the starter repository in your gh account. Follow the fork with a clone
+This should create a fork of the starter repository in your gh account and prompt you to clone - enter *Yes*
 
 ``` sh
-gh repo clone <yourgithubusername>/connect_2022_lab1
+✓ Created fork <github-username>/connect_2022_lab1
+? Would you like to clone the fork? Yes
 ```
 
 Now all the files should be local in your working directory, let navigate into the repo and start coding! 
 
 ``` sh
-cd <yourgithubusername>/connect_2022_lab1
+cd connect_2022_lab1
 ```
 
 ## Deploy Pages Project from GitHub Repository
@@ -333,19 +339,25 @@ To simplify uploads and writing data to KV we have written a ready to run python
 
 ### Clone Image Upload Repository ###
 
+Move back up to your home directory
+``` sh
+cd $HOME
+```
+
 ``` sh
 gh repo fork cf-tme/connect_2022_lab2
 ```
-This should create a fork of the complete Lab 2 repository in your gh account. Follow the fork with a clone
+This should create a fork of the starter repository in your gh account and prompt you to clone - enter *Yes*
 
 ``` sh
-gh repo clone <yourgithubusername>/connect_2022_lab2
+✓ Created fork <github-username>/connect_2022_lab2
+? Would you like to clone the fork? Yes
 ```
 
 Now all the files should be local in your working directory, let navigate into the repo to start coding! 
 
 ``` sh
-cd <yourgithubusername>/connect_2022_lab2
+cd connect_2022_lab2
 ```
 
 ### Edit the upload script ###

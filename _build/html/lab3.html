@@ -109,15 +109,20 @@
 <section id="setup-basic-web-application">
 <h2>Setup Basic Web Application<a class="headerlink" href="#setup-basic-web-application" title="Permalink to this headline"></a></h2>
 <p>To make things easy we have already built a basic application that can be run on Cloudflare pages. Lets clone the repository and get started.</p>
+<p>Move back up to your home directory</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$HOME</span>
+</pre></div>
+</div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab3
 </pre></div>
 </div>
-<p>This should create a fork of the Lab 3 repository in your gh account. Follow the fork with a clone</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab3
+<p>This should create a fork of the starter repository in your gh account and prompt you to clone - enter <em>Yes</em></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>✓ Created fork &lt;github-username&gt;/connect_2022_lab3
+? Would you like to clone the fork? Yes
 </pre></div>
 </div>
 <p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab3
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> connect_2022_lab3
 </pre></div>
 </div>
 <p>With the repository cloned lets connect the application to your Cloudflare account and deploy it with pages.</p>

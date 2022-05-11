@@ -27,19 +27,25 @@ In this lab - since everyone may not have a custom domain to onboard to cloudfla
 
 To make things easy we have already built a basic application that can be run on Cloudflare pages. Lets clone the repository and get started.
 
+Move back up to your home directory
+``` sh
+cd $HOME
+```
+
 ``` sh
 gh repo fork cf-tme/connect_2022_lab3
 ```
-This should create a fork of the Lab 3 repository in your gh account. Follow the fork with a clone
+This should create a fork of the starter repository in your gh account and prompt you to clone - enter *Yes*
 
 ``` sh
-gh repo clone <yourgithubusername>/connect_2022_lab3
+✓ Created fork <github-username>/connect_2022_lab3
+? Would you like to clone the fork? Yes
 ```
 
 Now all the files should be local in your working directory, let navigate into the repo to start coding! 
 
 ``` sh
-cd <yourgithubusername>/connect_2022_lab3
+cd connect_2022_lab3
 ```
 
 With the repository cloned lets connect the application to your Cloudflare account and deploy it with pages.

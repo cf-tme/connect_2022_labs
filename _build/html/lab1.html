@@ -107,9 +107,9 @@ By the end of this lab you will have:</p>
 <ul class="simple">
 <li><p>Set up your first Pages project</p></li>
 <li><p>Felt the developer experience when using Pages</p></li>
-<li><p>Added dynamic functionality with with help from Cloudflare Workers/Functions</p></li>
+<li><p>Added dynamic functionality with help from Cloudflare Workers/Functions</p></li>
 </ul>
-<p>Build fast sites.In record time. Cloudflare Pages is a JAMstack platform for frontend developers to collaborate and deploy websites.</p>
+<p>Build fast sites, in record time. Cloudflare Pages is a JAMstack platform for frontend developers to collaborate and deploy websites.</p>
 <div class="note admonition">
 <p class="admonition-title">Learn More about Cloudflare Pages! </p>
 <p>Check out the <a class="reference external" href="https://pages.cloudflare.com/">Cloudflare Homepage</a> to learn more</p>
@@ -117,15 +117,20 @@ By the end of this lab you will have:</p>
 <section id="clone-github-repository">
 <h2>Clone GitHub Repository<a class="headerlink" href="#clone-github-repository" title="Permalink to this headline"></a></h2>
 <p>To make things easier we have setup a starter gallery app on GitHub. Lets fork and clone the repository.</p>
+<p>Move back up to your home directory (if you are not already there)</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$HOME</span>
+</pre></div>
+</div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab1
 </pre></div>
 </div>
-<p>This should create a fork of the starter repository in your gh account. Follow the fork with a clone</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab1
+<p>This should create a fork of the starter repository in your gh account and prompt you to clone - enter <em>Yes</em></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>✓ Created fork &lt;github-username&gt;/connect_2022_lab1
+? Would you like to clone the fork? Yes
 </pre></div>
 </div>
 <p>Now all the files should be local in your working directory, let navigate into the repo and start coding!</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab1
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> connect_2022_lab1
 </pre></div>
 </div>
 </section>
@@ -362,15 +367,20 @@ Some <strong>text</strong>!</p>
 <p>To simplify uploads and writing data to KV we have written a ready to run python script that can be cloned from GitHub and run.</p>
 <section id="clone-image-upload-repository">
 <h3>Clone Image Upload Repository<a class="headerlink" href="#clone-image-upload-repository" title="Permalink to this headline"></a></h3>
+<p>Move back up to your home directory</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$HOME</span>
+</pre></div>
+</div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo fork cf-tme/connect_2022_lab2
 </pre></div>
 </div>
-<p>This should create a fork of the complete Lab 2 repository in your gh account. Follow the fork with a clone</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gh repo clone &lt;yourgithubusername&gt;/connect_2022_lab2
+<p>This should create a fork of the starter repository in your gh account and prompt you to clone - enter <em>Yes</em></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>✓ Created fork &lt;github-username&gt;/connect_2022_lab2
+? Would you like to clone the fork? Yes
 </pre></div>
 </div>
 <p>Now all the files should be local in your working directory, let navigate into the repo to start coding!</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;yourgithubusername&gt;/connect_2022_lab2
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> connect_2022_lab2
 </pre></div>
 </div>
 </section>
