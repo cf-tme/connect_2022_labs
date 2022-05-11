@@ -13,7 +13,7 @@ Check out the [Cloudflare Homepage](https://workers.cloudflare.com/) to learn mo
 ```
 ## Pre-Lab Notes ##
 
-Cloudflare workers is a powerful way to write code infront of your applications directly on Cloudflares Edge Network. In order to full realize the benefit of Workers customers are encouraged to already have a domain onboarded to Cloudflare. In these cases it is possible to create routes that send requests to a set of workers functions before it is sent to the origin. 
+Cloudflare workers is a powerful way to write code in front of your applications directly on Cloudflare's Edge Network. In order to fully realize the benefit of Workers customers are encouraged to already have a domain on-boarded to Cloudflare. In these cases it is possible to create routes that send requests to a set of workers functions before it is sent to the origin. 
 
 For A/B Testing the logical flow of data is represented by the diagram below
 
