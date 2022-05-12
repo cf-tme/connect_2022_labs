@@ -184,7 +184,7 @@ In order to test if our code has worked we could very easily publish our changes
 Back in the terminal window make sure the latest wrangler beta is installed
 
 ``` sh
-npm install wrangler@beta
+npm install wrangler@latest
 ```
 ```{admonition} npm installation
 :class: note
