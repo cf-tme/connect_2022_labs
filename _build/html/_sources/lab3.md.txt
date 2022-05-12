@@ -13,7 +13,7 @@ Check out the [Cloudflare Homepage](https://workers.cloudflare.com/) to learn mo
 ```
 ## Pre-Lab Notes ##
 
-Cloudflare workers is a powerful way to write code in front of your applications directly on Cloudflare's Edge Network. In order to fully realize the benefit of Workers customers are encouraged to already have a domain on-boarded to Cloudflare. In these cases it is possible to create routes that send requests to a set of workers functions before it is sent to the origin. 
+Cloudflare workers is a powerful way to write code in front of your applications directly on Cloudflare's Edge Network. In order to fully realize the benefit of Workers customers are encouraged to have a domain on-boarded to Cloudflare. In these cases it is possible to create custom routes that send requests to a set of workers functions before they are sent to the origin. 
 
 For A/B Testing the logical flow of data is represented by the diagram below
 
@@ -119,7 +119,7 @@ The URL will be at the top of the page, you may have to scroll up to see it
 By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)
 ```
 
-A pages should launch with the simple words *Hello World!*
+A page should launch with the simple words *Hello World!*
 
 Great this means our application is up and now we can write a simple A/B Test to populate an image onto the page.
 
@@ -132,7 +132,7 @@ With the application running lets return to our terminal and navigate to the *fu
 cd functions
 ```
 
-Here there is a file *_middleware.ts* this file is the Workers function that will execute on ever request to the `/` or `root` page. 
+Here there is a file *_middleware.ts* this file is the Workers function that will execute on every request to the `/` or `root` page. 
 
 Open the *_middleware.ts* file in your favorite text editor.
 ```{admonition} Text Editor

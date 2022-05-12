@@ -100,7 +100,7 @@
 </div>
 <section id="pre-lab-notes">
 <h2>Pre-Lab Notes<a class="headerlink" href="#pre-lab-notes" title="Permalink to this headline"></a></h2>
-<p>Cloudflare workers is a powerful way to write code in front of your applications directly on Cloudflare’s Edge Network. In order to fully realize the benefit of Workers customers are encouraged to already have a domain on-boarded to Cloudflare. In these cases it is possible to create routes that send requests to a set of workers functions before it is sent to the origin.</p>
+<p>Cloudflare workers is a powerful way to write code in front of your applications directly on Cloudflare’s Edge Network. In order to fully realize the benefit of Workers customers are encouraged to have a domain on-boarded to Cloudflare. In these cases it is possible to create custom routes that send requests to a set of workers functions before they are sent to the origin.</p>
 <p>For A/B Testing the logical flow of data is represented by the diagram below</p>
 <p><img alt="worker-flow" src="_images/workersflow.png" /></p>
 <p>In this flow we are using a workers function to deliver different images to a requestor based on who they are (this can be at random, but more commonly is based on a cookie). Data about what content is served to who is then piped out into an analytics platform.</p>
@@ -173,7 +173,7 @@
 <p class="admonition-title">pages.dev Domain</p>
 <p>By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)</p>
 </div>
-<p>A pages should launch with the simple words <em>Hello World!</em></p>
+<p>A page should launch with the simple words <em>Hello World!</em></p>
 <p>Great this means our application is up and now we can write a simple A/B Test to populate an image onto the page.</p>
 </section>
 </section>
@@ -183,7 +183,7 @@
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> functions
 </pre></div>
 </div>
-<p>Here there is a file <em>_middleware.ts</em> this file is the Workers function that will execute on ever request to the <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">root</span></code> page.</p>
+<p>Here there is a file <em>_middleware.ts</em> this file is the Workers function that will execute on every request to the <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">root</span></code> page.</p>
 <p>Open the <em>_middleware.ts</em> file in your favorite text editor.</p>
 <div class="note admonition">
 <p class="admonition-title">Text Editor</p>
