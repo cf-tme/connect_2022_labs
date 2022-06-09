@@ -2,7 +2,7 @@
 Welcome to Lab 3 at Cloudflare Connect 2022 - This lab will focus on designing a simple A/B Test for a webpage and writing the test with Workers functions.
 
 By the end of this lab you will have:
-- Learnt the basics of A/B testing
+- Learned the basics of A/B testing
 - Launched a local test environment using Wrangler
 
 Cloudflare Workers allows you to deploy serverless code instantly across the globe to give it exceptional performance, reliability, and scale.
@@ -87,10 +87,10 @@ Select *connect_2022_lab3* on the following page
 
 ![linkgh](./screencaps/pages_gh_repo_select.png)
 
-Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:
+Once selected you will need to configure build parameters. This is built using React so we will set the following build parameters:
 ```
 Project name - connect_2022_lab3
-Production branch - master
+Production branch - main
 Framework preset - *blank*
 Build command - *blank*
 Build output directory - /public
@@ -105,7 +105,7 @@ Press **Save & Deploy**
 :class: note
 Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.
 ```
-Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the **link**.
+Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project, Select the **link**.
 
 ```{admonition} URL Link
 :class: warning
@@ -119,7 +119,7 @@ The URL will be at the top of the page, you may have to scroll up to see it
 By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)
 ```
 
-A page should launch with the simple words *Hello World!*
+A page should launch with the words *Hello World!*
 
 Great this means our application is up and now we can write a simple A/B Test to populate an image onto the page.
 
@@ -147,7 +147,7 @@ We will now add the function to this file that will follow the following logic:
 2. Choose between two images at random (the `Math.random()` produces a value between 1 & 0 and testing it against a limit of 0.5 means an almost 50/50 split)
 3. Re-Write the HTML respone with the new image in the body and deliver it to the requestor.
 
-The enter the below code into the *_middleware.ts* file
+Then add the code block below into the *_middleware.ts* file
 ``` js
 const imageA =
   "https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/9b0fabf0-8a5d-4d84-29d7-c438eb002d00/public";
@@ -226,7 +226,7 @@ GET /favicon.ico 200 OK (4.16ms)
 ```
 
 
-Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `cntrl+c` and push our changes to github.
+Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `ctrl+c` and push our changes to GitHub.
 
 ``` sh
 git add .
