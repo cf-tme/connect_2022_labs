@@ -1,5 +1,5 @@
 # Lab 2 - Cloudflare Images
-Welcome to Lab 2 at Cloudflare Connect 2022 - This lab will focus on Uploading and Delivering Images via Cloudflare Images
+Welcome to Lab 2 at Cloudflare Connect 2022 - This lab will focus on Uploading and Delivering Images via Cloudflare Images.
 By the end of this lab you will have:
 
 - Uploaded images to Cloudflare via the API
@@ -15,16 +15,16 @@ Check out the [Cloudflare Homepage](https://www.cloudflare.com/products/cloudfla
 ```
 
 ## Guided Hands-On Experience
-Cloudflare Images is a subscriptions based product, and to ensure you can experience all that Cloudflare Images has to offer this lab will be a guided experience.
+Cloudflare Images is a subscriptions based product, and to ensure you can experience all that Cloudflare Images has to offer, this lab will be a guided experience.
 
-The steps bellow can be executed when the instructor directs you to them. 
+The steps below can be executed when the instructor directs you to them. 
 
-The Full guide for reference and to follow along can be found [here](https://github.com/cloudflare/cloudflare-docs/blob/d49f3c93e9d2e429c41e0c249de30318cf122870/content/images/cloudflare-images/tutorials/cloudflare-images-on-pages/index.md)
+The full guide for reference and to follow along can be found [here](https://github.com/cloudflare/cloudflare-docs/blob/d49f3c93e9d2e429c41e0c249de30318cf122870/content/images/cloudflare-images/tutorials/cloudflare-images-on-pages/index.md)
 
 
 ```{admonition} Running Scripts 
 :class: note
-During this lab you will be running scripts from within the repo in the "scripts" folder, these scripts will be using node, if you have not setup node please follow the steps [here](./npm.md) to learn more
+During this lab you will be running scripts from within the repo in the "scripts" folder, these scripts will be using Node, if you have not setup Node please follow the steps [here](./npm.md) to learn more.
 ```
 
 ## Clone Repository
@@ -66,7 +66,7 @@ Before running the command ensure that you are in the root directory of the repo
 
 ## Upload Images
 
-To upload images we will first need to define our api key as a system environment variable. 
+To upload images we will first need to define our API key as a system environment variable. 
 ```{admonition} API Key
 :class: warning
 The API Key will be provided to you during the session by the instructor

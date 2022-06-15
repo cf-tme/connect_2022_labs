@@ -2,7 +2,7 @@
 Welcome to Lab 3 at Cloudflare Connect 2022 - This lab will focus on designing a simple A/B Test for a webpage and writing the test with Workers functions.
 
 By the end of this lab you will have:
-- Learnt the basics of A/B testing
+- Learned the basics of A/B testing
 - Launched a local test environment using Wrangler
 
 Cloudflare Workers allows you to deploy serverless code instantly across the globe to give it exceptional performance, reliability, and scale.
@@ -25,30 +25,26 @@ In this lab - since everyone may not have a custom domain to onboard to cloudfla
 
 ## Setup Basic Web Application ##
 
-To make things easy we have already built a basic application that can be run on Cloudflare pages. Lets clone the repository and get started.
+To make things easy we have already built a basic application that can be run on Cloudflare pages.
 
-Move back up to your home directory
-``` sh
-cd $HOME
-```
+The project is hosted on [Stackblitz](stackblitz.com) making the set up process very straightforward.
 
-``` sh
-gh repo fork cf-tme/connect_2022_lab3
-```
-This should create a fork of the starter repository in your gh account and prompt you to clone - enter *Yes*
+To access the project you need to navigate to this url:
+[Stackblitz cf-time/connect_2022_lab3](https://stackblitz.com/github/cf-tme/connect_2022_lab3)
 
-``` sh
-✓ Created fork <github-username>/connect_2022_lab3
-? Would you like to clone the fork? Yes
-```
+Fork the project by clicking the fork button to create a copy that we will work with. 
 
-Now all the files should be local in your working directory, let navigate into the repo to start coding! 
+![Fork Repo](./screencaps/fork-stackblitz.png)
 
-``` sh
-cd connect_2022_lab3
-```
+Next, connect the forked repository to a GitHub account with the connect repository button.
 
-With the repository cloned lets connect the application to your Cloudflare account and deploy it with pages.
+![Connect to GitHub](./screencaps/connect-git-repo.png)
+
+We'll get a prompt to connect a new repository.
+
+![connect repo](./screencaps/connect-with-git.png)
+
+With the project cloned lets connect the application to our Cloudflare account and deploy it with pages.
 
 ### Deploy project to Pages ###
 Deploying our GitHub project to pages is as simple as connecting our GitHub account to Cloudflare.
@@ -87,10 +83,10 @@ Select *connect_2022_lab3* on the following page
 
 ![linkgh](./screencaps/pages_gh_repo_select.png)
 
-Once selected you will need to configure build parameters. This is build using React so we will set the following build parameters:
+Once selected you will need to configure build parameters. This is built using React so we will set the following build parameters:
 ```
 Project name - connect_2022_lab3
-Production branch - master
+Production branch - main
 Framework preset - *blank*
 Build command - *blank*
 Build output directory - /public
@@ -105,7 +101,7 @@ Press **Save & Deploy**
 :class: note
 Once started the deployment will take a few moments to complete - you can follow the deployment details to monitor progress of the deployment.
 ```
-Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project Select the **link**.
+Once the deployment has completed you will be presented with a success message as well as a URL to visit your new project, Select the **link**.
 
 ```{admonition} URL Link
 :class: warning
@@ -119,27 +115,18 @@ The URL will be at the top of the page, you may have to scroll up to see it
 By default new projects will automatically be given a *.pages.dev domain, If you would like to setup custom routes to your own domain you can do that through DNS CNAMEing (or directly in the project settings if your domain nameservers are Cloudflare)
 ```
 
-A page should launch with the simple words *Hello World!*
+A page should launch with the words *Hello World!*
 
 Great this means our application is up and now we can write a simple A/B Test to populate an image onto the page.
 
 
 ## Write A/B Testing Function ##
 
-With the application running lets return to our terminal and navigate to the *functions* directory
-
-``` sh
-cd functions
-```
+With the application running, let's open the *functions* directory.
 
 Here there is a file *_middleware.ts* this file is the Workers function that will execute on every request to the `/` or `root` page. 
 
-Open the *_middleware.ts* file in your favorite text editor.
-```{admonition} Text Editor
-:class: note
-VS Code is a versatile text editor that can be launched directly from the terminal using *code <filename>* to install VS Code follow the steps found in the [Documentation](https://code.visualstudio.com/download)
-```
-
+Open the *_middleware.ts* file.
 
 We will now add the function to this file that will follow the following logic:
 
@@ -147,10 +134,11 @@ We will now add the function to this file that will follow the following logic:
 2. Choose between two images at random (the `Math.random()` produces a value between 1 & 0 and testing it against a limit of 0.5 means an almost 50/50 split)
 3. Re-Write the HTML respone with the new image in the body and deliver it to the requestor.
 
-The enter the below code into the *_middleware.ts* file
+Then add the code block below into the *_middleware.ts* file
 ``` js
 const imageA =
   "https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/9b0fabf0-8a5d-4d84-29d7-c438eb002d00/public";
+
 const imageB =
   "https://imagedelivery.net/Upv7Q0MhroCOJHZCX_pZgA/2b143d0b-006a-47e7-db0e-ce523edf5300/public";
 
@@ -179,24 +167,22 @@ Save the file once you are done editing it.
 
 ## Testing the Code Locally before Deploying ##
 
-In order to test if our code has worked we could very easily publish our changes to the GitHub repository and have it changed live - but that doesn't make sense in development environments because you may want to debug and validate your code works as expected before pushing it. To do this we have updated Wrangler to allow for local simulation of projects. Lets launch a local development instance of our project.
+In order to test if our code has worked we could very easily publish our changes to the GitHub repository and have it changed live - but that doesn't make sense in development environments because you may want to debug and validate your code works as expected before pushing it. To do this we have updated Wrangler to allow for local simulation of projects.
 
-Back in the terminal window make sure the latest wrangler beta is installed
+In the scripts section in our `package.json` file, make sure there's a script to run wrangler locally.
+
+```bash
+"scripts": {
+    "start": "npx wrangler pages dev public"
+  }
+```
+
+Then in the terminal window run the script using the command `npm start` to launch Wrangler. 
 
 ``` sh
-npm install wrangler@latest
-```
-```{admonition} npm installation
-:class: note
-if you have not already installed npm on your system follow the steps in the Pre-Requisite section [here](./npm.md)
+npm start
 ```
 
-With the latest wrangler installed you can launch the project locally, first lets go back to the root project directory and then launch wrangler
-
-``` sh
-cd ..
-npx wrangler pages dev ./public
-```
 As the project is launching you should see
 ``` sh 
 > npx wrangler pages dev ./public
@@ -209,7 +195,6 @@ Serving at http://localhost:8788/
 And on completion it should automatically launch a browser bringing you to your new homepage, with one of the pictures you selected! 
 
 ![working-function](./screencaps/workingfunction.png)
-
 
 
 If you refresh the page slowly a few times you should see the image cycle in-between the two images set in the worker script, this is the `HTMLRewriter` in action!
@@ -226,7 +211,7 @@ GET /favicon.ico 200 OK (4.16ms)
 ```
 
 
-Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `cntrl+c` and push our changes to github.
+Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `ctrl+c` and push our changes to GitHub.
 
 ``` sh
 git add .
