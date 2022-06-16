@@ -211,13 +211,15 @@ GET /favicon.ico 200 OK (4.16ms)
 ```
 
 
-Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `ctrl+c` and push our changes to GitHub.
+Now that we have confirmed the A/B test works as expected we can kill the wrangler dev setup with `ctrl+c`. 
 
-``` sh
-git add .
-git commit -m "added A/B test to randomly serve image"
-git push
-```
+Click the commit button to push our changes to GitHub.
+
+![commit message](screencaps/Commit.png)
+
+Then add a commit message before pushing your changes.
+
+![commit message](screencaps/commitmessage.png)
 
 If we return to the the Cloudflare Pages project we should see that the deployment is in progress - wait for it to complete.
 
