@@ -29,8 +29,6 @@ Visit [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profi
 
 ![Stream API Token settings](./screencaps/stream-demo-2.png)
 
-More on dash
-
 ## Understanding Stream Direct Uploads
 
 Stream's [Direct Creator Upload API](https://developers.cloudflare.com/stream/uploading-videos/direct-creator-uploads/) enables you to directly accept user uploads without exposing your API Key. By using the Direct Creator Uploads API, you eliminate the need to use storage buckets and leverage built-in storage. 
